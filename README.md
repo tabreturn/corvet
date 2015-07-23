@@ -3,7 +3,7 @@ corvet
 
 Run
 ---
-./node_modules/.bin/browser-sync  start --serve--files="*.html,css/*.css,js/*.js"
+./node_modules/.bin/browser-sync  start --serve--files="*.html,css/*,js/*,img/*"
 sass --watch scss:css
 
 Automatic marker for vector graphics drawing tasks
