@@ -1,7 +1,7 @@
-css/*.map
-.sass-cache/
-css/.sass-cache/
+css/
 node_modules/
+venv/
+.sass-cache/
 
 # OS generated files #
 ######################

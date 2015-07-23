@@ -1,6 +1,11 @@
 corvet
 ======
 
+Run
+---
+./node_modules/.bin/browser-sync  start --serve--files="*.html,css/*.css,js/*.js"
+sass --watch scss:css
+
 Automatic marker for vector graphics drawing tasks
 --------------------------------------------------
 * app.py runs a Python3 Flask server
