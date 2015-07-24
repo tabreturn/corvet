@@ -1,5 +1,5 @@
-bower_components/
 css/
+js/bower_components/
 node_modules/
 venv/
 .sass-cache/
