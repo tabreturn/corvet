@@ -3,6 +3,7 @@ js/bower_components/
 node_modules/
 venv/
 .sass-cache/
+*.sqlite3
 
 # OS generated files #
 ######################

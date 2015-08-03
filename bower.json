@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "homepage": "https://github.com/tabreturn/corvet",
   "license": "MIT",
-  "directory": "js/bower_components/"
   "ignore": [
     "**/.*",
     "node_modules",

@@ -3,8 +3,9 @@ corvet
 
 Run
 ---
-./node_modules/.bin/browser-sync  start --serve--files="*.html,css/*,js/*,img/*"
-sass --watch scss:css
+* ./node_modules/.bin/browser-sync start --config bs-config.js
+* sass --watch scss:css
+* source venv/bin/activate; python ...
 
 Automatic marker for vector graphics drawing tasks
 --------------------------------------------------
