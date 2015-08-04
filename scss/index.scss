@@ -4,3 +4,7 @@ body {
   background-color: $bg_color;
   font-family: dejavu_sansbold;
 }
+
+#result {
+  outline: solid 3px red;
+}

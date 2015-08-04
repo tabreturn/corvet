@@ -1,19 +1,34 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-  <title>Corvet &ndash; Automatic Marker for Vector Graphics Drawing Tasks</title>
+  
+  <title>Corvet -- Automatic Marker for Vector Graphics Drawing Tasks</title>
   <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <script src="js/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="js/bower_components/angularjs/angular.min.js"></script>
+  
 </head>
 
-<body>
-
-hi
-
-<script type='text/javascript' id="__bs_script__">
-  document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.8.2.js'><\/script>".replace("HOST", location.hostname));
-</script>
-
-
+<body ng-app="corvet">
+  
+  <h1>Recreate this image</h1>
+  
+  <form ng-submit="submit()" ng-controller="svgUpload">
+    <input type="text" ng-model="name" />
+    <input type="file" id="upload" />
+    <input type="submit" />
+  </form>
+  
+  <div id="result"></div>
+  
+  <img src="img/drawing.png" />
+  
+  <script src="js/index.js"></script>
+  
+  <!-- browser-sync client -->
+  <script type='text/javascript' id="__bs_script__">
+    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.8.2.js'><\/script>".replace("HOST", location.hostname));
+  </script>
+  
 </body>
 </html>

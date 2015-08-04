@@ -3,7 +3,8 @@ import sqlite3
 from contextlib import closing
 
 # configuration
-DATABASE = 'db.sqlite3'
+DATABASE = 'db/db.sqlite3'
+SCEHMA = '../db/db_schema.sql'
 DEBUG = True
 SECRET_KEY = 'development key'
 
@@ -30,7 +31,7 @@ def query_db(query, args=(), one=False):
 
 def init_db():
   with closing(connect_db()) as db:
-    with app.open_resource('db_schema.sql', mode='r') as f:
+    with app.open_resource(SCEHMA, mode='r') as f:
       db.cursor().executescript(f.read())
     db.commit()
 

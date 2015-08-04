@@ -1,4 +1,5 @@
 css/
+db/*.sql
 js/bower_components/
 node_modules/
 venv/
