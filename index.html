@@ -5,8 +5,14 @@
   <title>Corvet -- Automatic Marker for Vector Graphics Drawing Tasks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="css/index.css" />
+  
   <script src="js/bower_components/jquery/dist/jquery.min.js"></script>
+  
   <script src="js/bower_components/angularjs/angular.min.js"></script>
+  <script src="js/bower_components/angular-route/angular-route.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/services.js"></script>
+  <script type="text/javascript" src="js/controllers.js"></script>
   
 </head>
 
@@ -14,7 +20,7 @@
   
   <h1>Recreate this image</h1>
   
-  <form ng-submit="submit()" ng-controller="svgUpload" style="padding: 20px">
+  <form ng-submit="submit()" ng-controller="svgUpload">
     <input type="file" id="upload" />
     <input type="submit" />
   </form>
@@ -23,14 +29,16 @@
   
   <img src="img/drawing.png" width="100" />
   
-  <script src="js/index.js"></script>
-  
   <table id="theme">
     <tr><td></td><td></td><td></td><td>sans</td></tr>
     <tr><td></td><td></td><td></td><td>serif</td></tr>
     <tr><td></td><td></td><td></td><td>mono</td></tr>
     <tr><td colspan="4"><a href="#">link</a></td></tr>
   </table>
+  
+  <div id="message">
+    <div ng-view></div>
+  </div>
   
   <!-- browser-sync client -->
   <script type='text/javascript' id="__bs_script__">
