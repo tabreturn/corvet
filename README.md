@@ -16,7 +16,7 @@ Todo
 * ~~Display SVG~~
 * ~~Setup theme~~
 * Assess SVG:
-  * Count shapes
+  * ~~Count shapes~~
   * Check fills
   * Check strokes
   * Triangle detection
