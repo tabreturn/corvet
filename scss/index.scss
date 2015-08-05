@@ -1,16 +1,13 @@
 @import '_base';
 
-body {
-  background-color: $colorter;
-  color: $colorsec;
-  font-family: $sans;
-  font-size: 0.8em;
-}
-
+// theme swatches
 #theme {
+  display: none; // comment out this line to view theme swatches
   width: 300px;
   height: 150px;
   border-spacing: 0;
+  outline: 5px solid white;
+  text-align: center;
   
   td {
     width: 100px;
@@ -31,9 +28,15 @@ body {
   tr:nth-child(1) td:last-child { font-family: $sans }
   tr:nth-child(2) td:last-child { font-family: $serif }
   tr:nth-child(3) td:last-child { font-family: $mono }
-  
+}
+
+body {
+  background-color: $colorter;
+  color: $colorsec;
+  font-family: $sans;
+  font-size: 0.8em;
 }
 
 #result {
-  outline: solid 5px $colorterd;
+  outline: solid 5px $colorterl;
 }

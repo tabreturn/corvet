@@ -1,18 +1,19 @@
-@import '_fonts';
+// fonts
+@import     '_fonts';
+$mono:      dejavu_sansmono;
+$sans:      dejavu_sans;
+$light:     dejavu_sanslight;
+$serif:     dejavu_serif;
 
-$mono: dejavu_sansmono;
-$sans: dejavu_sans;
-$light: dejavu_sanslight;
-$serif: dejavu_serif;
-
-$colorpri: #5B605F;
-$colorsec: #A90641;
-$colorter: #FCFAD0;
-
+// tertiary color scheme
+$colorpri:  #5B605F;
+$colorsec:  #A90641;
+$colorter:  #FCFAD0;
+// light variants
 $colorpril: lighten($colorpri, 5%);
 $colorsecl: lighten($colorsec, 5%);
 $colorterl: lighten($colorter, 5%);
-
+// dark variants
 $colorprid: darken($colorpri, 10%);
 $colorsecd: darken($colorsec, 10%);
 $colorterd: darken($colorter, 10%);
