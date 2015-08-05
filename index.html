@@ -3,6 +3,7 @@
 <head>
   
   <title>Corvet -- Automatic Marker for Vector Graphics Drawing Tasks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="css/index.css" />
   <script src="js/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="js/bower_components/angularjs/angular.min.js"></script>
@@ -13,7 +14,7 @@
   
   <h1>Recreate this image</h1>
   
-  <form ng-submit="submit()" ng-controller="svgUpload">
+  <form ng-submit="submit()" ng-controller="svgUpload" style="padding: 20px">
     <input type="file" id="upload" />
     <input type="submit" />
   </form>
