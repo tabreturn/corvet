@@ -1,5 +1,7 @@
+'use strict';
+
 corvet.service('messages', function(){
   var messages = {};
-  messages.hello = 'hi';
+  messages.test = 'message service working';
   return messages;
 });
