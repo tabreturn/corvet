@@ -3,7 +3,7 @@ corvet
 
 Run
 ---
-* ./node_modules/.bin/browser-sync start --config bs-config.js
+* ./node_modules/.bin/browser-sync start --config cfg/bs-config.js
 * sass --watch scss:css
 * source venv/bin/activate; python py/http_api.py
 
