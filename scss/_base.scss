@@ -1,3 +1,13 @@
 @import '_fonts';
 
-$bg_color: orange;
+$colorpri: #5B605F;
+$colorsec: #A90641;
+$colorter: #FCFAD0;
+
+$colorpril: lighten($colorpri, 5%);
+$colorsecl: lighten($colorsec, 5%);
+$colorterl: lighten($colorter, 5%);
+
+$colorprid: darken($colorpri, 10%);
+$colorsecd: darken($colorsec, 10%);
+$colorterd: darken($colorter, 10%);

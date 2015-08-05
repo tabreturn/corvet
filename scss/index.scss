@@ -1,8 +1,32 @@
 @import '_base';
 
 body {
-  background-color: $bg_color;
-  font-family: dejavu_sansbold;
+  background-color: $colorter;
+  color: $colorsec;
+  font-family: dejavu_sansextralight;
+}
+
+#colorscheme {
+  width: 300px;
+  height: 150px;
+  border-spacing: 0;
+  
+  td {
+    width: 100px;
+    height: 50px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  tr:nth-child(1) td:nth-child(1) { background-color: $colorprid }
+  tr:nth-child(1) td:nth-child(2) { background-color: $colorsecd }
+  tr:nth-child(1) td:nth-child(3) { background-color: $colorterd }
+  tr:nth-child(2) td:nth-child(1) { background-color: $colorpri }
+  tr:nth-child(2) td:nth-child(2) { background-color: $colorsec }
+  tr:nth-child(2) td:nth-child(3) { background-color: $colorter }
+  tr:nth-child(3) td:nth-child(1) { background-color: $colorpril }
+  tr:nth-child(3) td:nth-child(2) { background-color: $colorsecl }
+  tr:nth-child(3) td:nth-child(3) { background-color: $colorterl }
 }
 
 #result {
