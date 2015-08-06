@@ -1,6 +1,6 @@
 css/
 db/*.sql
-js/bower_components/
+js/lib/bower_components/
 node_modules/
 venv/
 .sass-cache/

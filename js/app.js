@@ -3,7 +3,7 @@
 var corvet = angular.module('corvet', ['ngRoute']);
 
 corvet.constant('CONFIG', {
-  'DEBUG': true, // set to true for console-bug debug info
+  'DEBUG': false // set to true for console-bug debug info
 });
 
 corvet.config(function($routeProvider) {

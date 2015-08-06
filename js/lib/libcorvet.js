@@ -64,5 +64,24 @@ var libcorvet = function(svg) {
   
   // comparison functions
   
+  this.rgbToArray = function(rgb) {
+    var pattern = /rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
+    rgb = pattern.exec(rgb);
+    rgb.shift();
+    rgb = rgb.map(Number);
+    return rgb;
+  }
   
+  this.compareColor = function(color1, color2) {
+    color1 = this.rgbToArray(color1);
+    color2 = this.rgbToArray(color2);
+    
+    var result = DeltaE.getDeltaE00(
+      {L: color1[0], A: color1[1], B: color1[2]},
+      {L: color2[0], A: color2[1], B: color2[2]}
+    );
+    
+    return result;
+  }
+
 }
