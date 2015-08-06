@@ -41,6 +41,8 @@ var libcorvet = function(svg) {
     // rect attributes
     attr.width            = shape.getAttribute('width');
     attr.height           = shape.getAttribute('height');
+    attr.x                = shape.getAttribute('x');
+    attr.y                = shape.getAttribute('y');
     // circle attributes
     attr.cx               = shape.getAttribute('cx');
     attr.cy               = shape.getAttribute('cy');
@@ -80,8 +82,15 @@ var libcorvet = function(svg) {
       {L: color1[0], A: color1[1], B: color1[2]},
       {L: color2[0], A: color2[1], B: color2[2]}
     );
-    
     return result;
   }
-
+  
+  this.comparePosition = function(x1, y1, x2, y2) {
+    return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+  }
+  
+  this.compareSize = function(a1, a2) {
+    return Math.abs((a1 - a2));
+  }
+  
 }
