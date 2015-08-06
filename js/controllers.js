@@ -1,6 +1,6 @@
 'use strict';
 
-corvet.controller('svgUpload', function($scope, messages) {
+corvet.controller('svgUpload', function($scope, messages, CONFIG) {
   $scope.submit = function() {
     var file = document.querySelector('#upload').files[0];
     var submission = '#submission';
@@ -10,14 +10,15 @@ corvet.controller('svgUpload', function($scope, messages) {
     reader.onload = function() {
       document.querySelector(submission).innerHTML = reader.result;
       
-      assess.countRects();
-      assess.countCircles();
-      assess.countPaths();
-      
-      console.log("name : " + file.name);
-      console.log("size : " + file.size);
-      console.log("type : " + file.type);
-      console.log("date : " + file.lastModified);
+      if(CONFIG.DEBUG) {
+        console.log('rects:' + assess.countRects());
+        console.log('circles:' + assess.countCircles());
+        console.log('paths:' + assess.countPaths());
+        console.log("file name: " + file.name);
+        console.log("file size: " + file.size);
+        console.log("file type: " + file.type);
+        console.log("file date: " + file.lastModified);
+      }
     }
     reader.readAsText(file);
   }
