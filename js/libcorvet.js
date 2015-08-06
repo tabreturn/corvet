@@ -4,6 +4,9 @@ var libcorvet = function(svg) {
   
   this.svg = svg;
   
+  
+  // extract shapes and attributes
+  
   this.rects = [];
   this.circles = [];
   this.paths = [];
@@ -11,7 +14,7 @@ var libcorvet = function(svg) {
   this.countRects = function() {
     return(document.querySelectorAll(this.svg + ' rect').length);
   }
-  
+
   this.countCircles = function() {
     return(document.querySelectorAll(this.svg + ' circle').length);
   }
@@ -57,5 +60,9 @@ var libcorvet = function(svg) {
     attr.strokedasharray  = shape.style.strokeDasharray;
     return attr;
   }
+  
+  
+  // comparison functions
+  
   
 }
