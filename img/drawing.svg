@@ -5,13 +5,34 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   width="400"
-   height="400"
-   viewBox="0 0 400 400.00001"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
    id="svg2"
-   version="1.1">
+   viewBox="0 0 400 400.00001"
+   height="400"
+   width="400">
   <defs
-     id="defs4" />
+     id="defs4">
+    <linearGradient
+       id="linearGradient4161">
+      <stop
+         id="stop4163"
+         offset="0"
+         style="stop-color:#ff0000;stop-opacity:1;" />
+      <stop
+         id="stop4165"
+         offset="1"
+         style="stop-color:#ff0000;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       y2="251.74318"
+       x2="354.868"
+       y1="251.74318"
+       x1="197.31624"
+       id="linearGradient4167"
+       xlink:href="#linearGradient4161" />
+  </defs>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -24,40 +45,41 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <g
-     id="layer1"
-     transform="translate(0,-652.36216)">
-    <rect
-       style="fill:#00ffff;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect3336"
-       width="162.63457"
-       height="162.63457"
-       x="42.426411"
-       y="702.84943" />
-    <rect
-       style="fill:#ff0000;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect3336-9"
-       width="152.55176"
-       height="55.577114"
-       x="192.4247"
-       y="937.7005" />
-  </g>
+  <rect
+     style="fill:#00ffff;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="rect3336"
+     width="162.63457"
+     height="162.63457"
+     x="42.426411"
+     y="50.487267" />
   <circle
-     r="25.423729"
-     cy="106.77966"
-     cx="340.67798"
+     style="fill:#ff0000;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
      id="path4136"
-     style="fill:#ff0000;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none" />
+     cx="340.67798"
+     cy="106.77966"
+     r="25.423729" />
   <path
-     d="m 301.41924,216.03239 -35.77932,19.28386 -29.39646,-28.06912 17.61132,-36.63152 40.28084,5.42958 z"
+     style="fill:#00ff00;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1"
      id="path4140"
-     style="fill:#00ff00;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1" />
+     d="m 301.41924,216.03239 -35.77932,19.28386 -29.39646,-28.06912 17.61132,-36.63152 40.28084,5.42958 z" />
   <path
-     id="rect4144"
-     d="m 60.749721,241.44353 82.243199,0 33.78378,56.68515 -149.810764,0 z"
-     style="fill:#ff00ff;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none" />
+     style="fill:#ff00ff;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     d="M 65.317787,235.75484 146.68345,247.73705 171.84816,308.7394 23.635884,286.91312 Z"
+     id="rect4144" />
   <path
-     id="rect4147"
+     style="fill:#ff00ff;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
      d="m 7.3402005,320.89993 128.2380095,0 40,63.51976 -128.23801,0 z"
-     style="fill:#ff00ff;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none" />
+     id="rect4147" />
+  <rect
+     transform="matrix(0.98520876,0.17135837,-0.17135837,0.98520876,0,0)"
+     style="fill:url(#linearGradient4167);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:5, 10;stroke-dashoffset:0;stroke-opacity:1"
+     id="rect3336-9"
+     width="152.55176"
+     height="55.577114"
+     x="199.81624"
+     y="223.95462" />
+  <path
+     id="path4169"
+     d="M 374.57627,272.88136 387.28814,142.37288"
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
 </svg>
