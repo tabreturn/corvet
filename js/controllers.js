@@ -12,7 +12,7 @@ corvet.controller('svgUpload', function($scope, messages, CONFIG) {
       var assess = new libcorvet(submission + ' svg');
       assess.getShapes();
       
-      if(CONFIG.DEBUG) {
+      if (CONFIG.DEBUG) {
         console.log('rects(' + assess.countRects()+'):');
         console.log(assess.rects);
         console.log('circles(' + assess.countCircles()+'):');

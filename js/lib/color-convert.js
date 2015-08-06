@@ -295,7 +295,7 @@ var colorcovert;
         l = hsl[2] / 100,
         sv, v;
   
-    if(l === 0) {
+    if (l === 0) {
         // no need to do calc on black
         // also avoids divide by 0 error
         return [0, 0, 0];

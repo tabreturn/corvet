@@ -24,7 +24,7 @@ var libcorvet = function(svg) {
   }
   
   this.shapeArray = function(total, shape, array) {
-    for(var i=0; i<total; i++) {
+    for (var i=0; i<total; i++) {
       var add = this.shapeAttributes(document.querySelectorAll(this.svg + ' ' +shape)[i]);
       array[i] = add;
     }
