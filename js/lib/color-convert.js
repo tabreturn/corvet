@@ -333,7 +333,7 @@ var colorcovert;
         t = 255 * v * (1 - (s * (1 - f))),
         v = 255 * v;
   
-    switch(hi) {
+    switch (hi) {
       case 0:
         return [v, t, p];
       case 1:
