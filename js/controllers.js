@@ -13,11 +13,11 @@ corvet.controller('svgUpload', function($scope, messages, CONFIG) {
       assess.getShapes();
       
       if (CONFIG.DEBUG) {
-        console.log('rects(' + assess.countRects()+'):');
+        console.log('rects(' + assess.countShapes('rect')+'):');
         console.log(assess.rects);
-        console.log('circles(' + assess.countCircles()+'):');
+        console.log('circles(' + assess.countShapes('circle')+'):');
         console.log(assess.circles);
-        console.log('paths(' + assess.countPaths()+'):');
+        console.log('paths(' + assess.countShapes('path')+'):');
         console.log(assess.paths);
         console.log("file name: " + file.name);
         console.log("file size: " + file.size);

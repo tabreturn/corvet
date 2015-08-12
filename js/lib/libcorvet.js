@@ -3,22 +3,14 @@
 var libcorvet = function(selector) {
   
   var svg = selector;
-  this.rects = [];
   this.circles = [];
   this.paths = [];
+  this.rects = [];
   
   // extract shapes and attributes
   
-  this.countRects = function() {
-    return document.querySelectorAll(svg + ' rect').length;
-  }
-
-  this.countCircles = function() {
-    return document.querySelectorAll(svg + ' circle').length;
-  }
-  
-  this.countPaths = function() {
-    return document.querySelectorAll(svg + ' path').length;
+  this.countShapes = function(shape) {
+    return document.querySelectorAll(svg + ' ' + shape).length;
   }
   
   this.setShapeAttributes = function(total, type, array) {
@@ -29,9 +21,9 @@ var libcorvet = function(selector) {
   }
   
   this.getShapes = function() {
-    this.setShapeAttributes(this.countRects(), 'rect', this.rects);
-    this.setShapeAttributes(this.countCircles(), 'circle', this.circles);
-    this.setShapeAttributes(this.countPaths(), 'path', this.paths);
+    this.setShapeAttributes(this.countShapes('rect'), 'rect', this.rects);
+    this.setShapeAttributes(this.countShapes('circle'), 'circle', this.circles);
+    this.setShapeAttributes(this.countShapes('path'), 'path', this.paths);
   }
   
   this.getShapeAttributes = function(shape, type) {
