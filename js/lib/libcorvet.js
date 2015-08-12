@@ -4,6 +4,7 @@ var libcorvet = function(selector) {
   
   var svg = selector;
   this.circles = [];
+  this.ellipses = [];
   this.paths = [];
   this.rects = [];
   
@@ -21,9 +22,10 @@ var libcorvet = function(selector) {
   }
   
   this.getShapes = function() {
-    this.setShapeAttributes(this.countShapes('rect'), 'rect', this.rects);
     this.setShapeAttributes(this.countShapes('circle'), 'circle', this.circles);
+    this.setShapeAttributes(this.countShapes('ellipse'), 'ellipse', this.ellipses);
     this.setShapeAttributes(this.countShapes('path'), 'path', this.paths);
+    this.setShapeAttributes(this.countShapes('rect'), 'rect', this.rects);
   }
   
   this.getShapeAttributes = function(shape, type) {
@@ -31,21 +33,28 @@ var libcorvet = function(selector) {
     attr.type = type;
     
     switch (attr.type) {
-      case 'rect':
-        attr.width            = shape.getAttribute('width');
-        attr.height           = shape.getAttribute('height');
-        attr.x                = shape.getAttribute('x');
-        attr.y                = shape.getAttribute('y');
-        attr.area             = attr.width * attr.height;
-        break;
       case 'circle':
         attr.cx               = shape.getAttribute('cx');
         attr.cy               = shape.getAttribute('cy');
         attr.r                = shape.getAttribute('r');
         attr.area             = attr.r*attr.r * Math.PI;
         break;
+      case 'ellipse':
+        attr.cx               = shape.getAttribute('cx');
+        attr.cy               = shape.getAttribute('cy');
+        attr.rx               = shape.getAttribute('rx');
+        attr.ry               = shape.getAttribute('ry');
+        attr.area             = attr.rx*attr.ry * Math.PI;
+        break;
       case 'path':
         attr.d                = shape.getAttribute('d');
+        break;
+      case 'rect':
+        attr.width            = shape.getAttribute('width');
+        attr.height           = shape.getAttribute('height');
+        attr.x                = shape.getAttribute('x');
+        attr.y                = shape.getAttribute('y');
+        attr.area             = attr.width * attr.height;
         break;
     }
     attr.fill             = shape.style.fill;
@@ -107,19 +116,23 @@ var libcorvet = function(selector) {
     );
   }
   
-  this.compareRect = function(r1, r2) {
-    return {
-      position: this.compareDistance(r1.x, r2.x, r2.y, r2.y),
-      area: this.compareProportional(r1.area, r2.area)
-    }
+  this.compareCircle = function(c1, c2) {
+    
   }
   
-  this.compareCircle = function(c1, c2) {
+  this.compareEllipse = function(e1, e2) {
     
   }
   
   this.comparePath = function(p1, p2) {
     
+  }
+  
+  this.compareRect = function(r1, r2) {
+    return {
+      position: this.compareDistance(r1.x, r2.x, r2.y, r2.y),
+      area: this.compareProportional(r1.area, r2.area)
+    }
   }
   
 }
