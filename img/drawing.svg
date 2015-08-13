@@ -6,33 +6,33 @@
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:xlink="http://www.w3.org/1999/xlink"
-   version="1.1"
-   id="svg2"
-   viewBox="0 0 400 400.00001"
+   width="400"
    height="400"
-   width="400">
+   viewBox="0 0 400 400.00001"
+   id="svg2"
+   version="1.1">
   <defs
      id="defs4">
     <linearGradient
        id="linearGradient4161">
       <stop
-         id="stop4163"
+         style="stop-color:#ff0000;stop-opacity:1;"
          offset="0"
-         style="stop-color:#ff0000;stop-opacity:1;" />
+         id="stop4163" />
       <stop
-         id="stop4165"
+         style="stop-color:#ff0000;stop-opacity:0;"
          offset="1"
-         style="stop-color:#ff0000;stop-opacity:0;" />
+         id="stop4165" />
     </linearGradient>
     <linearGradient
-       gradientUnits="userSpaceOnUse"
-       y2="251.74318"
-       x2="354.868"
-       y1="251.74318"
-       x1="197.31624"
-       id="linearGradient4167"
+       gradientTransform="matrix(0.42258361,0.0735004,-0.0735004,0.42258361,249.44298,32.120162)"
        xlink:href="#linearGradient4161"
-       gradientTransform="translate(73.437841,41.418269)" />
+       id="linearGradient4167"
+       x1="197.31624"
+       y1="251.74318"
+       x2="354.868"
+       y2="251.74318"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <metadata
      id="metadata7">
@@ -47,51 +47,56 @@
     </rdf:RDF>
   </metadata>
   <rect
-     style="fill:#00ffff;fill-rule:evenodd;stroke:#000000;stroke-width:4.87585926;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     y="202.45056"
+     x="102.45045"
+     height="95.098862"
+     width="95.098984"
      id="rect3336"
-     width="158.59666"
-     height="158.59668"
-     x="42.364342"
-     y="54.587212" />
+     style="fill:#00ffff;fill-opacity:1;fill-rule:evenodd;stroke:#00ffff;stroke-width:4.90117979;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.49803922" />
   <circle
-     style="fill:#ff0000;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     r="50"
+     cy="100"
+     cx="100"
      id="path4136"
-     cx="340.67798"
-     cy="106.77966"
-     r="25.423729" />
+     style="fill:#00ffff;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none" />
   <path
-     style="fill:#00ff00;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1"
+     d="M 350.74076,101.88211 335.394,110.1535 322.78504,98.113865 330.33903,82.40158 347.61661,84.730479 Z"
      id="path4140"
-     d="m 301.41924,216.03239 -35.77932,19.28386 -29.39646,-28.06912 17.61132,-36.63152 40.28084,5.42958 z" />
+     style="fill:#00ff00;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none" />
   <path
-     style="fill:#ff00ff;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
-     d="M 65.317787,235.75484 146.68345,247.73705 171.84816,308.7394 23.635884,286.91312 Z"
-     id="rect4144" />
+     id="rect4144"
+     d="m 277.70678,16.144671 34.90001,5.139505 10.79385,26.165615 -63.57239,-9.361902 z"
+     style="fill:#ff00ff;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none" />
   <path
-     style="fill:#ff00ff;fill-opacity:0.62359548;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
-     d="m 7.3402005,320.89993 128.2380095,0 40,63.51976 -128.23801,0 z"
-     id="rect4147" />
+     id="rect4147"
+     d="m 253.3402,52.927502 55.00487,0 17.15712,27.245403 -55.00487,0 z"
+     style="fill:#ff00ff;fill-opacity:0.62359547;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none" />
   <path
-     transform="matrix(0.98520876,0.17135837,-0.17135837,0.98520876,0,0)"
-     style="fill:url(#linearGradient4167);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:5, 10;stroke-dashoffset:0;stroke-opacity:1"
-     d="m 273.25409,265.37289 149.50216,-17.53338 3.0496,73.1105 -107.7042,-15.54201 z"
-     id="rect3336-9" />
+     id="rect3336-9"
+     d="m 317.42129,141.44629 64.46588,3.57915 -4.08494,31.11945 -44.37169,-14.48411 z"
+     style="fill:url(#linearGradient4167);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.14463997;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2.14463994, 4.28927989;stroke-dashoffset:0;stroke-opacity:1" />
   <path
-     id="path4169"
-     d="M 374.57627,272.88136 387.28814,142.37288"
-     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-  <rect
-     style="fill:#ffff00;fill-rule:evenodd;stroke:#000000;stroke-width:0.48758599;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     id="rect3336-91"
-     width="15.859668"
-     height="15.859668"
-     x="227.8138"
-     y="85.975502" />
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.42892799px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 382.11985,126.26622 5.45248,-55.978737"
+     id="path4169" />
   <ellipse
-     ry="55.084747"
-     rx="15.677966"
-     style="fill:#000000;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1"
+     cy="41.571114"
+     cx="342.31677"
      id="path4136-0"
-     cx="281.77963"
-     cy="75.423721" />
+     style="fill:#000000;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none"
+     rx="6.7247186"
+     ry="23.62739" />
+  <rect
+     y="251.24261"
+     x="101.24263"
+     height="97.514778"
+     width="47.514774"
+     id="rect3336-5"
+     style="fill:#3fc8e1;fill-opacity:0.49803922;fill-rule:evenodd;stroke:#3fc8e1;stroke-width:2.485;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;stroke-dashoffset:0" />
+  <circle
+     r="36"
+     cy="114"
+     cx="86"
+     id="path4136-1"
+     style="fill:#ff0000;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none" />
 </svg>

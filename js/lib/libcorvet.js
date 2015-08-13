@@ -34,27 +34,27 @@ var libcorvet = function(selector) {
     
     switch (attr.type) {
       case 'circle':
-        attr.cx               = shape.getAttribute('cx');
-        attr.cy               = shape.getAttribute('cy');
-        attr.r                = shape.getAttribute('r');
-        attr.area             = attr.r*attr.r * Math.PI;
+        attr.x            = shape.getAttribute('cx');
+        attr.y            = shape.getAttribute('cy');
+        attr.r            = shape.getAttribute('r');
+        attr.area         = attr.r*attr.r * Math.PI;
         break;
       case 'ellipse':
-        attr.cx               = shape.getAttribute('cx');
-        attr.cy               = shape.getAttribute('cy');
-        attr.rx               = shape.getAttribute('rx');
-        attr.ry               = shape.getAttribute('ry');
-        attr.area             = attr.rx*attr.ry * Math.PI;
+        attr.x            = shape.getAttribute('cx');
+        attr.y            = shape.getAttribute('cy');
+        attr.rx           = shape.getAttribute('rx');
+        attr.ry           = shape.getAttribute('ry');
+        attr.area         = attr.rx*attr.ry * Math.PI;
         break;
       case 'path':
-        attr.d                = shape.getAttribute('d');
+        attr.d            = shape.getAttribute('d');
         break;
       case 'rect':
-        attr.width            = shape.getAttribute('width');
-        attr.height           = shape.getAttribute('height');
-        attr.x                = shape.getAttribute('x');
-        attr.y                = shape.getAttribute('y');
-        attr.area             = attr.width * attr.height;
+        attr.width        = shape.getAttribute('width');
+        attr.height       = shape.getAttribute('height');
+        attr.x            = shape.getAttribute('x');
+        attr.y            = shape.getAttribute('y');
+        attr.area         = attr.width * attr.height;
         break;
     }
     attr.fill             = shape.style.fill;
@@ -81,7 +81,7 @@ var libcorvet = function(selector) {
     return rgb;
   }
   
-  this.compareDistance = function(x1, y1, x2, y2) {
+  this.compareDistance = function(x1, x2, y1, y2) {
     return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
   }
   
@@ -116,23 +116,25 @@ var libcorvet = function(selector) {
     );
   }
   
-  this.compareCircle = function(c1, c2) {
-    
-  }
-  
-  this.compareEllipse = function(e1, e2) {
-    
+  this.compareShape = function(shape1, shape2) {
+    return {
+      position         : this.compareDistance(shape1.x, shape2.x, shape1.y, shape2.y),
+      area             : this.compareProportional(shape1.area, shape2.area),
+      fill             : this.compareColor(shape1.fill, shape2.fill),
+      fillopacity      : this.compareNumber(shape1.fillopacity, shape2.fillopacity),
+      //stroke           : this.compareColor(shape1.stroke, shape2.stroke), ///////////// FIX NULL ATTRIBUTE ISSUES
+      strokeopacity    : this.compareNumber(shape1.strokeopacity, shape2.strokeopacity),
+      strokewidth      : this.compareProportional(shape1.strokewidth, shape2.strokewidth),
+      strokelinecap    : shape1.strokelinecap==shape2.strokelinecap,
+      strokelinejoin   : shape1.strokelinejoin==shape2.strokelinejoin,
+      strokemiterlimit : this.compareProportional(shape1.strokemiterlimit, shape2.strokemiterlimit)
+      //strokedasharray  : shape.style.strokeDasharray,
+      //transform        : shape.getAttribute('transform')
+    }
   }
   
   this.comparePath = function(p1, p2) {
     
-  }
-  
-  this.compareRect = function(r1, r2) {
-    return {
-      position: this.compareDistance(r1.x, r2.x, r2.y, r2.y),
-      area: this.compareProportional(r1.area, r2.area)
-    }
   }
   
 }
