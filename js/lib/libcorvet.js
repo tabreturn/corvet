@@ -83,6 +83,18 @@ var libcorvet = function(selector) {
     }
   }
   
+  this.findAngle = function(ax, ay, bx, by) {
+    var cy = by - ay;
+    var cx = bx - ax;
+    var theta = Math.atan2(cy, cx);
+    theta *= 180/Math.PI;
+    return theta;
+  }
+  
+  this.findCorners = function(corners, tolerance) {
+    // find corners and ignore angles under a given obstuse angle
+  }
+  
   this.compareDistance = function(x1, x2, y1, y2) {
     return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
   }
