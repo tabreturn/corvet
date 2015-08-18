@@ -76,9 +76,11 @@ var libcorvet = function(selector) {
   this.rgbToArray = function(rgb) {
     var pattern = /rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
     rgb = pattern.exec(rgb);
-    rgb.shift();
-    rgb = rgb.map(Number);
-    return rgb;
+    if (rgb) {
+      rgb.shift();
+      rgb = rgb.map(Number);
+      return rgb;
+    }
   }
   
   this.compareDistance = function(x1, x2, y1, y2) {
@@ -110,10 +112,12 @@ var libcorvet = function(selector) {
     color1 = this.rgbToArray(color1);
     color2 = this.rgbToArray(color2);
     
-    return DeltaE.getDeltaE00(
-      {L: color1[0], A: color1[1], B: color1[2]},
-      {L: color2[0], A: color2[1], B: color2[2]}
-    );
+    if (color1 != undefined && color2 != undefined) {
+      return DeltaE.getDeltaE00(
+        {L: color1[0], A: color1[1], B: color1[2]},
+        {L: color2[0], A: color2[1], B: color2[2]}
+      );
+    }
   }
   
   this.compareShape = function(shape1, shape2) {
@@ -122,7 +126,7 @@ var libcorvet = function(selector) {
       area             : this.compareProportional(shape1.area, shape2.area),
       fill             : this.compareColor(shape1.fill, shape2.fill),
       fillopacity      : this.compareNumber(shape1.fillopacity, shape2.fillopacity),
-      //stroke           : this.compareColor(shape1.stroke, shape2.stroke), ///////////// FIX NULL ATTRIBUTE ISSUES
+      stroke           : this.compareColor(shape1.stroke, shape2.stroke),
       strokeopacity    : this.compareNumber(shape1.strokeopacity, shape2.strokeopacity),
       strokewidth      : this.compareProportional(shape1.strokewidth, shape2.strokewidth),
       strokelinecap    : shape1.strokelinecap==shape2.strokelinecap,

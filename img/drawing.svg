@@ -6,11 +6,35 @@
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="400"
    height="400"
    viewBox="0 0 400 400.00001"
    id="svg2"
-   version="1.1">
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="drawing.svg">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1294"
+     inkscape:window-height="965"
+     id="namedview19"
+     showgrid="false"
+     inkscape:zoom="1.668772"
+     inkscape:cx="175.10167"
+     inkscape:cy="202.74069"
+     inkscape:window-x="297"
+     inkscape:window-y="6"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
   <defs
      id="defs4">
     <linearGradient
@@ -42,7 +66,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -58,7 +82,7 @@
      cy="100"
      cx="100"
      id="path4136"
-     style="fill:#00ffff;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none" />
+     style="fill:#00ffff;fill-opacity:1;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:10,20;stroke:#000000;stroke-opacity:1;stroke-dashoffset:0" />
   <path
      d="M 350.74076,101.88211 335.394,110.1535 322.78504,98.113865 330.33903,82.40158 347.61661,84.730479 Z"
      id="path4140"
@@ -94,9 +118,9 @@
      id="rect3336-5"
      style="fill:#3fc8e1;fill-opacity:0.49803922;fill-rule:evenodd;stroke:#3fc8e1;stroke-width:2.485;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;stroke-dashoffset:0" />
   <circle
-     r="36"
-     cy="114"
-     cx="86"
-     id="path4136-1"
-     style="fill:#ff0000;fill-opacity:1;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none" />
+     style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="path4156"
+     cx="161.19638"
+     cy="102.77545"
+     r="28.164423" />
 </svg>
