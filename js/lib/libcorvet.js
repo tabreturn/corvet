@@ -95,8 +95,8 @@ var libcorvet = function(selector) {
     // find corners and ignore angles under a given obstuse angle
   }
   
-  this.compareDistance = function(x1, x2, y1, y2) {
-    return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+  this.compareDistance = function(ax, ay, bx, by) {
+    return Math.sqrt((ax-bx)*(ax-bx) + (ay-by)*(ay-by));
   }
   
   this.compareNumber = function(i1, i2) {
@@ -134,7 +134,7 @@ var libcorvet = function(selector) {
   
   this.compareShape = function(shape1, shape2) {
     return {
-      position         : this.compareDistance(shape1.x, shape2.x, shape1.y, shape2.y),
+      position         : this.compareDistance(shape1.x, shape1.y, shape2.x, shape2.y),
       area             : this.compareProportional(shape1.area, shape2.area),
       fill             : this.compareColor(shape1.fill, shape2.fill),
       fillopacity      : this.compareNumber(shape1.fillopacity, shape2.fillopacity),

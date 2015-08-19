@@ -29,8 +29,8 @@
      id="namedview19"
      showgrid="false"
      inkscape:zoom="1.668772"
-     inkscape:cx="175.10167"
-     inkscape:cy="202.74069"
+     inkscape:cx="78.923163"
+     inkscape:cy="203.04031"
      inkscape:window-x="297"
      inkscape:window-y="6"
      inkscape:window-maximized="0"
@@ -118,9 +118,9 @@
      id="rect3336-5"
      style="fill:#3fc8e1;fill-opacity:0.49803922;fill-rule:evenodd;stroke:#3fc8e1;stroke-width:2.485;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;stroke-dashoffset:0" />
   <circle
-     style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-     id="path4156"
-     cx="161.19638"
-     cy="102.77545"
-     r="28.164423" />
+     r="50"
+     cy="102"
+     cx="102"
+     id="path4136-8"
+     style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:10, 20;stroke-dashoffset:0;stroke-opacity:1" />
 </svg>
