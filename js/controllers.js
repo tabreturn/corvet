@@ -14,22 +14,24 @@ corvet.controller('svgUpload', function($scope, messages, CONFIG) {
       
       if (CONFIG.DEBUG) {
         
-        console.log('circles(' + assess.countShapes('circle') + '):');
-        console.log(assess.circles);
+        //console.log('circles(' + assess.countShapes('circle') + '):');
+        //console.log(assess.circles);
         //console.log('ellipse(' + assess.countShapes('ellipse') + '):');
         //console.log(assess.ellipses);
-        //console.log('paths(' + assess.countShapes('path') + '):');
-        //console.log(assess.paths);
+        console.log('paths(' + assess.countShapes('path') + '):');
+        console.log(assess.paths);
         //console.log('rects(' + assess.countShapes('rect') + '):');
         //console.log(assess.rects);
+        
+        assess.findCorners();
         
         //console.log('file name: ' + file.name);
         //console.log('file size: ' + file.size);
         //console.log('file type: ' + file.type);
         //console.log('file date: ' + file.lastModified);
         
-        console.log('compare first two circles:');
-        console.log(assess.compareShape(assess.circles[0], assess.circles[1]));
+        //console.log('compare first two circles:');
+        //console.log(assess.compareShape(assess.circles[0], assess.circles[1]));
         //console.log('compare first two rects:');
         //console.log(assess.compareShape(assess.rects[0], assess.rects[1]));
       }

@@ -91,8 +91,22 @@ var libcorvet = function(selector) {
     return theta;
   }
   
-  this.findCorners = function(corners, tolerance) {
-    // find corners and ignore angles under a given obstuse angle
+  this.findCorners = function(points, tolerance) {
+    var pointslength = points.length;
+    var corners = [points[0], points[1]];
+    var prevangle;
+    
+    for (var i=2; i<pointslength; i+=2) {
+      var angle = this.findAngle(points[i-2],points[i-1], points[i],points[i+1]);
+      
+      if (angle <= prevangle+tolerance && angle >= prevangle-tolerance) {
+        corners.push(points[i], points[i+1]);
+      }
+      
+      prevangle = angle;
+    }
+    
+    return corners;
   }
   
   this.compareDistance = function(ax, ay, bx, by) {
@@ -150,7 +164,8 @@ var libcorvet = function(selector) {
   }
   
   this.comparePath = function(p1, p2) {
-    
+    p1 = this.findCorners(p1, 3);
+    p2 = this.findCorners(p2);
   }
   
 }
