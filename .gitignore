@@ -15,3 +15,7 @@
 /libpeerconnection.log
 npm-debug.log
 testem.log
+
+# mac droppings
+.DS_Store
+._*

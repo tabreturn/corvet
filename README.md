@@ -1,5 +1,41 @@
 # Corvet
 
+An automatic marker for vector graphics drawing tasks.
+
+Run
+---
+CD to the project root and run:
+* ./node_modules/.bin/ember serve
+
+Todo
+-----
+* ~~Scaffold (Ember)~~
+* ~~Upload SVG~~
+* ~~Display SVG~~
+* ~~Setup theme~~
+* Assess SVG:
+  * ~~Count shapes~~
+  * Check fills
+  * Check strokes
+  * Triangle detection
+  * Quadrilateral detection
+  * Circle detection
+  * Polygon detection
+* Marking system
+  * Score system
+  * Resubmit feature
+* Backend submission
+  * HTTP API
+  * Database integration
+* Design/interface enhancements
+  * Spinners
+  * Media queries
+* Require/AMD ?
+
+
+Ember README
+============
+
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
 
