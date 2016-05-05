@@ -1,17 +1,17 @@
-css/
-db/*.sql
-js/lib/bower_components/
-node_modules/
-venv/
-.sass-cache/
-*.sqlite3
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# OS generated files #
-######################
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+# compiled output
+/dist
+/tmp
+
+# dependencies
+/node_modules
+/bower_components
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
