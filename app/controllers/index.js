@@ -16,7 +16,4 @@ export default Ember.Controller.extend({
 
 });
 
-
-
-
 var assess = new libcorvet('submission' + ' svg');
