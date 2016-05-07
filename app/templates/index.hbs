@@ -1,4 +1,4 @@
-<!--
+
 <div class="jumbotron text-center">
     <h1>Coming Soon</h1>
 
@@ -11,14 +11,19 @@
           {{input type="email" value=emailAddress class="form-control" placeholder="Please type your e-mail address." autofocus="autofocus"}}
         </div>
         <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-4 col-md-3">
-            <button class="btn btn-primary btn-lg btn-block" disabled={{isDisabled}}>Request invitation</button>
+            <button class="btn btn-primary btn-lg btn-block" disabled={{isDisabled}} {{action 'saveInvitation'}}>Request invitation</button>
         </div>
 
     </div>
 
+    {{#if responseMessage}}
+      <div class="alert alert-success">{{responseMessage}}</div>
+    {{/if}}
+
+
     <br/><br/>
 </div>
--->
+
 
 <form ng-submit="submit()" ng-controller="svgUpload">
   <input type="file" id="upload" />
@@ -28,3 +33,7 @@
 <div id="submission"></div>
 
 <img src="assets/images/drawing.png" width="100" />
+
+<!--
+{{file-upload url="/upload"}}
+-->
