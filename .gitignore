@@ -1,7 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-/backend/cherrypy
-/backend/*.sqlite
+/public/cherrypy
+/public/*.sqlite
 
 # compiled output
 /dist

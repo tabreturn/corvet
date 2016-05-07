@@ -1,6 +1,6 @@
 import cherrypy
 import sqlite3
-
+import os
 
 import random
 
@@ -32,36 +32,22 @@ c.executemany('INSERT INTO stocks VALUES (?,?,?,?,?)', purchases)
 
 class Corvet(object):
   
-  exposed = True
-
-  @cherrypy.tools.accept(media='text/plain')
-  def GET(self):
-    return 'get'
-
-  def POST(self):
-    return 'post'
-
-  def PUT(self):
-    return 'put'
-
-  def DELETE(self):
-    return 'delete'
-  
   @cherrypy.expose
   def index(self):
-    return """<html>
-      <head></head>
-      <body>
-        <form method="post" action="test">
-          <input type="text" value="8" name="length" />
-          <button type="submit">Give it now!</button>
-        </form>
-      </body>
-    </html>"""
+    return file("index.html")
   
   @cherrypy.expose
-  def test(self, length):
+  def result(self, length):
     return length
 
+
+print 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+abspath = os.path.dirname(os.path.realpath(__file__))
+
+
+cherrypy.config.update({
+  "tools.staticdir.on": True,
+  "tools.staticdir.dir": abspath
+})
 
 cherrypy.quickstart(Corvet())
