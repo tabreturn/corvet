@@ -2,6 +2,7 @@
 
 /public/cherrypy
 /public/*.sqlite
+*.pyc
 
 # compiled output
 /dist
