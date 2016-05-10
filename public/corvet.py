@@ -4,6 +4,8 @@ import os
 
 import random
 
+abspath = os.path.dirname(os.path.abspath(__file__))
+
 conn = sqlite3.connect('results.sqlite')
 c = conn.cursor()
 t = (str(random.random()),)
