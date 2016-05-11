@@ -6,6 +6,7 @@ Run
 ---
 CD to the project root and run:
 * ./node_modules/.bin/ember serve
+* cd ./dist; python corvet.py
 
 Todo
 -----
