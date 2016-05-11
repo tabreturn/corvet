@@ -33,6 +33,19 @@
 
 
 
+<!--
+function postTest(user, task, result) {
+  var req = new XMLHttpRequest();
+  req.open('POST', '/api/results', true);
+  req.setRequestHeader('Content-Type', 'application/json');
+  console.log(JSON.stringify({'user':user, 'task':task, 'result':result}));
+  req.send(JSON.stringify({'user':user, 'task':task, 'result':result}));
+}-->
+
+<button class="btn btn-primary btn-lg btn-block" {{action 'postResult'}}>Request invitation</button>
+
+
+
 <div id="submission"></div>
 
 <img src="assets/images/drawing.png" width="100" />
