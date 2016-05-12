@@ -1,60 +1,53 @@
-import cherrypy
-import sqlite3
-import os
+import cherrypy, sqlite3, os
 
-import random
 
-abspath = os.path.dirname(os.path.abspath(__file__))
+# routes
 
 class Corvet(object):
   
   @cherrypy.expose
   def index(self):
     return file("index.html")
-  
-  @cherrypy.expose
-  def result(self, length):
-    return length
-
-cherrypy.config.update({
-  "tools.staticdir.on": True,
-  "tools.staticdir.dir": abspath
-})
 
 
-
+# api
 
 def dbEntry(result):
   conn = sqlite3.connect('results.sqlite')
   c = conn.cursor()
-  c.execute("INSERT INTO results (name, score) VALUES (?, ?)", (result['user'], result['task'] ))
+  c.execute("INSERT INTO results (user, task, score) VALUES (?, ?, ?)",
+    (result['user'], result['task'], result['score'],)
+  )
   conn.commit()
   conn.close()
 
-class Results:
-  # curl -d user='jim' -d task='1' -d result='22' -X POST '127.0.0.1:8080/api/results/'
+class Api:
   exposed = True
   
-  def POST(self, user, task, result):
-    
+  def POST(self, user, task, score):
     result = {
       'user': user,
       'task': task,
-      'result': result
+      'score': score
     }
     dbEntry(result)
-    return ('new entry: %s' % result)
-
+    return 'new entry acptured: {}'.format(result)
 
 cherrypy.tree.mount(
-  Results(), '/api/results',
+  Api(), '/api/results',
   {'/':
     {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
   }
 )
 
 
+# run
 
+abspath = os.path.dirname(os.path.abspath(__file__))
 
+cherrypy.config.update({
+  "tools.staticdir.on": True,
+  "tools.staticdir.dir": abspath
+})
 
 cherrypy.quickstart(Corvet())
