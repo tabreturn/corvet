@@ -1,6 +1,6 @@
 'use strict';
 
-var libcorvet = function(selector) {
+var Libcorvet = function(selector) {
   
   var svg = selector;
   this.circles = [];

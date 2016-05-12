@@ -18,8 +18,8 @@ export default Ember.Controller.extend({
     
     postResult() {
       var user = 'tim' + Math.random();
-      var task = 1
-      var result = 22
+      var task = 1;
+      var result = 22;
       var req = new XMLHttpRequest();
       req.open('POST', '/api/results', true);
       req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
@@ -28,7 +28,8 @@ export default Ember.Controller.extend({
   }
 });
 
-var assess = new libcorvet('submission' + ' svg');
+var assess = new Libcorvet('submission' + ' svg');
+assess.getShapes();
 
 /*
 export default EmberUploader.FileField.extend({
