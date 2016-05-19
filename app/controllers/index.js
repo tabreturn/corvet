@@ -1,5 +1,6 @@
 // app/controllers/index.js
 import Ember from 'ember';
+//import EmberUploader from 'ember-uploader';
 
 export default Ember.Controller.extend({
   
@@ -9,13 +10,6 @@ export default Ember.Controller.extend({
   isDisabled: Ember.computed.not('isValid'),
   
   actions: {
-    
-    saveInvitation() {
-      alert(`Saving of the following email address is in progress: ${this.get('emailAddress')}`);
-      this.set('responseMessage', `Thank you! We've just saved your email address: ${this.get('emailAddress')}`);
-      this.set('emailAddress', '');
-    },
-    
     postResult() {
       var user = 'tim' + Math.random();
       var task = 1;
@@ -26,24 +20,10 @@ export default Ember.Controller.extend({
       req.send(`user=${user}&task=${task}&score=${result}`);
     }
   }
+  
 });
-
-var assess = new Libcorvet('submission' + ' svg');
-assess.getShapes();
 
 /*
-export default EmberUploader.FileField.extend({
-
-  filesDidChange: function(files) {
-    const uploader = EmberUploader.Uploader.create({
-      url: this.get('url')
-    });
- 
-    if (!Ember.isEmpty(files)) {
-      // this second argument is optional and can to be sent as extra data with the upload 
-      uploader.upload(files[0], { whatheverObject });
-    }
-  }
-
-});
+var assess = new Libcorvet('submission' + ' svg');
+assess.getShapes();
 */

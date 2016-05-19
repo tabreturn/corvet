@@ -31,7 +31,7 @@ class Api:
       'score': score
     }
     dbEntry(result)
-    return 'new entry acptured: {}'.format(result)
+    return 'new entry captured: {}'.format(result)
 
 cherrypy.tree.mount(
   Api(), '/api/results',
