@@ -6,7 +6,7 @@ import cherrypy, sqlite3, os
 class Corvet(object):
   
   @cherrypy.expose
-  def index(self):
+  def default(self,*args,**kwargs):
     return file("index.html")
 
 
