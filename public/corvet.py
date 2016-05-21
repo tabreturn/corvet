@@ -8,30 +8,26 @@ class Corvet(object):
   def default(self,*args,**kwargs):
     return open('index.html')
 
+# database
 
+resultsdb = 'results.sqlite'
 
 resultsschema = open('results_schema.sql', encoding='utf-8').read()
-conn = sqlite3.connect('results.sqlite')
+conn = sqlite3.connect(resultsdb)
 c = conn.cursor()
 c.execute(resultsschema)
 conn.commit()
 conn.close()
 
-
-
-# database
-
-
-
-
 def dbEntry(result):
-  conn = sqlite3.connect('results.sqlite')
+  conn = sqlite3.connect(resultsdb)
   c = conn.cursor()
   c.execute('INSERT INTO results (user, task, score) VALUES (?, ?, ?)',
    (result['user'], result['task'], result['score'])
   )
   conn.commit()
   conn.close()
+
 
 # api
 
@@ -61,7 +57,7 @@ abspath = os.path.dirname(os.path.abspath(__file__))
 
 cherrypy.config.update({
   "tools.staticdir.on": True,
-  "tools.staticdir.dir": abspath
+  "tools.staticdir.dir": abspath,
 })
 
 cherrypy.quickstart(Corvet())
