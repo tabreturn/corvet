@@ -1,25 +1,39 @@
 import cherrypy, sqlite3, os
 
-
 # routes
 
 class Corvet(object):
   
   @cherrypy.expose
   def default(self,*args,**kwargs):
-    return file("index.html")
+    return open('index.html')
 
 
-# api
+
+resultsschema = open('results_schema.sql', encoding='utf-8').read()
+conn = sqlite3.connect('results.sqlite')
+c = conn.cursor()
+c.execute(resultsschema)
+conn.commit()
+conn.close()
+
+
+
+# database
+
+
+
 
 def dbEntry(result):
   conn = sqlite3.connect('results.sqlite')
   c = conn.cursor()
-  c.execute("INSERT INTO results (user, task, score) VALUES (?, ?, ?)",
-    (result['user'], result['task'], result['score'],)
+  c.execute('INSERT INTO results (user, task, score) VALUES (?, ?, ?)',
+   (result['user'], result['task'], result['score'])
   )
   conn.commit()
   conn.close()
+
+# api
 
 class Api:
   exposed = True
