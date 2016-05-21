@@ -1,5 +1,6 @@
 import cherrypy, sqlite3, os
 
+
 # routes
 
 class Corvet(object):
@@ -7,6 +8,7 @@ class Corvet(object):
   @cherrypy.expose
   def default(self,*args,**kwargs):
     return open('index.html')
+
 
 # database
 
