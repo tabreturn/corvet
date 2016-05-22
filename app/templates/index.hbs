@@ -1,12 +1,19 @@
+<h1>
+  MODEL:
+  {{#each model as |image|}}
+    {{image.src}}
+  {{/each}}
+</h1>
+
+{{test-img}}
+
 <form method="post" action="http://localhost:8080/result">
   <input type="text" value="8" name="name" />
   <button type="submit">enter name</button>
 </form>
 
-<button class="btn btn-primary btn-lg btn-block" {{action 'postResult'}}>enter data</button>
+<button class="btn btn-primary btn-lg btn-block" {{action 'postResult'}}>post result</button>
 
 <div id="submission"></div>
-
-{{file-upload}}
 
 <img src="assets/images/drawing.png" width="100" />
