@@ -14,7 +14,7 @@ class Corvet(object):
 
 resultsdb = 'results.sqlite'
 
-resultsschema = open('results_schema.sql', encoding='utf-8').read()
+resultsschema = open('results_schema.sql').read()
 conn = sqlite3.connect(resultsdb)
 c = conn.cursor()
 c.execute(resultsschema)
