@@ -2,27 +2,29 @@
 
 <br />
 
-
-
 <ol class="list-group">
-  <li>{{svg-upload}}</li>
+  
   <li class="list-group-item">
     1. Recreate the above image.
   </li>
-  <li class="list-group-item">
-    <div style="float:left">2. Upload the result:</div>
-    {{input id="upload" type="file" value=emailAddress}}
-    <button class="btn btn-primary btn-lg btn-block" disabled={{isDisabled}} {{action 'saveInvitation'}}>Next</button>
+  
+  <li class="list-group-item clearfix">
+    2. Upload the result:
+    <p></p>
+    {{svg-upload action="assessFile"}}
   </li>
+  
   <li class="list-group-item disabled">
     3. Result:
   </li>
+  
   <li class="list-group-item disabled">
-    <button class="btn btn-primary btn-lg btn-block disabled" {{action 'postResult'}}>
+    <button class="btn btn-primary btn-lg btn-block" disabled={{isDisabled}} {{action 'postResult'}}>
       Next task
       <span class="glyphicon glyphicon-chevron-right"></span>
     </button>
   </li>
+  
 </ol>
 
 <!--

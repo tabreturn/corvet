@@ -7,11 +7,10 @@ export default Ember.TextField.extend({
   change: function(e) {
     var file = e.target.files[0];
     var reader = new FileReader();
-    
     reader.onload = function(e) {
-      console.log(e.target.result);
       document.querySelector('#submission').innerHTML = reader.result;
     };
+    this.sendAction();
     reader.readAsText(file);
   }
 });

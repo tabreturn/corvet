@@ -13,23 +13,12 @@ export default Ember.Route.extend({
 export default Ember.Controller.extend({
   
   isDisabled: true,
-
-  emailAddressChanged: Ember.observer('emailAddress', function() {
-    console.log(this.target);
-    console.log(this.get('emailAddress'));
-    
-    //var file = document.querySelector('#upload').files[0];
-    //var submission = '#submission';
-    console.log(document.querySelector('#upload').files[0]);
-    var reader = new FileReader();
-    reader.onload = function() {
-      console.log('loaded');
-    };
-    
-    this.set('isDisabled', false);
-  }),
   
   actions: {
+    
+    assessFile() {
+      alert('assess');
+    },
     
     postResult() {
       var user = 'tim' + Math.random();
