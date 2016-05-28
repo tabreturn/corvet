@@ -1,28 +1,50 @@
-{{nav-bar tests=tests active=active}}
-
-<img src="{{testsrc}}" class="testImg" />
-
-<ol class="list-group">
+<div class="row">
   
-  <li class="list-group-item">
-    <strong>1.</strong> Recreate the above image.
-  </li>
-  
-  <li class="list-group-item clearfix">
-    <strong>2.</strong> Upload the result:
-    {{svg-upload action='assessFile'}}
-  </li>
-  
-  <li class="list-group-item">
-    <strong>3.</strong> Result:
-    <div id="submission"></div>
-  </li>
-  
-  <li class="list-group-item disabled">
-    <button class="btn btn-primary btn-lg btn-block" disabled={{nextdisabled}} {{action 'postResult'}}>
-      Next task
+  <div class="col-sm-6">
+    <h3>Instructions</h3>
+    <p>
+      In each step, you will be presented with a downloadable graphic.
+      Recreate/trace it in a vector graphics editor of your choice (Adobe
+      Illustrator, CorelDRAW, or Inkscape).
+    </p>
+    <p>
+      Once who have completed a task, save/export it as an SVG using the
+      export guidelines listed in the column to the right
       <span class="glyphicon glyphicon-chevron-right"></span>
-    </button>
-  </li>
+    </p>
+    <p>
+      There are six graphics in all, and brief questionnaire to complete at
+      the end.
+    </p>
+    <p>
+      Thank you for taking the time to partake in this study.
+    </p>
+  </div>
   
-</ol>
+  <div class="col-sm-6 editors">
+    <h4>Adobe Illustrator</h4>
+    <p>
+      Upon export, the CSS Properties field (under Advanced Options) must be
+      set to <strong>Style Attributes</strong> (or Inline Style).
+    </p>
+    <h4>CorelDRAW</h4>
+    <p>
+      Upon export, the Styling Options field (under General Options) must be
+      set to <strong>Inline Stylesheet</strong>.
+    </p>
+    <h4>Inkscape</h4>
+    <p>
+      Inkscape does not provide styling options in the export dialogue.
+      Simply save the graphic as a <strong>plain SVG</strong>.
+    </p>
+  </div>
+  
+</div>
+
+
+<hr />
+
+<button class="btn btn-primary btn-lg btn-block" disabled={{nextdisabled}} {{action 'begin'}}>
+  Begin
+  <span class="glyphicon glyphicon-chevron-right"></span>
+</button>

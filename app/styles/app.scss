@@ -5,6 +5,12 @@ body {
   background-color: #EFEFEF;
 }
 
+.editors {
+  margin-top: 1em;
+  font-style: italic;
+  font-size: 0.9em;
+}
+
 .testImg {
   margin-bottom: 1em;
   border: 2px white solid;
@@ -12,11 +18,5 @@ body {
 }
 
 .list-group-item [type=file] {
-  margin-top: 1em;
-}
-
-.red {
-  color: red;
-  border: 2px red solid;
-  background-color: red;
+  display: inline-block !important;
 }
