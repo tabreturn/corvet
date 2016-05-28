@@ -7,12 +7,6 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('questionnaire');
-  this.route('task6');
-  this.route('task5');
-  this.route('task4');
-  this.route('task3');
-  this.route('task2');
-  this.route('task1');
 });
 
 export default Router;

@@ -5,8 +5,6 @@ var Test = Model.extend({
   src: attr('string')
 });
 
-/* ember fixtures do not work
-
 Test.reopenClass({
   FIXTURES: [
     { id:1, src:'assets/images/tests/01-star.png' },
@@ -17,6 +15,5 @@ Test.reopenClass({
     { id:6, src:'assets/images/tests/06-grid.png' }
   ]
 });
-*/
 
 export default Test;

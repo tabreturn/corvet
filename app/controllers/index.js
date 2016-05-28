@@ -1,37 +1,56 @@
 // app/controllers/index.js
 import Ember from 'ember';
 
-/* ember fixtures do not work
+/* ember fixtures do not work,
 
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('test');
   }
 });
+
+// so global properties have been used to replace the model
 */
+
+const tests = [
+  { id:1, src:'assets/images/tests/01-star.png' },
+  { id:2, src:'assets/images/tests/02-triangle.png' },
+  { id:3, src:'assets/images/tests/03-zigzag.png' },
+  { id:4, src:'assets/images/tests/04-smiley.png' },
+  { id:5, src:'assets/images/tests/05-text.png' },
+  { id:6, src:'assets/images/tests/06-grid.png' }
+];
+
+var task = 0;
+var taskimg = tests[task].src;
 
 export default Ember.Controller.extend({
   
-  isDisabled: true,
+  nextdisabled: true,
+  tests: tests,
+  imgsrc: taskimg,
   
   actions: {
     
     assessFile() {
-      alert('assess');
+      this.set('nextdisabled', false);
     },
     
     postResult() {
-      var user = 'tim' + Math.random();
-      var task = 1;
-      var result = 22;
-      Ember.$.post( "/api/results", { user:user, task:task, score:result })
-        .done(function( data ) {
-          alert( "Data Loaded: " + data );
-        });
-    }    
+      Ember.$.post( '/api/results', { user:'tim'+Math.random(), task:1, score:22 })
+        .done(function(data) {
+          alert( 'Data Loaded: ' + data );
+          task +=2;
+          console.log(this.nextdisabled);
+          //this.set('taskimg', tests[task].src);
+          //this.transitionToRoute(`task${task}`);
+        }
+        .bind(this));
+    }
   }
   
 });
+
 
 /*
 
