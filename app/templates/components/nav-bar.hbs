@@ -12,10 +12,10 @@
     
     <div class="collapse navbar-collapse" id="main-navbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a>Instructions</a></li>
+        <li><a>Instructions</a></li>
         
         {{#each tests as |test|}}
-          <li><a>Task {{test.id}}</a></li>
+          <li class="active"><a>Task {{test.id}}</a></li>
         {{/each}}
         
         <li><a>Questionnaire</a></li>
@@ -25,3 +25,5 @@
   </div>
   
 </nav>
+
+{{yield}}

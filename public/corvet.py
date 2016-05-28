@@ -58,8 +58,8 @@ cherrypy.tree.mount(
 abspath = os.path.dirname(os.path.abspath(__file__))
 
 cherrypy.config.update({
-  "tools.staticdir.on": True,
-  "tools.staticdir.dir": abspath,
+  'tools.staticdir.on': True,
+  'tools.staticdir.dir': abspath,
 })
 
 cherrypy.quickstart(Corvet())
