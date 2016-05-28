@@ -25,6 +25,7 @@ let task = 0;
 export default Ember.Controller.extend({
   
   tests: test,
+  active: task,
   testsrc: test[task].src,
   nextdisabled: true,
   
@@ -39,9 +40,10 @@ export default Ember.Controller.extend({
         .done(function(data) {
           document.querySelector('#submission').innerHTML = '';
           Ember.$('html, body').animate({ scrollTop: 0 }, 200);
-          console.log(data)
+          console.log(data);
           task ++;
           this.set('testsrc', test[task].src);
+          this.set('active', task);
         }
         .bind(this)
       );
