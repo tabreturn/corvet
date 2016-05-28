@@ -3,6 +3,11 @@ import Ember from 'ember';
 export default Ember.TextField.extend({
   tagName: 'input',
   type: 'file',
+  disabled: true,
+  
+  propertyObserver: Ember.observer('browsedisabled', function(sender, key, value, rev) {
+    this.set('disabled', false);
+  }),
   
   change: function(e) {
     let file = e.target.files[0];

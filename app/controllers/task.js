@@ -23,14 +23,25 @@ let task = 1;
 
 export default Ember.Controller.extend({
   
+  step: 1,
   tests: test,
   active: task,
   testsrc: test[task].src,
+  steps: document.querySelectorAll('#steps li'),
   nextdisabled: true,
+  browsedisabled: true,
   
   actions: {
     
+    unhideNextStep() {
+      document.querySelectorAll('#steps li')[this.step].classList.remove('disabled');
+      this.step ++;
+      this.set('browsedisabled', false);
+    },
+    
     assessFile() {
+      this.send('unhideNextStep');
+      this.send('unhideNextStep');
       this.set('nextdisabled', false);
       $('html, body').animate({ scrollTop: $(document).height() }, 500);
     },

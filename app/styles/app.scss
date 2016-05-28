@@ -5,6 +5,10 @@ body {
   background-color: #EFEFEF;
 }
 
+.disabled {
+  opacity: 0.5;
+}
+
 .editors {
   margin-top: 1em;
   font-style: italic;

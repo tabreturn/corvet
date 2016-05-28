@@ -2,28 +2,28 @@
 
 <img src="{{testsrc}}" class="testImg" />
 
-<ol class="list-group">
+<ol class="list-group" id="steps">
   
   <li class="list-group-item">
     <strong>1.</strong>
-    <a download="task{{active}}" href="{{testsrc}}" title="task{{active}}">
+    <a {{action 'unhideNextStep' on='mouseDown'}} download="task{{active}}" href="{{testsrc}}" title="task{{active}}">
       Download
     </a>
     and recreate the above image.
   </li>
   
-  <li class="list-group-item clearfix">
+  <li class="list-group-item clearfix disabled">
     <strong>2.</strong> Upload the result:
-    {{svg-upload action='assessFile'}}
+    {{svg-upload browsedisabled=browsedisabled action='assessFile'}}
   </li>
   
-  <li class="list-group-item">
+  <li class="list-group-item disabled">
     <strong>3.</strong>
-    Result:
     <div id="submission"></div>
+    
   </li>
   
-  <li class="list-group-item" disabled={{nextdisabled}}>
+  <li class="list-group-item disabled">
     <strong>4.</strong>
     <button disabled={{nextdisabled}} {{action 'postResult'}}>
       Next task
