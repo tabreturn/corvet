@@ -4,3 +4,13 @@ body {
   padding-top: 20px;
   background-color: #EFEFEF;
 }
+
+.testImg {
+  margin-bottom: 1em;
+  border: 2px white solid;
+  border-radius: 4px;
+}
+
+.list-group-item [type=file] {
+  margin-top: 1em;
+}

@@ -1,26 +1,20 @@
-<img src="{{imgsrc}}" />
+{{partial 'navbar'}}
 
-<br /><br />
-
-{{#each tests as |test|}}
-  <br />
-  {{test.src}}
-{{/each}}
+<img src="{{testsrc}}" class="testImg" />
 
 <ol class="list-group">
   
   <li class="list-group-item">
-    1. Recreate the above image.
+    <strong>1.</strong> Recreate the above image.
   </li>
   
   <li class="list-group-item clearfix">
-    2. Upload the result:
-    <p></p>
+    <strong>2.</strong> Upload the result:
     {{svg-upload action='assessFile'}}
   </li>
   
   <li class="list-group-item">
-    3. Result:
+    <strong>3.</strong> Result:
     <div id="submission"></div>
   </li>
   
@@ -32,10 +26,3 @@
   </li>
   
 </ol>
-
-<!--
-<form ng-submit="submit()" ng-controller="svgUpload">
-  <input type="file" id="upload" />
-  <input type="submit" />
-</form>
--->

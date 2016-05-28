@@ -1,7 +1,7 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 
-var Test = Model.extend({
+let Test = Model.extend({
   src: attr('string')
 });
 
