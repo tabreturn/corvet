@@ -64,20 +64,20 @@ export default Ember.Controller.extend({
     },
     
     postResult() {
-      //Ember.$.post( '/api/results', { user:Date.now(), task:1, score:22 })
-        //.done(function(data) {
+      Ember.$.post( '/api/results', { user:'u'+Date.now(), task:1, score:22 })
+        .done(function(data) {
           document.querySelector('#submission').innerHTML = '';
           Ember.$('html, body').animate({ scrollTop: 0 }, 500);
-          //console.log(data);
+          console.log(data);
           task ++;
           this.send('resetTask');
           
           if (task >= this.tests.length) {
             this.transitionToRoute('questionnaire');
           }
-        //}
-        //.bind(this)
-      //);
+        }
+        .bind(this)
+      );
     }
   }
   
