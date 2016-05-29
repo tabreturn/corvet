@@ -43,7 +43,7 @@ export default Ember.Controller.extend({
       this.send('unhideNextStep');
       this.send('unhideNextStep');
       this.set('nextdisabled', false);
-      $('html, body').animate({ scrollTop: $(document).height() }, 500);
+      Ember.$('html, body').animate({ scrollTop: Ember.$(document).height() }, 500);
     },
     
     postResult() {
