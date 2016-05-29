@@ -41,19 +41,19 @@
     <li class="list-group-item">
       On a scale of 1 to 5, how difficult did you find the tasks?
       <p>
-        1 <input type="radio" name="difficulty"/>
-        2 <input type="radio" name="difficulty"/>
-        3 <input type="radio" name="difficulty"/>
-        4 <input type="radio" name="difficulty"/>
-        5 <input type="radio" name="difficulty"/>
+        1 <input type="radio" name="difficulty" />
+        2 <input type="radio" name="difficulty" />
+        3 <input type="radio" name="difficulty" />
+        4 <input type="radio" name="difficulty" />
+        5 <input type="radio" name="difficulty" />
       </p>
     </li>
     
     <li class="list-group-item">
       Did you trace the image after downloading the graphic, or simply estimate the proportions?
       <p>
-        traced <input type="radio" name="difficulty"/>
-        estimated <input type="radio" name="difficulty"/>
+        traced <input type="radio" name="difficulty" />
+        estimated <input type="radio" name="difficulty" />
       </p>
     </li>
     
@@ -70,9 +70,6 @@
     
   </ol>
   
-  <button class="btn btn-primary btn-lg btn-block" {{action 'submit'}}>
-    Submit
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </button>
-
+  <input type="submit" value="Sumbit" class="btn btn-primary btn-lg btn-block" {{action 'submit'}}>
+  
 </form>

@@ -43,10 +43,12 @@
   
 </div>
 
+<hr />
+
+Name: <input type="text" required="true" />
+Surname: <input type="text" required="true" />
 
 <hr />
 
-<button class="btn btn-primary btn-lg btn-block" disabled={{nextdisabled}} {{action 'begin'}}>
-  Begin
-  <span class="glyphicon glyphicon-chevron-right"></span>
-</button>
+<input type="submit" value="Begin" class="btn btn-primary btn-lg btn-block" {{action 'begin'}}>
+
