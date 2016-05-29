@@ -6,7 +6,8 @@ export default Ember.TextField.extend({
   disabled: true,
   
   propertyObserver: Ember.observer('browsedisabled', function() {
-    this.set('disabled', false);
+    Ember.$('.list-group-item [type=file]').val('');
+    this.set('disabled', this.get('browsedisabled'));
   }),
   
   change: function(e) {

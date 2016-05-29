@@ -26,6 +26,14 @@ body {
   border-radius: 4px;
 }
 
-.list-group-item [type=file] {
-  display: inline-block !important;
+#steps {
+
+  .list-group-item [type=file] {
+    display: inline-block !important;
+  }
+
+}
+
+#task1 {
+  @extend .active;
 }
