@@ -5,7 +5,7 @@ export default Ember.TextField.extend({
   type: 'file',
   disabled: true,
   
-  propertyObserver: Ember.observer('browsedisabled', function(sender, key, value, rev) {
+  propertyObserver: Ember.observer('browsedisabled', function() {
     this.set('disabled', false);
   }),
   

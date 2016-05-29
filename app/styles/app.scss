@@ -7,6 +7,11 @@ body {
 
 .disabled {
   opacity: 0.5;
+  
+  input,
+  button {
+    cursor: not-allowed !important;
+  }
 }
 
 .editors {
