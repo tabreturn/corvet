@@ -1,8 +1,9 @@
 @import "bootstrap";
 
-body {
+body, html {
   padding-top: 20px;
   background-color: #EFEFEF;
+  margin-bottom: 2em;
 }
 
 .editors {
@@ -20,7 +21,7 @@ body {
   }
 }
 
-.testImg {
+.test-img {
   margin-bottom: 1em;
   border: 2px white solid;
   border-radius: 4px;
@@ -42,6 +43,24 @@ body {
 
 }
 
-#task1 {
+#task-1 {
   @extend .active;
+}
+
+#questionnaire {
+  
+  select, textarea, p {
+    width: 100%;
+    display: block;
+    margin: 0.9em 0 0.4em 0;
+    
+    @media (min-width:600px) {
+      width: 50%;
+    }
+  }
+  
+  [type=radio] {
+    margin-right: 1em;
+  }
+  
 }

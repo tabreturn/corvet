@@ -64,7 +64,7 @@ export default Ember.Controller.extend({
     },
     
     postResult() {
-      Ember.$.post( '/api/results', { user:'u'+Date.now(), task:1, score:22 })
+      Ember.$.post( '/api/results', { user:'u'+Date.now(), task:'task'+this.task, score:99 })
         .done(function(data) {
           document.querySelector('#submission').innerHTML = '';
           Ember.$('html, body').animate({ scrollTop: 0 }, 500);
