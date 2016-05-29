@@ -8,7 +8,7 @@ export default Ember.Route.extend({
   }
 });
 */
-// -- so global properties have been used to replace the model data
+// -- so global properties have been used to replace the model data:
 
 const test = [
   { id:1, src:'assets/images/tests/01-star.png' },
@@ -47,7 +47,7 @@ export default Ember.Controller.extend({
     },
     
     postResult() {
-      Ember.$.post( '/api/results', { user:'tim'+Math.random(), task:1, score:22 })
+      Ember.$.post( '/api/results', { user:Date.now(), task:1, score:22 })
         .done(function(data) {
           document.querySelector('#submission').innerHTML = '';
           Ember.$('html, body').animate({ scrollTop: 0 }, 500);
