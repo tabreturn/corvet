@@ -18,7 +18,6 @@ resultsschema = open('results_schema.sql').read()
 conn = sqlite3.connect(resultsdb)
 c = conn.cursor()
 c.execute(resultsschema)
-c.execute('INSERT INTO results VALUES (0, "----", "----", 0)')
 conn.commit()
 conn.close()
 

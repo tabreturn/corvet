@@ -64,17 +64,20 @@ export default Ember.Controller.extend({
     },
     
     postResult() {
-      Ember.$.post( '/api/results', { user:'u'+Date.now(), task:'task'+this.task, score:99 })
+      Ember.$.post( '/api/results', { user:'u'+Date.now(), task:'task'+task, score:99 })
         .done(function(data) {
           document.querySelector('#submission').innerHTML = '';
           Ember.$('html, body').animate({ scrollTop: 0 }, 500);
           console.log(data);
           task ++;
-          this.send('resetTask');
           
-          if (task >= this.tests.length) {
+          if (task > this.tests.length) {
             this.transitionToRoute('questionnaire');
           }
+          else {
+            this.send('resetTask');
+          }
+          
         }
         .bind(this)
       );
