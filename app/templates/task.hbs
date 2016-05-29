@@ -5,24 +5,20 @@
 <ol class="list-group" id="steps">
   
   <li class="list-group-item">
-    <strong>1.</strong>
     <a {{action 'activateNextStep' on='mouseDown'}} download="Task_{{active}}.png" href="{{testsrc}}" title="Task {{active}}">Download</a>
     and recreate the above image.
   </li>
   
   <li class="list-group-item clearfix disabled">
-    <strong>2.</strong> Upload the result:
+    Upload the result:
     {{svg-upload browsedisabled=browsedisabled action='assessFile'}}
   </li>
   
   <li class="list-group-item disabled">
-    <strong>3.</strong>
     <div id="submission"></div>
-    
   </li>
   
   <li class="list-group-item disabled">
-    <strong>4.</strong>
     <button disabled={{nextdisabled}} {{action 'postResult'}}>
       Next task
       <span class="glyphicon glyphicon-chevron-right"></span>
