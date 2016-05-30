@@ -5,49 +5,39 @@ export default Ember.Controller.extend({
   firstname: '',
   surname: '',
   
-  isDisabled: false,
+  isDisabled: true,
   
   //isDisabled: Ember.computed.empty('firstname' && 'surname'),
   
   actions: {
     
     submit() {
-      alert('result');
-    }
-    
-    /*
-    inputs = document.getElementsByTagName('select');
-    for (index = 0; index < inputs.length; ++index) {
-      console.log(Ember.$(inputs[index]).val());
-    }
-    
-    inputs = document.getElementsByTagName('textarea');
-    for (index = 0; index < inputs.length; ++index) {
-        console.log(Ember.$(inputs[index]).val());
-    }
-    
-    inputs = document.getElementsByTagName('input');
-    for (index = 0; index < inputs.length; ++index) {
-        if (inputs[index].checked) {
-            console.log(Ember.$(inputs[index]).val());
+      
+      console.log({
+          software      : document.getElementById('software').value,
+          difficulties  : document.getElementById('difficulties').value,
+          browser       : document.getElementById('browser').value,
+          issues        : document.getElementById('issues').value,
+          difficulty    : document.querySelector('input[name="difficulty"]:checked').value,
+          traced        : document.querySelector('input[name="traced"]:checked').value;,
+          time          : document.getElementById('time').value
+      });
+      
+      /*
+      Ember.$.post('/api/questionnaire', {
+          software      : document.getElementById('software').value,
+          difficulties  : document.getElementById('difficulties').value,
+          browser       : document.getElementById('browser').value,
+          issues        : document.getElementById('issues').value,
+          difficulty    : document.getElementById('difficulty').value,
+          traced        : document.getElementById('traced').value,
+          time          : document.getElementById('time').value
+        }).done(function(data) {
+          console.log(data);
         }
+      );*/
     }
     
-    */
-    
-    /*
-    submit() {
-      
-      alert({ user:'u'+Date.now(), 'questions', score:99 });
-      
-      Ember.$.post( '/api/results', { user:'u'+Date.now(), 'questions', score:99 })
-        .done(function(data) {
-            this.transitionToRoute('complete');
-          }
-        }
-      );
-      
-    }*/
   }
   
 });

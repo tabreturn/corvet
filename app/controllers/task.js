@@ -34,11 +34,8 @@ export default Ember.Controller.extend({
   actions: {
     
     deactivateSteps() {
-      /*jshint multistr: true */
-      Ember.$('#steps li:nth-child(2),\
-               #steps li:nth-child(3),\
-               #steps li:nth-child(4)'
-        ).addClass('disabled');
+      Ember.$('#steps li:nth-child(2), #steps li:nth-child(3), #steps li:nth-child(4)')
+        .addClass('disabled');
       
       this.set('nextdisabled', true);
     },
