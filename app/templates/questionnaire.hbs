@@ -1,15 +1,15 @@
 <h1>Questionnaire</h1>
 
-<form>
+<form id="questionnaire">
   
   <ol class="list-group" id="questionnaire">
     
     <li class="list-group-item">
       What vector graphics software did you use to complete the tasks?
       <select>
-        <option>Adobe Illustrator</option>
-        <option>CorelDRAW</option>
-        <option>Inkscape</option>
+        <option value="illustrator">Adobe Illustrator</option>
+        <option value="coreldraw">CorelDRAW</option>
+        <option value="inkscape">Inkscape</option>
       </select>
     </li>
     
@@ -22,13 +22,13 @@
     <li class="list-group-item">
       Which web browser did you use?
       <select>
-        <option>Chrome</option>
-        <option>Edge</option>
-        <option>Firefox</option>
-        <option>Internet Explorer</option>
-        <option>Opera</option>
-        <option>Safari</option>
-        <option>not listed</option>
+        <option value="chrome">Chrome</option>
+        <option value="edge">Edge</option>
+        <option value="firefox">Firefox</option>
+        <option value="ie">Internet Explorer</option>
+        <option value="opera">Opera</option>
+        <option value="safari">Safari</option>
+        <option value="not-listed">not listed</option>
       </select>
     </li>
     
@@ -41,35 +41,35 @@
     <li class="list-group-item">
       On a scale of 1 to 5, how difficult did you find the tasks?
       <p>
-        1 <input type="radio" name="difficulty" />
-        2 <input type="radio" name="difficulty" />
-        3 <input type="radio" name="difficulty" />
-        4 <input type="radio" name="difficulty" />
-        5 <input type="radio" name="difficulty" />
+        1 <input type="radio" name="difficulty" value="1" />
+        2 <input type="radio" name="difficulty" value="2" />
+        3 <input type="radio" name="difficulty" value="3" />
+        4 <input type="radio" name="difficulty" value="4" />
+        5 <input type="radio" name="difficulty" value="5" />
       </p>
     </li>
     
     <li class="list-group-item">
       Did you trace the image after downloading the graphic, or simply estimate the proportions?
       <p>
-        traced <input type="radio" name="difficulty" />
-        estimated <input type="radio" name="difficulty" />
+        traced <input type="radio" name="difficulty" value="traced" />
+        estimated <input type="radio" name="difficulty" value="estimated" />
       </p>
     </li>
     
     <li class="list-group-item">
       Approximately how many minutes did it take for you to complete all 6 tasks?
       <select>
-        <option>less than 10 minutes</option>
-        <option>between 10 and 15 minutes</option>
-        <option>between 15 and 30 minutes</option>
-        <option>between 30 and 45 minutes</option>
-        <option>longer than 45 minutes</option>
+        <option value="lt10">less than 10 minutes</option>
+        <option value="10-15">between 10 and 15 minutes</option>
+        <option value="15-30">between 15 and 30 minutes</option>
+        <option value="30-45">between 30 and 45 minutes</option>
+        <option value="gt45">longer than 45 minutes</option>
       </select>
     </li>
     
   </ol>
   
-  <input type="submit" value="Sumbit" class="btn btn-primary btn-lg btn-block" {{action 'submit'}}>
+  <input type="submit" value="Sumbit" class="btn btn-primary btn-lg btn-block" disabled="{{isDisabled}}" {{action 'submit'}}>
   
 </form>

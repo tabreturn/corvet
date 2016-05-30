@@ -13,7 +13,7 @@ export default Ember.TextField.extend({
   change: function(e) {
     let file = e.target.files[0];
     let reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function() {
       document.querySelector('#submission').innerHTML = reader.result;
     };
     this.sendAction();

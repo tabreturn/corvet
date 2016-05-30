@@ -34,6 +34,7 @@ export default Ember.Controller.extend({
   actions: {
     
     deactivateSteps() {
+      /*jshint multistr: true */
       Ember.$('#steps li:nth-child(2),\
                #steps li:nth-child(3),\
                #steps li:nth-child(4)'

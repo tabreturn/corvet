@@ -15,15 +15,12 @@
       <span class="glyphicon glyphicon-chevron-right"></span>
     </p>
     <p>
-      There are six graphics in all, and brief questionnaire to complete at
+      There are six graphics in all, and a brief questionnaire to complete at
       the end.
-    </p>
-    <p>
-      Thank you for taking the time to partake in this study.
     </p>
   </div>
   
-  <div class="col-sm-6 editors">
+  <div class="col-sm-6 alert-info editors">
     <h4>Adobe Illustrator</h4>
     <p>
       Upon export, the CSS Properties field (under Advanced Options) must be
@@ -43,12 +40,24 @@
   
 </div>
 
+<h2>Enter your details and begin:</h2>
+
+<div class="row">
+  
+  <div class="col-sm-6">
+    Firstname:
+    <br />
+    {{input type="text" value=firstname class="form-control col-sm-6" autofocus="autofocus"}}
+  </div>
+  
+  <div class="col-sm-6">
+    Surname:
+    <br />
+    {{input type="text" value=surname class="form-control col-sm-6"}}
+  </div>
+  
+</div>
+
 <hr />
 
-Name: <input type="text" required="true" />
-Surname: <input type="text" required="true" />
-
-<hr />
-
-<input type="submit" value="Begin" class="btn btn-primary btn-lg btn-block" {{action 'begin'}}>
-
+<input type="submit" value="Begin" class="btn btn-primary btn-lg btn-block" {{action 'begin'}} disabled={{isDisabled}} />
