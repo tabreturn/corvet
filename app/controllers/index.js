@@ -11,8 +11,8 @@ export default Ember.Controller.extend({
     
     begin() {
       this.transitionToRoute('task');
-      localStorage.setItem('firstname', this.firstname);
-      localStorage.setItem('surname', this.surname);
+      sessionStorage.setItem('firstname', this.firstname);
+      sessionStorage.setItem('surname', this.surname);
     }
     
   }

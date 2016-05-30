@@ -17,7 +17,7 @@ resultsdb = 'results.sqlite'
 resultsschema = open('results_schema.sql').read()
 conn = sqlite3.connect(resultsdb)
 c = conn.cursor()
-c.execute(resultsschema)
+c.executescript(resultsschema)
 conn.commit()
 conn.close()
 
@@ -33,7 +33,7 @@ def dbEntry(result):
 
 # api
 
-class Api:
+class Results:
   exposed = True
   
   def POST(self, user, task, score):
@@ -46,7 +46,26 @@ class Api:
     return 'new entry captured: {}'.format(result)
 
 cherrypy.tree.mount(
-  Api(), '/api/results',
+  Results(), '/api/results',
+  {'/':
+    {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
+  }
+)
+
+class Survey:
+  exposed = True
+  
+  def POST(self, **kwargs):
+    
+    for key in kwargs:
+      print(key)
+      print(kwargs[key])
+    
+    #dbEntry(result)
+    #return 'new entry captured: {}'.format(result)
+
+cherrypy.tree.mount(
+  Survey(), '/api/survey',
   {'/':
     {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
   }
