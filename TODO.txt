@@ -1,3 +1,2 @@
-- sort out survey api (create generic dbentry)
-- proper task data entry
-- questionnaire form data entry
+- integrate marker
+- marker improvements ...
