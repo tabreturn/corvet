@@ -47,20 +47,21 @@ def dbEntry(table, result):
   conn.commit()
   conn.close()
   
+  return 'new entry captured: {}'.format(result)
+  
 
 # api
 
 class Results:
   exposed = True
   
-  def POST(self, user, task, score):
+  def POST(self, **kwargs):
     result = {
-      'user': user,
-      'task': task,
-      'score': score
+      'user': kwargs['user'],
+      'task': kwargs['task'],
+      'score': kwargs['score']
     }
-    dbEntry('results', result)
-    return 'new entry captured: {}'.format(result)
+    return dbEntry('results', result)
 
 cherrypy.tree.mount(
   Results(), '/api/results',
@@ -73,13 +74,18 @@ class Survey:
   exposed = True
   
   def POST(self, **kwargs):
-    
-    for key in kwargs:
-      print(key)
-      print(kwargs[key])
-    
-    #dbEntry(result)
-    #return 'new entry captured: {}'.format(result)
+    result = {
+      'firstname': kwargs['firstname'],
+      'surname': kwargs['surname'],
+      'software': kwargs['software'],
+      'difficulties': kwargs['difficulties'],
+      'browser': kwargs['browser'],
+      'issues': kwargs['issues'],
+      'difficulty': kwargs['difficulty'],
+      'traced': kwargs['traced'],
+      'time': kwargs['time']
+    }
+    return dbEntry('survey', result)
 
 cherrypy.tree.mount(
   Survey(), '/api/survey',
