@@ -21,15 +21,32 @@ c.executescript(resultsschema)
 conn.commit()
 conn.close()
 
-def dbEntry(result):
+def dbEntry(table, result):
+  insert = 'INSERT INTO {} ('.format(table)
+  values = 'VALUES ('
+  v = []
+  i = 1
+  
+  for key in result:
+    insert += key
+    values += '?'
+    v.append(result[key])
+    
+    if (i < len(result)):
+      values += ', '
+      insert += ', '
+      i += 1
+  
+  insert += ') '
+  values += ') '
+  q = insert + values
+  
   conn = sqlite3.connect(resultsdb)
   c = conn.cursor()
-  c.execute('INSERT INTO results (user, task, score) VALUES (?, ?, ?)',
-   (result['user'], result['task'], result['score'])
-  )
+  c.execute(q, tuple(v))
   conn.commit()
   conn.close()
-
+  
 
 # api
 
@@ -42,7 +59,7 @@ class Results:
       'task': task,
       'score': score
     }
-    dbEntry(result)
+    dbEntry('results', result)
     return 'new entry captured: {}'.format(result)
 
 cherrypy.tree.mount(
