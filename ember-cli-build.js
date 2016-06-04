@@ -21,7 +21,7 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
   
   app.import('vendor/color-convert.js');
-  app.import('vendor/libcorvet.js');
+  app.import('bower_components/delta-e/dist/deltae.global.min.js');
   
   return app.toTree();
 };
