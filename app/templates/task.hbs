@@ -1,11 +1,11 @@
-{{nav-bar tests=tests active=active}}
+{{nav-bar tests=tests active=taskactive}}
 
-<img src="{{testsrc}}" class="test-img" />
+<img src="{{tasksrc}}" class="test-img" />
 
 <ol class="list-group" id="steps">
   
   <li class="list-group-item">
-    <a {{action 'activateNextStep' on='mouseDown'}} download="Task_{{active}}.png" href="{{testsrc}}" title="Task {{active}}">Download</a>
+    <a {{action 'activateNextStep' on='mouseDown'}} download="Task_{{taskactive}}.png" href="{{tasksrc}}" title="Task {{taskactive}}">Download</a>
     and recreate the above image.
   </li>
   

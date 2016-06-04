@@ -59,7 +59,8 @@ class Results:
     result = {
       'user': kwargs['user'],
       'task': kwargs['task'],
-      'score': kwargs['score']
+      'score': kwargs['score'],
+      'svg': kwargs['svg']
     }
     return dbEntry('results', result)
 

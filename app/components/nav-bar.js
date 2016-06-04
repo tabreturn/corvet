@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   
-  propertyObserver: Ember.observer('active', function() {
+  propertyObserver: Ember.observer('taskactive', function() {
     
     Ember.$('.nav li').removeClass('active');
     Ember.$('#task-' + this.active).addClass('active');

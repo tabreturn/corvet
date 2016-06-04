@@ -26,8 +26,12 @@ export default Ember.Controller.extend({
   
   step: 1,
   tests: test,
-  active: task,
-  testsrc: test[task-1].src,
+  
+  taskactive: task,
+  taskscore: 0,
+  tasksvg: null,
+  tasksrc: test[task-1].src,
+  
   steps: document.querySelectorAll('#steps li'),
   nextdisabled: true,
   browsedisabled: true,
@@ -53,9 +57,9 @@ export default Ember.Controller.extend({
       this.set('nextdisabled', false);
       Ember.$('html, body').animate({ scrollTop: Ember.$(document).height() }, 500);
       
-      let submission = '#submission svg';
-      
-      let assess = new Libcorvet.Libcorvet(submission);
+      let submission = '#submission';
+      this.set('tasksvg', document.querySelector(submission).innerHTML);
+      let assess = new Libcorvet.Libcorvet(submission + ' svg');
       
       assess.getShapes();
       /*
@@ -78,14 +82,16 @@ export default Ember.Controller.extend({
     
     resetTask() {
       this.set('step', 1);
-      this.set('testsrc', test[task-1].src);
-      this.set('active', task);
+      this.set('tasksrc', test[task-1].src);
+      this.set('taskactive', task);
       this.send('deactivateSteps');
       this.set('browsedisabled', true);
     },
     
     postResult() {
-      Ember.$.post( '/api/results', { user:'u'+Date.now(), task:'task'+task, score:99 })
+      let user = sessionStorage.getItem('firstname') + ' ' + sessionStorage.getItem('surname');
+      
+      Ember.$.post( '/api/results', { user:user, task:task, score:this.taskscore, svg:this.tasksvg})
         .done(function(data) {
           document.querySelector('#submission').innerHTML = '';
           Ember.$('html, body').animate({ scrollTop: 0 }, 500);
