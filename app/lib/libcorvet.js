@@ -57,15 +57,15 @@ export default {
           attr.area         = attr.width * attr.height;
           break;
       }
-      attr.fill             = shape.style.fill;
-      attr.fillopacity      = shape.style.fillOpacity;
-      attr.stroke           = shape.style.stroke;
-      attr.strokeopacity    = shape.style.strokeOpacity;
-      attr.strokewidth      = shape.style.strokeWidth;
-      attr.strokelinecap    = shape.style.strokeLinecap;
-      attr.strokelinejoin   = shape.style.strokeLinejoin;
-      attr.strokemiterlimit = shape.style.strokeMiterlimit;
-      attr.strokedasharray  = shape.style.strokeDasharray;
+      attr.fill             = getComputedStyle(shape, null).fill;
+      attr.fillopacity      = getComputedStyle(shape, null).fillOpacity;
+      attr.stroke           = getComputedStyle(shape, null).stroke;
+      attr.strokeopacity    = getComputedStyle(shape, null).strokeOpacity;
+      attr.strokewidth      = getComputedStyle(shape, null).strokeWidth;
+      attr.strokelinecap    = getComputedStyle(shape, null).strokeLinecap;
+      attr.strokelinejoin   = getComputedStyle(shape, null).strokeLinejoin;
+      attr.strokemiterlimit = getComputedStyle(shape, null).strokeMiterlimit;
+      attr.strokedasharray  = getComputedStyle(shape, null).strokeDasharray;
       attr.transform        = shape.getAttribute('transform');
       
       return attr;
