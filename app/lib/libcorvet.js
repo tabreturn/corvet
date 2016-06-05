@@ -1,3 +1,6 @@
+// path to poly function
+// relative to absolute for: points; x/y; r/ry/rx; width/height
+
 export default {
   
   Libcorvet: function(selector) {
@@ -6,6 +9,7 @@ export default {
     this.circles = [];
     this.ellipses = [];
     this.paths = [];
+    this.polygons = [];
     this.rects = [];
     
     // extract shapes and attributes
@@ -25,6 +29,7 @@ export default {
       this.setShapeAttributes(this.countShapes('circle'), 'circle', this.circles);
       this.setShapeAttributes(this.countShapes('ellipse'), 'ellipse', this.ellipses);
       this.setShapeAttributes(this.countShapes('path'), 'path', this.paths);
+      this.setShapeAttributes(this.countShapes('polygon'), 'polygon', this.polygons);
       this.setShapeAttributes(this.countShapes('rect'), 'rect', this.rects);
     };
     
@@ -49,6 +54,9 @@ export default {
         case 'path':
           attr.d            = shape.getAttribute('d');
           break;
+        case 'polygon':
+          attr.points       = shape.getAttribute('points');
+          break;
         case 'rect':
           attr.width        = shape.getAttribute('width');
           attr.height       = shape.getAttribute('height');
@@ -66,7 +74,6 @@ export default {
       attr.strokelinejoin   = getComputedStyle(shape, null).strokeLinejoin;
       attr.strokemiterlimit = getComputedStyle(shape, null).strokeMiterlimit;
       attr.strokedasharray  = getComputedStyle(shape, null).strokeDasharray;
-      attr.transform        = shape.getAttribute('transform');
       
       return attr;
     };
