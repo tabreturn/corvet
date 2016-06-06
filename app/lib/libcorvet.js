@@ -1,6 +1,3 @@
-// path to poly function
-// relative to absolute for: points; x/y; r/ry/rx; width/height
-
 export default {
   
   Libcorvet: function(selector) {
@@ -25,14 +22,34 @@ export default {
       }
     };
     
+    this.relativeToAbsolute = function(shapesarray) {
+      
+      for (let i=0; i<shapesarray.length; i++) {
+        if (shapesarray[i].x) {
+          shapesarray[i].x = parseFloat(shapesarray[i].x) + parseFloat(shapesarray[i].transform.x);
+          shapesarray[i].y = parseFloat(shapesarray[i].y) + parseFloat(shapesarray[i].transform.y);
+        }
+        
+        if (shapesarray[i].points) {
+          //code
+        }
+      }
+      
+      return shapesarray;
+    };
+    
     this.getShapes = function() {
       this.setShapeAttributes(this.countShapes('circle'), 'circle', this.circles);
+      this.circles = this.relativeToAbsolute(this.circles);
       this.setShapeAttributes(this.countShapes('ellipse'), 'ellipse', this.ellipses);
+      this.ellipses = this.relativeToAbsolute(this.ellipses);
+      this.setShapeAttributes(this.countShapes('rect'), 'rect', this.rects);
+      this.rects = this.relativeToAbsolute(this.rects);
+      
       this.setShapeAttributes(this.countShapes('path'), 'path', this.paths);
       this.setShapeAttributes(this.countShapes('polygon'), 'polygon', this.polygons);
-      this.setShapeAttributes(this.countShapes('rect'), 'rect', this.rects);
-      
-      this.polygons = this.pathsToPolygons(this.paths, this.polygons); // convert paths to polygons
+      this.polygons = this.pathsToPolygons(this.paths, this.polygons);
+      this.relativeToAbsolute(this.polygons);
     };
     
     this.dToPoints = function(d) {
@@ -50,6 +67,18 @@ export default {
       }
       
       return polypaths;
+    };
+    
+    this.getTransform = function(shape) {
+      try {
+        let t = shape.parentElement.getAttribute('transform');
+        t = t.replace(/(translate\()|\)/g, '');
+        let txy = t.split(",");
+        return {x:txy[0], y:txy[1]};
+      }
+      catch(e) {
+        return {x:0, y:0};
+      }
     };
     
     this.getShapeAttributes = function(shape, type) {
@@ -93,6 +122,8 @@ export default {
       attr.strokelinejoin   = getComputedStyle(shape, null).strokeLinejoin;
       attr.strokemiterlimit = getComputedStyle(shape, null).strokeMiterlimit;
       attr.strokedasharray  = getComputedStyle(shape, null).strokeDasharray;
+      
+      attr.transform        = this.getTransform(shape);
       
       return attr;
     };
@@ -187,8 +218,7 @@ export default {
         strokelinecap    : shape1.strokelinecap === shape2.strokelinecap,
         strokelinejoin   : shape1.strokelinejoin === shape2.strokelinejoin,
         strokemiterlimit : this.compareProportional(shape1.strokemiterlimit, shape2.strokemiterlimit)
-        //strokedasharray  : shape.style.strokeDasharray,
-        //transform        : shape.getAttribute('transform')
+        //strokedasharray  : shape.style.strokeDasharray
       };
     };
     
