@@ -75,7 +75,6 @@ export default Ember.Controller.extend({
       //assess.findCorners();
       
       console.log(assess.circles);
-      console.log(assess.paths);
       console.log(assess.polygons);
       console.log(assess.rects);
       

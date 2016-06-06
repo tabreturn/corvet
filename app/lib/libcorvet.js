@@ -31,6 +31,25 @@ export default {
       this.setShapeAttributes(this.countShapes('path'), 'path', this.paths);
       this.setShapeAttributes(this.countShapes('polygon'), 'polygon', this.polygons);
       this.setShapeAttributes(this.countShapes('rect'), 'rect', this.rects);
+      
+      this.polygons = this.pathsToPolygons(this.paths, this.polygons); // convert paths to polygons
+    };
+    
+    this.dToPoints = function(d) {
+      let points = d.replace(/[a-zA-Z]/g, '');
+      return points;
+    };
+    
+    this.pathsToPolygons = function(paths, polygons) {
+      let polypaths = polygons;
+      
+      for (let i=0; i<paths.length; i++) {
+        paths[i].points = this.dToPoints(paths[i].d);
+        delete paths[i].d;
+        polypaths.push(paths[i]);
+      }
+      
+      return polypaths;
     };
     
     this.getShapeAttributes = function(shape, type) {
@@ -83,6 +102,7 @@ export default {
     this.rgbToArray = function(rgb) {
       let pattern = /rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
       rgb = pattern.exec(rgb);
+      
       if (rgb) {
         rgb.shift();
         rgb = rgb.map(Number);
