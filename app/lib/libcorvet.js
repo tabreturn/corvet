@@ -1,3 +1,9 @@
+/**
+ * SVG auto-marker library
+ * @constructor
+ * @param {string} svg - SVG element to be assessed
+ */
+
 export default {
   
   Libcorvet: function(selector) {
@@ -31,7 +37,20 @@ export default {
         }
         
         if (shapesarray[i].points) {
-          //code
+          let points = shapesarray[i].points.split(' ');
+          let p = '';
+          
+          for (let j=0; j<points.length; j++) {
+            let xy = points[j].split(',');
+            p += (parseFloat(xy[0]) + parseFloat(shapesarray[i].transform.x));
+            p += ',';
+            p += (parseFloat(xy[1]) + parseFloat(shapesarray[i].transform.y));
+            
+            if (j < points.length-1) {
+              p += ' ';
+            }
+          }
+          shapesarray[i].points = p;
         }
       }
       
@@ -54,6 +73,7 @@ export default {
     
     this.dToPoints = function(d) {
       let points = d.replace(/[a-zA-Z]/g, '');
+      points = points.trim();
       return points;
     };
     
@@ -103,7 +123,7 @@ export default {
           attr.d            = shape.getAttribute('d');
           break;
         case 'polygon':
-          attr.points       = shape.getAttribute('points');
+          attr.points       = shape.getAttribute('points').trim();
           break;
         case 'rect':
           attr.width        = shape.getAttribute('width');
