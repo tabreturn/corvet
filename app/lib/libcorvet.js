@@ -15,6 +15,7 @@ export default {
     this.ellipses = [];
     this.paths = [];
     this.polygons = [];
+    this.polylines = [];
     this.rects = [];
     
     // extract shapes and attributes
@@ -67,9 +68,12 @@ export default {
       this.setShapeAttributes(this.countShapes('rect'), 'rect', this.rects);
       this.rects = this.relativeToAbsolute(this.rects);
       
+      // path/polygon/polyline all as polygons:
       this.setShapeAttributes(this.countShapes('path'), 'path', this.paths);
       this.setShapeAttributes(this.countShapes('polygon'), 'polygon', this.polygons);
+      this.setShapeAttributes(this.countShapes('polyline'), 'polyline', this.polylines);
       this.polygons = this.pathsToPolygons(this.paths, this.polygons);
+      this.polygons = this.polygons.concat(this.polylines);
       this.relativeToAbsolute(this.polygons);
     };
     
@@ -125,6 +129,9 @@ export default {
           attr.d            = shape.getAttribute('d');
           break;
         case 'polygon':
+          attr.points       = shape.getAttribute('points').trim();
+          break;
+        case 'polyline':
           attr.points       = shape.getAttribute('points').trim();
           break;
         case 'rect':
