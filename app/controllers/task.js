@@ -78,6 +78,7 @@ export default Ember.Controller.extend({
       console.log(assess.polygons);
       console.log(assess.polylines);
       console.log(assess.rects);
+      console.log(assess.ellipses);
       
       //console.log('compare first two circles:');
       //console.log(assess.compareShape(assess.circles[0], assess.circles[1]));

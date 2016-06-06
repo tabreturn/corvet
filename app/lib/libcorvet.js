@@ -1,5 +1,3 @@
-// IF FILL/STROKE = NOTHING; color is black SO check for "fill:none" "stroke:none" etc.
-
 /**
  * SVG auto-marker library
  * @constructor
