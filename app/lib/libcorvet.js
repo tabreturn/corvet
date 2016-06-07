@@ -20,13 +20,6 @@ export default {
     this.subshapes = new this.SvgShapes();
     this.ansshapes = new this.SvgShapes();
     
-    this.circles = [];
-    this.ellipses = [];
-    this.paths = [];
-    this.polygons = [];
-    this.polylines = [];
-    this.rects = [];
-    
     // extract shapes and attributes
     
     this.countShapes = function(svgselector, shape) {

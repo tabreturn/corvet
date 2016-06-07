@@ -66,7 +66,7 @@ export default Ember.Controller.extend({
       window.submission = submission;
       window.answer = answer;
       
-      let assess = new Libcorvet.Libcorvet(submission+' svg', answer.querySelector('svg'));
+      let assess = new Libcorvet.Libcorvet(submission+' svg', submission+' svg'); ///// FIX /////
       
       assess.gatherSubmissionAnswer();
       
