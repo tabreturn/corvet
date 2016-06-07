@@ -59,9 +59,16 @@ export default Ember.Controller.extend({
       
       let submission = '#submission';
       this.set('tasksvg', document.querySelector(submission).innerHTML);
-      let assess = new Libcorvet.Libcorvet(submission + ' svg');
       
-      assess.getShapes();
+      let answer = document.getElementById("answer");
+      answer = answer.contentDocument;
+      
+      window.submission = submission;
+      window.answer = answer;
+      
+      let assess = new Libcorvet.Libcorvet(submission+' svg', answer.querySelector('svg'));
+      
+      assess.gatherSubmissionAnswer();
       
       //console.log('circles(' + assess.countShapes('circle') + '):');
       //console.log(assess.circles);
@@ -74,11 +81,11 @@ export default Ember.Controller.extend({
       
       //assess.findCorners();
       
-      console.log(assess.circles);
-      console.log(assess.polygons);
-      console.log(assess.polylines);
-      console.log(assess.rects);
-      console.log(assess.ellipses);
+      //console.log(assess.circles);
+      //console.log(assess.polygons);
+      //console.log(assess.polylines);
+      //console.log(assess.rects);
+      //console.log(assess.ellipses);
       
       //console.log('compare first two circles:');
       //console.log(assess.compareShape(assess.circles[0], assess.circles[1]));
@@ -97,10 +104,11 @@ export default Ember.Controller.extend({
     postResult() {
       let user = sessionStorage.getItem('firstname') + ' ' + sessionStorage.getItem('surname');
       
-      Ember.$.post( '/api/results', { user:user, task:task, score:this.taskscore, svg:this.tasksvg})
+      Ember.$.post( '/api/results', { user:user, task:task, score:this.taskscore, svg:this.tasksvg })
         .done(function(data) {
           document.querySelector('#submission').innerHTML = '';
           Ember.$('html, body').animate({ scrollTop: 0 }, 500);
+          console.log(data.substring(0, 99));
           task ++;
           
           if (task > this.tests.length) {

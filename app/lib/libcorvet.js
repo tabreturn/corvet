@@ -6,9 +6,20 @@
 
 export default {
   
-  Libcorvet: function(selector) {
+  Libcorvet: function(submission, answer) {
     
-    let svg = selector;
+    this.SvgShapes = function() {
+      this.circles = [];
+      this.ellipses = [];
+      this.paths = [];
+      this.polygons = [];
+      this.polylines = [];
+      this.rects = [];
+    };
+    
+    this.subshapes = new this.SvgShapes();
+    this.ansshapes = new this.SvgShapes();
+    
     this.circles = [];
     this.ellipses = [];
     this.paths = [];
@@ -18,13 +29,13 @@ export default {
     
     // extract shapes and attributes
     
-    this.countShapes = function(shape) {
-      return document.querySelectorAll(svg + ' ' + shape).length;
+    this.countShapes = function(svgselector, shape) {
+      return document.querySelectorAll(svgselector + ' ' + shape).length;
     };
     
-    this.setShapeAttributes = function(total, type, array) {
+    this.setShapeAttributes = function(svgselector, total, type, array) {
       for (let i=0; i<total; i++) {
-        let shape = this.getShapeAttributes(document.querySelectorAll(svg + ' ' +type)[i], type);
+        let shape = this.getShapeAttributes(document.querySelectorAll(svgselector + ' ' +type)[i], type);
         array.push(shape);
       }
     };
@@ -58,21 +69,27 @@ export default {
       return shapesarray;
     };
     
-    this.getShapes = function() {
-      this.setShapeAttributes(this.countShapes('circle'), 'circle', this.circles);
-      this.circles = this.relativeToAbsolute(this.circles);
-      this.setShapeAttributes(this.countShapes('ellipse'), 'ellipse', this.ellipses);
-      this.ellipses = this.relativeToAbsolute(this.ellipses);
-      this.setShapeAttributes(this.countShapes('rect'), 'rect', this.rects);
-      this.rects = this.relativeToAbsolute(this.rects);
+    this.getShapes = function(svgselector, svgshapes) {
+      let sel = svgselector;
+      let sha = svgshapes;
+      
+      this.setShapeAttributes(sel, this.countShapes(sel, 'circle'), 'circle', sha.circles);
+      sha.circles = this.relativeToAbsolute(sha.circles);
+      
+      this.setShapeAttributes(sel, this.countShapes(sel, 'ellipse'), 'ellipse', sha.ellipses);
+      sha.ellipses = this.relativeToAbsolute(sha.ellipses);
+      
+      this.setShapeAttributes(sel, this.countShapes(sel, 'rect'), 'rect', sha.rects);
+      sha.rects = this.relativeToAbsolute(sha.rects);
       
       // path/polygon/polyline all as polygons:
-      this.setShapeAttributes(this.countShapes('path'), 'path', this.paths);
-      this.setShapeAttributes(this.countShapes('polygon'), 'polygon', this.polygons);
-      this.setShapeAttributes(this.countShapes('polyline'), 'polyline', this.polylines);
-      this.polygons = this.pathsToPolygons(this.paths, this.polygons);
-      this.polygons = this.polygons.concat(this.polylines);
-      this.relativeToAbsolute(this.polygons);
+      this.setShapeAttributes(sel, this.countShapes(sel, 'path'), 'path', sha.paths);
+      this.setShapeAttributes(sel, this.countShapes(sel, 'polygon'), 'polygon', sha.polygons);
+      this.setShapeAttributes(sel, this.countShapes(sel, 'polyline'), 'polyline', sha.polylines);
+      
+      sha.polygons = this.pathsToPolygons(sha.paths, sha.polygons);
+      sha.polygons = sha.polygons.concat(sha.polylines);
+      this.relativeToAbsolute(sha.polygons);
     };
     
     this.dToPoints = function(d) {
@@ -244,7 +261,7 @@ export default {
         strokewidth      : this.compareProportional(shape1.strokewidth, shape2.strokewidth),
         strokelinecap    : shape1.strokelinecap === shape2.strokelinecap,
         strokelinejoin   : shape1.strokelinejoin === shape2.strokelinejoin,
-        strokemiterlimit : this.compareProportional(shape1.strokemiterlimit, shape2.strokemiterlimit)
+        strokemiterlimit : this.compareProportional(shape1.strokemiterlimit, shape2.strokemiterlimit),
         //strokedasharray  : shape.style.strokeDasharray
       };
     };
@@ -253,7 +270,20 @@ export default {
       p1 = this.findCorners(p1, 3);
       p2 = this.findCorners(p2);
     };
-  
+    
+    // marker functions
+    
+    this.gatherSubmissionAnswer = function() {
+      this.getShapes(submission, this.subshapes);
+      this.getShapes(answer, this.ansshapes);
+      
+console.log('sub:');
+console.log(this.subshapes);
+console.log('ans:');
+console.log(this.ansshapes);
+      
+    };
+    
   }
   
 };
