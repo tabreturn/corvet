@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   propertyObserver: Ember.observer('taskactive', function() {
     
     Ember.$('.nav li').removeClass('active');
-    Ember.$('#task-' + this.active).addClass('active');
+    Ember.$('#task-' + this.taskactive).addClass('active');
     
     try {
       document.getElementById("task-1").removeAttribute("id");
