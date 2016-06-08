@@ -34,7 +34,6 @@ export default {
     };
     
     this.relativeToAbsolute = function(shapesarray) {
-      
       for (let i=0; i<shapesarray.length; i++) {
         if (shapesarray[i].x) {
           shapesarray[i].x = parseFloat(shapesarray[i].x) + parseFloat(shapesarray[i].transform.x);
@@ -86,9 +85,11 @@ export default {
     };
     
     this.dToPoints = function(d) {
-      let points = d.replace(/[a-zA-Z]/g, '');
-      points = points.trim();
-      return points;
+      if (d) {
+          let points = d.replace(/[a-zA-Z]/g, '');
+          points = points.trim();
+          return points;
+      }
     };
     
     this.pathsToPolygons = function(paths, polygons) {
@@ -230,7 +231,6 @@ export default {
     // comparison functions
     
     this.compareColor = function(color1, color2) {
-      
       color1 = this.rgbToArray(color1);
       color2 = this.rgbToArray(color2);
       

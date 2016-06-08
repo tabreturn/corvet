@@ -29,7 +29,7 @@ export default Ember.Controller.extend({
   
   taskactive: task,
   taskscore: 0,
-  tasksvg: null,
+  uploadedsvg: null,
   tasksrc: test[task-1].src,
   
   steps: document.querySelectorAll('#steps li'),
@@ -57,40 +57,12 @@ export default Ember.Controller.extend({
       this.set('nextdisabled', false);
       Ember.$('html, body').animate({ scrollTop: Ember.$(document).height() }, 500);
       
-      let submission = '#submission';
-      this.set('tasksvg', document.querySelector(submission).innerHTML);
+      let submission = '#submission svg';
+      let answer = '#answer' + this.taskactive;
+      this.set('uploadedsvg', document.querySelector(submission).innerHTML);
       
-      let answer = document.getElementById("answer");
-      answer = answer.contentDocument;
-      
-      window.submission = submission;
-      window.answer = answer;
-      
-      let assess = new Libcorvet.Libcorvet(submission+' svg', submission+' svg'); ///// FIX /////
-      
+      let assess = new Libcorvet.Libcorvet(submission, answer);
       assess.gatherSubmissionAnswer();
-      
-      //console.log('circles(' + assess.countShapes('circle') + '):');
-      //console.log(assess.circles);
-      //console.log('ellipse(' + assess.countShapes('ellipse') + '):');
-      //console.log(assess.ellipses);
-      //console.log('paths(' + assess.countShapes('path') + '):');
-      //console.log(assess.paths);
-      //console.log('rects(' + assess.countShapes('rect') + '):');
-      //console.log(assess.rects);
-      
-      //assess.findCorners();
-      
-      //console.log(assess.circles);
-      //console.log(assess.polygons);
-      //console.log(assess.polylines);
-      //console.log(assess.rects);
-      //console.log(assess.ellipses);
-      
-      //console.log('compare first two circles:');
-      //console.log(assess.compareShape(assess.circles[0], assess.circles[1]));
-      //console.log('compare first two rects:');
-      //console.log(assess.compareShape(assess.rects[0], assess.rects[1]));
     },
     
     resetTask() {
@@ -104,7 +76,7 @@ export default Ember.Controller.extend({
     postResult() {
       let user = sessionStorage.getItem('firstname') + ' ' + sessionStorage.getItem('surname');
       
-      Ember.$.post( '/api/results', { user:user, task:task, score:this.taskscore, svg:this.tasksvg })
+      Ember.$.post( '/api/results', { user:user, task:task, score:this.taskscore, svg:this.uploadedsvg })
         .done(function(data) {
           document.querySelector('#submission').innerHTML = '';
           Ember.$('html, body').animate({ scrollTop: 0 }, 500);
