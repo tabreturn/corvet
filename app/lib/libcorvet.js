@@ -21,7 +21,7 @@ export default {
       points: 5,          // total % of difference between polygon points
       deltae: 10,         // color difference in fills & stokes
       strokeopacity: 0.2, // stroke opacity ranges between 0 and 1
-      strokewidth: 5     // % of difference in width
+      strokewidth: 5      // % of difference in width
     };
     
     // extract shapes and attributes
@@ -32,7 +32,9 @@ export default {
     
     this.setShapeAttributes = function(svgselector, total, type, array) {
       for (let i=0; i<total; i++) {
-        let shape = this.getShapeAttributes(document.querySelectorAll(svgselector + ' ' +type)[i], type);
+        let shape = this.getShapeAttributes(
+          document.querySelectorAll(svgselector + ' ' +type)[i], type
+        );
         array.push(shape);
       }
     };
@@ -40,8 +42,10 @@ export default {
     this.relativeToAbsolute = function(shapesarray) {
       for (let i=0; i<shapesarray.length; i++) {
         if (shapesarray[i].x) {
-          shapesarray[i].x = parseFloat(shapesarray[i].x) + parseFloat(shapesarray[i].transform.x);
-          shapesarray[i].y = parseFloat(shapesarray[i].y) + parseFloat(shapesarray[i].transform.y);
+          shapesarray[i].x =
+            parseFloat(shapesarray[i].x) + parseFloat(shapesarray[i].transform.x);
+          shapesarray[i].y =
+            parseFloat(shapesarray[i].y) + parseFloat(shapesarray[i].transform.y);
         }
         
         if (shapesarray[i].points) {
@@ -69,19 +73,46 @@ export default {
       let sel = svgselector;
       let sha = svgshapes;
       
-      this.setShapeAttributes(sel, this.countShapes(sel, 'circle'), 'circle', sha.circles);
+      this.setShapeAttributes(
+        sel,
+        this.countShapes(sel, 'circle'),
+        'circle', sha.circles
+      );
       sha.circles = this.relativeToAbsolute(sha.circles);
       
-      this.setShapeAttributes(sel, this.countShapes(sel, 'ellipse'), 'ellipse', sha.ellipses);
+      this.setShapeAttributes(
+        sel,
+        this.countShapes(sel, 'ellipse'),
+        'ellipse', sha.ellipses
+      );
       sha.ellipses = this.relativeToAbsolute(sha.ellipses);
       
-      this.setShapeAttributes(sel, this.countShapes(sel, 'rect'), 'rect', sha.rects);
+      this.setShapeAttributes(
+        sel,
+        this.countShapes(sel, 'rect'),
+        'rect',
+        sha.rects
+      );
       sha.rects = this.relativeToAbsolute(sha.rects);
       
       // path/polygon/polyline all as polygons:
-      this.setShapeAttributes(sel, this.countShapes(sel, 'path'), 'path', sha.paths);
-      this.setShapeAttributes(sel, this.countShapes(sel, 'polygon'), 'polygon', sha.polygons);
-      this.setShapeAttributes(sel, this.countShapes(sel, 'polyline'), 'polyline', sha.polylines);
+      this.setShapeAttributes(
+        sel, this.countShapes(sel, 'path'),
+        'path',
+        sha.paths
+      );
+      this.setShapeAttributes(
+        sel,
+        this.countShapes(sel, 'polygon'),
+        'polygon',
+        sha.polygons
+      );
+      this.setShapeAttributes(
+        sel,
+        this.countShapes(sel, 'polyline'),
+        'polyline',
+        sha.polylines
+      );
       
       sha.polygons = this.pathsToPolygons(sha.paths, sha.polygons);
       sha.polygons = sha.polygons.concat(sha.polylines);
@@ -268,15 +299,24 @@ export default {
       p2 = this.findCorners(p2);
     };
     
-    this.
+    this.getMostSimilarShapes = function(shapesarray, criteria='position') {
+      let mostsimilar = [];
+      
+      if (criteria === 'position') {
+        this.compareDistance(ax, ay, bx, by)
+        console.log(shapesarray.rects);
+      }
+    };
     
     // marker functions
     
     this.compareAllShapes = function(subshapes, ansshapes) {
       let shapes = [];
+      let candidates = {};
       
       for (let k in ansshapes) {
         shapes.push(k);
+        candidates[k] = [];
       }
       
       for (let i=0; i<shapes.length; i++) {
@@ -288,9 +328,12 @@ export default {
              ansshapes[shapes[i]][ii],
              subshapes[shapes[i]][iii]
             );
+            candidates[shapes[i]].push(r);
           }
         }
       }
+      
+      this.getMostSimilarShapes(candidates);
       
     };
     
