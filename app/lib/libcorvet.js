@@ -17,6 +17,13 @@ export default {
       this.rects = [];
     };
     
+    this.tolerances = {
+      points: 5,          // total % of difference between polygon points
+      deltae: 10,         // color difference in fills & stokes
+      strokeopacity: 0.2, // stroke opacity ranges between 0 and 1
+      strokewidth: 5     // % of difference in width
+    };
+    
     // extract shapes and attributes
     
     this.countShapes = function(svgselector, shape) {
@@ -260,6 +267,8 @@ export default {
       p1 = this.findCorners(p1, 3);
       p2 = this.findCorners(p2);
     };
+    
+    this.
     
     // marker functions
     
