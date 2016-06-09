@@ -228,7 +228,8 @@ export default {
       let prevangle;
       
       for (let i=2; i<pointslength; i+=2) {
-        let angle = this.findAngle(points[i-2],points[i-1], points[i],points[i+1]);
+        let angle =
+          this.findAngle(points[i-2],points[i-1], points[i],points[i+1]);
         
         if (angle <= prevangle+tolerance && angle >= prevangle-tolerance) {
           corners.push(points[i], points[i+1]);
@@ -280,16 +281,25 @@ export default {
     
     this.compareShape = function(shape1, shape2) {
       return {
-        position         : this.compareDistance(shape1.x, shape1.y, shape2.x, shape2.y),
-        area             : this.compareProportional(shape1.area, shape2.area),
-        fill             : this.compareColor(shape1.fill, shape2.fill),
-        fillopacity      : this.compareNumber(shape1.fillopacity, shape2.fillopacity),
-        stroke           : this.compareColor(shape1.stroke, shape2.stroke),
-        strokeopacity    : this.compareNumber(shape1.strokeopacity, shape2.strokeopacity),
-        strokewidth      : this.compareProportional(shape1.strokewidth, shape2.strokewidth),
+        position         : this.compareDistance(
+                             shape1.x, shape1.y, shape2.x, shape2.y),
+        area             : this.compareProportional(
+                             shape1.area, shape2.area),
+        fill             : this.compareColor(
+                             shape1.fill, shape2.fill),
+        fillopacity      : this.compareNumber(
+                             shape1.fillopacity, shape2.fillopacity),
+        stroke           : this.compareColor(
+                             shape1.stroke, shape2.stroke),
+        strokeopacity    : this.compareNumber(
+                             shape1.strokeopacity, shape2.strokeopacity),
+        strokewidth      : this.compareProportional(
+                             shape1.strokewidth, shape2.strokewidth),
+        strokemiterlimit : this.compareProportional(
+                             shape1.strokemiterlimit, shape2.strokemiterlimit),
+        
         strokelinecap    : shape1.strokelinecap === shape2.strokelinecap,
-        strokelinejoin   : shape1.strokelinejoin === shape2.strokelinejoin,
-        strokemiterlimit : this.compareProportional(shape1.strokemiterlimit, shape2.strokemiterlimit),
+        strokelinejoin   : shape1.strokelinejoin === shape2.strokelinejoin
         //strokedasharray  : shape.style.strokeDasharray
       };
     };
@@ -299,13 +309,30 @@ export default {
       p2 = this.findCorners(p2);
     };
     
-    this.getMostSimilarShapes = function(shapesarray, criteria='position') {
-      let mostsimilar = [];
+    this.getMostSimilarShapes = function(comparisonresults, criterion, id='id') {
       
-      if (criteria === 'position') {
-        this.compareDistance(ax, ay, bx, by)
-        console.log(shapesarray.rects);
+      console.log(comparisonresults);
+      
+      let mostsimilar = {};
+      
+      let shapes = [];
+      
+      for (let k in comparisonresults) {
+        shapes.push(k);
+        mostsimilar[k] = [];
       }
+      
+      for (let i=0; i<shapes.length; i++) {
+        
+        for (let ii=0; ii<comparisonresults[shapes[i]].length; ii++) {
+          let shape = comparisonresults[shapes[i]][ii];
+          
+          mostsimilar[shapes[i]] = comparisonresults[shapes[i]][ii].position;
+        }
+      }
+      
+      console.log(mostsimilar);
+      
     };
     
     // marker functions
@@ -328,13 +355,13 @@ export default {
              ansshapes[shapes[i]][ii],
              subshapes[shapes[i]][iii]
             );
+            r.id = [ii,iii];
             candidates[shapes[i]].push(r);
           }
         }
       }
       
-      this.getMostSimilarShapes(candidates);
-      
+      this.getMostSimilarShapes(candidates, 'position');
     };
     
     this.gatherSubmissionAnswer = function() {
