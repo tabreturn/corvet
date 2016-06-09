@@ -17,9 +17,6 @@ export default {
       this.rects = [];
     };
     
-    this.subshapes = new this.SvgShapes();
-    this.ansshapes = new this.SvgShapes();
-    
     // extract shapes and attributes
     
     this.countShapes = function(svgselector, shape) {
@@ -266,15 +263,41 @@ export default {
     
     // marker functions
     
+    this.compareAllShapes = function(subshapes, ansshapes) {
+      let shapes = [];
+      
+      for (let k in ansshapes) {
+        shapes.push(k);
+      }
+      
+      for (let i=0; i<shapes.length; i++) {
+        
+        for (let ii=0; ii<ansshapes[shapes[i]].length; ii++) {
+          
+          for (let iii=0; iii<subshapes[shapes[i]].length; iii++) {
+            let r = this.compareShape(
+             ansshapes[shapes[i]][ii],
+             subshapes[shapes[i]][iii]
+            );
+          }
+        }
+      }
+      
+    };
+    
     this.gatherSubmissionAnswer = function() {
-      this.getShapes(submission, this.subshapes);
-      this.getShapes(answer, this.ansshapes);
+      let subshapes = new this.SvgShapes();
+      let ansshapes = new this.SvgShapes();
       
+      this.getShapes(submission, subshapes);
+      this.getShapes(answer, ansshapes);
+/*
 console.log('sub:');
-console.log(this.subshapes);
+console.log(subshapes);
 console.log('ans:');
-console.log(this.ansshapes);
-      
+console.log(ansshapes);
+*/
+      this.compareAllShapes(subshapes, ansshapes);
     };
     
   }

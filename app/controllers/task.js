@@ -52,16 +52,18 @@ export default Ember.Controller.extend({
     },
     
     assessFile() {
-      this.send('activateNextStep');
-      this.send('activateNextStep');
-      this.set('nextdisabled', false);
-      Ember.$('html, body').animate({ scrollTop: Ember.$(document).height() }, 500);
+      if (this.step < 3) {
+        this.send('activateNextStep');
+        this.send('activateNextStep');
+        this.set('nextdisabled', false);
+        Ember.$('html, body').animate({ scrollTop: Ember.$(document).height() }, 500);
+      }
       
       let submission = '#submission svg';
       let answer = '#answer' + this.taskactive;
       this.set('uploadedsvg', document.querySelector(submission).innerHTML);
       
-      let assess = new Libcorvet.Libcorvet(submission, answer);
+      let assess = new Libcorvet.Libcorvet(submission, '#answer1');
       assess.gatherSubmissionAnswer();
     },
     
