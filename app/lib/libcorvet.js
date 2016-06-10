@@ -326,6 +326,8 @@ export default {
           }
         }
       }
+      
+      return result;
     };
     
     // marker functions
@@ -354,7 +356,20 @@ export default {
         }
       }
       
-      this.getMostSimilarShapes(candidates, 'position');
+      return this.getMostSimilarShapes(candidates, 'position');
+    };
+    
+    this.calculateResult = function(comparedshapes) {
+      /*
+      this.tolerances = {
+        points: 5,
+        deltae: 10,
+        strokeopacity: 0.2,
+        strokewidth: 5
+      };
+      */
+      let r = this.gatherSubmissionAnswer();
+      return r;
     };
     
     this.gatherSubmissionAnswer = function() {
@@ -364,9 +379,8 @@ export default {
       this.getShapes(submission, subshapes);
       this.getShapes(answer, ansshapes);
       
-      this.compareAllShapes(ansshapes, subshapes);
+      return this.compareAllShapes(ansshapes, subshapes);
     };
     
   }
-  
 };
