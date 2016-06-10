@@ -58,13 +58,13 @@ export default Ember.Controller.extend({
         this.set('nextdisabled', false);
       }
       
-      let submission = '#submission svg';
       let answer = '#answer' + this.taskactive;
+      let submission = '#submission svg';
       this.set('uploadedsvg', document.querySelector(submission).innerHTML);
       
       Ember.$('html, body').animate({ scrollTop: Ember.$(document).height() }, 500);
       
-      let assess = new Libcorvet.Libcorvet(submission, '#answer1');
+      let assess = new Libcorvet.Libcorvet('#answer1', submission);
       assess.gatherSubmissionAnswer();
     },
     

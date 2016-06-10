@@ -6,7 +6,7 @@
 
 export default {
   
-  Libcorvet: function(submission, answer) {
+  Libcorvet: function(answer, submission) {
     
     this.SvgShapes = function() {
       this.circles = [];
@@ -309,35 +309,28 @@ export default {
       p2 = this.findCorners(p2);
     };
     
-    this.getMostSimilarShapes = function(comparisonresults, criterion, id='id') {
-      
-      console.log(comparisonresults);
-      
-      let mostsimilar = {};
-      
-      let shapes = [];
+    this.getMostSimilarShapes = function(comparisonresults, criterion) {
+      let result = {};
       
       for (let k in comparisonresults) {
-        shapes.push(k);
-        mostsimilar[k] = [];
-      }
-      
-      for (let i=0; i<shapes.length; i++) {
+        result[k] = [];
+        let closestid;
         
-        for (let ii=0; ii<comparisonresults[shapes[i]].length; ii++) {
-          let shape = comparisonresults[shapes[i]][ii];
+        for (let i=0; i<comparisonresults[k].length; i++) {
+          let id = result[k][comparisonresults[k][i].id.ans];
+          let c = comparisonresults[k][i][criterion];
           
-          mostsimilar[shapes[i]] = comparisonresults[shapes[i]][ii].position;
+          if (id > c || id === undefined) {
+            closestid = comparisonresults[k][i].id.ans;
+            result[k][comparisonresults[k][i].id.ans] = c;
+          }
         }
       }
-      
-      console.log(mostsimilar);
-      
     };
     
     // marker functions
     
-    this.compareAllShapes = function(subshapes, ansshapes) {
+    this.compareAllShapes = function(ansshapes, subshapes) {
       let shapes = [];
       let candidates = {};
       
@@ -355,7 +348,7 @@ export default {
              ansshapes[shapes[i]][ii],
              subshapes[shapes[i]][iii]
             );
-            r.id = [ii,iii];
+            r.id = {ans:ii, sub:iii};
             candidates[shapes[i]].push(r);
           }
         }
@@ -370,13 +363,8 @@ export default {
       
       this.getShapes(submission, subshapes);
       this.getShapes(answer, ansshapes);
-/*
-console.log('sub:');
-console.log(subshapes);
-console.log('ans:');
-console.log(ansshapes);
-*/
-      this.compareAllShapes(subshapes, ansshapes);
+      
+      this.compareAllShapes(ansshapes, subshapes);
     };
     
   }
