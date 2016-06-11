@@ -246,6 +246,20 @@ export default {
       }
     };
     
+    this.arrayMinIndex = function(array) {
+      let index = 0;
+      let value = array[0];
+      
+      for (let i=1; i<array.length; i++) {
+        if (array[i] < value) {
+          value = array[i];
+          index = i;
+        }
+      }
+      
+      return index;
+    };
+    
     // comparison functions
     
     this.compareColor = function(color1, color2) {
@@ -298,26 +312,54 @@ export default {
     };
     
     this.getHausdorffDistance = function(points1, points2) {
-      return 12345;
+      let h = 0;
+      
+      for (let i=0; i<points1.length; i++) {
+        let d = this.compareDistance(
+                  points1[i], points1[i+1],
+                  points2[i], points2[i+1]
+                );
+        
+        if (d > h) {
+          h = d;
+        }
+      }
+      
+      return h;
     };
     
     this.alignPolygonPoints = function(points1, points2) {
-      console.log(points2);
-      
       let p2 = points2;
-      
       let offsets = [];
       
-      for (let i=0; i<points1.length; i++) {
-        p2.splice(0, 0, p2[p2.length-1]); p2.pop();
-        p2.splice(0, 0, p2[p2.length-1]); p2.pop();
-        
-        //this.compareDistance = function(ax, ay, bx, by)
-        
+      function shiftPairs(points) {
+        points.splice(0, 0, points[points.length-1]); points.pop();
+        points.splice(0, 0, points[points.length-1]); points.pop();
       }
-      console.log(p2);
       
-    }
+      for (let i=0; i<points1.length; i+=2) {
+        let sumofd = 0;
+        
+        for (let ii=0; ii<p2.length; ii+=2) {
+          let d = this.compareDistance(
+                    p2[ii], p2[ii+1], points1[ii], points1[ii+1]
+                  );
+          sumofd += d;
+        }
+        
+        offsets.push(sumofd);
+        shiftPairs(p2);
+      }
+      
+      var offest = this.arrayMinIndex(offsets);
+      p2 = points2;
+      
+      for (let i=0; i<offest; i++) {
+        shiftPairs(p2);
+      }
+      
+      return p2;
+    };
     
     this.comparePolygon = function(p1, p2) {
       if (p1 && p2) {
@@ -325,10 +367,11 @@ export default {
         p2 = this.findCorners(p2, this.tolerance.corner);
         
         if (p1.length !== p2.length) {
-          return `${p2.length/2} corners (should be:${p1.length/2})`;
+          return `${p2.length/2} corners found (should be ${p1.length/2})`;
         }
         else {
-          return this.alignPolygonPoints(p1, p2);
+          p2 = this.alignPolygonPoints(p1, p2);
+          return this.getHausdorffDistance(p1, p2);
         }
       }
     };
