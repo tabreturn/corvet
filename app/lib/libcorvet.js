@@ -281,7 +281,6 @@ export default {
                 );
         
         if (i >= points.length) {
-          console.log('end');
           angle = this.findAngle(
                     points[0], points[1],
                     points[points.length-2], points[points.length-1]
@@ -298,13 +297,26 @@ export default {
       return corners;
     };
     
-    this.getHausdorffDistance = function() {
-      
+    this.getHausdorffDistance = function(points1, points2) {
+      return 12345;
     };
     
-    this.alignPolygonPoints = function(p1, p2) {
-      console.log(p1);
+    this.alignPolygonPoints = function(points1, points2) {
+      console.log(points2);
+      
+      let p2 = points2;
+      
+      let offsets = [];
+      
+      for (let i=0; i<points1.length; i++) {
+        p2.splice(0, 0, p2[p2.length-1]); p2.pop();
+        p2.splice(0, 0, p2[p2.length-1]); p2.pop();
+        
+        //this.compareDistance = function(ax, ay, bx, by)
+        
+      }
       console.log(p2);
+      
     }
     
     this.comparePolygon = function(p1, p2) {
@@ -316,10 +328,8 @@ export default {
           return `${p2.length/2} corners (should be:${p1.length/2})`;
         }
         else {
-          alignPolygonPoints(p1, p2)
+          return this.alignPolygonPoints(p1, p2);
         }
-        
-        return 12345;
       }
     };
     
