@@ -17,11 +17,12 @@ export default {
       this.rects = [];
     };
     
-    this.tolerances = {
+    this.tolerance = {
       points: 5,          // total % of difference between polygon points
       deltae: 10,         // color difference in fills & stokes
       strokeopacity: 0.2, // stroke opacity ranges between 0 and 1
-      strokewidth: 5      // % of difference in width
+      strokewidth: 5,     // % of difference in width
+      corner: 2           // disregard corners under this value (degrees)
     };
     
     // extract shapes and attributes
@@ -222,25 +223,6 @@ export default {
       return theta;
     };
     
-    this.findCorners = function(points, tolerance) {
-      let pointslength = points.length;
-      let corners = [points[0], points[1]];
-      let prevangle;
-      
-      for (let i=2; i<pointslength; i+=2) {
-        let angle =
-          this.findAngle(points[i-2],points[i-1], points[i],points[i+1]);
-        
-        if (angle <= prevangle+tolerance && angle >= prevangle-tolerance) {
-          corners.push(points[i], points[i+1]);
-        }
-        
-        prevangle = angle;
-      }
-      
-      return corners;
-    };
-    
     this.compareDistance = function(ax, ay, bx, by) {
       return Math.sqrt((ax-bx)*(ax-bx) + (ay-by)*(ay-by));
     };
@@ -279,8 +261,72 @@ export default {
       
     };
     
+    this.findCorners = function(points, tolerance) {
+      points = points.replace(/,/g , " ");
+      points = points.split(" ");
+      points = points.map(parseFloat);
+      
+      let corners = [];
+      
+      let lastangle = this.findAngle(
+                        points[points.length-2], points[points.length-1],
+                        points[0], points[1]
+                      );
+      
+      for (let i=2; i<=points.length; i+=2) {
+        let angle;
+        
+        angle = this.findAngle(
+                  points[i-2], points[i-1], points[i], points[i+1]
+                );
+        
+        if (i >= points.length) {
+          console.log('end');
+          angle = this.findAngle(
+                    points[0], points[1],
+                    points[points.length-2], points[points.length-1]
+                  );
+        }
+        
+        if (Math.abs(angle-lastangle) > tolerance) {
+          corners.push(points[i-2], points[i-1]);
+        }
+        
+        lastangle = angle;
+      }
+      
+      return corners;
+    };
+    
+    this.getHausdorffDistance = function() {
+      
+    };
+    
+    this.alignPolygonPoints = function(p1, p2) {
+      console.log(p1);
+      console.log(p2);
+    }
+    
+    this.comparePolygon = function(p1, p2) {
+      if (p1 && p2) {
+        p1 = this.findCorners(p1, this.tolerance.corner);
+        p2 = this.findCorners(p2, this.tolerance.corner);
+        
+        if (p1.length !== p2.length) {
+          return `${p2.length/2} corners (should be:${p1.length/2})`;
+        }
+        else {
+          alignPolygonPoints(p1, p2)
+        }
+        
+        return 12345;
+      }
+    };
+    
     this.compareShape = function(shape1, shape2) {
-      return {
+      let comparisons = {
+        
+        // common
         position         : this.compareDistance(
                              shape1.x, shape1.y, shape2.x, shape2.y),
         area             : this.compareProportional(
@@ -299,14 +345,18 @@ export default {
                              shape1.strokemiterlimit, shape2.strokemiterlimit),
         
         strokelinecap    : shape1.strokelinecap === shape2.strokelinecap,
-        strokelinejoin   : shape1.strokelinejoin === shape2.strokelinejoin
-        //strokedasharray  : shape.style.strokeDasharray
+        strokelinejoin   : shape1.strokelinejoin === shape2.strokelinejoin,
+        strokedasharray  : shape1.strokedasharray === shape2.strokedasharray,
+        
+        // ellipses
+        rx               : this.compareProportional(shape1.rx, shape2.rx),
+        ry               : this.compareProportional(shape1.rx, shape2.rx),
+        
+        //polygons (and paths)
+        points           : this.comparePolygon(shape1.points, shape2.points)
       };
-    };
-    
-    this.comparePath = function(p1, p2) {
-      p1 = this.findCorners(p1, 3);
-      p2 = this.findCorners(p2);
+      
+      return comparisons;
     };
     
     this.getMostSimilarShapes = function(comparisonresults, criterion) {
@@ -317,15 +367,16 @@ export default {
         let closest;
         
         for (let i=0; i<comparisonresults[k].length; i++) {
-          let id = result[k][comparisonresults[k][i].id.ans];
           let c = comparisonresults[k][i][criterion];
           
           if (closest > c || closest === undefined) {
             closest = c;
-            result[k][comparisonresults[k][i].id.ans] = {
-              [criterion]:c,
-              area: comparisonresults[k][i].area
-            };
+            result[k][comparisonresults[k][i].id.ans] = { [criterion]:c };
+            
+            for (let j in comparisonresults[k][i]) {
+              result[k][comparisonresults[k][i].id.ans][j] =
+                comparisonresults[k][i][j];
+            }
           }
         }
       }
@@ -358,12 +409,15 @@ export default {
           }
         }
       }
-      console.log(candidates)
-      console.log(this.getMostSimilarShapes(candidates, 'position'));
+      
       return this.getMostSimilarShapes(candidates, 'position');
     };
     
-    this.calculateResult = function(comparedshapes) {
+    this.calculateResult = function() {
+      
+      let calculated ={
+        
+      };
       /*
       this.tolerances = {
         points: 5,
