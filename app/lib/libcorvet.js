@@ -314,15 +314,18 @@ export default {
       
       for (let k in comparisonresults) {
         result[k] = [];
-        let closestid;
+        let closest;
         
         for (let i=0; i<comparisonresults[k].length; i++) {
           let id = result[k][comparisonresults[k][i].id.ans];
           let c = comparisonresults[k][i][criterion];
           
-          if (id > c || id === undefined) {
-            closestid = comparisonresults[k][i].id.ans;
-            result[k][comparisonresults[k][i].id.ans] = c;
+          if (closest > c || closest === undefined) {
+            closest = c;
+            result[k][comparisonresults[k][i].id.ans] = {
+              [criterion]:c,
+              area: comparisonresults[k][i].area
+            };
           }
         }
       }
@@ -355,7 +358,8 @@ export default {
           }
         }
       }
-      
+      console.log(candidates)
+      console.log(this.getMostSimilarShapes(candidates, 'position'));
       return this.getMostSimilarShapes(candidates, 'position');
     };
     
