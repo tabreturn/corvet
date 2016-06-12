@@ -413,7 +413,6 @@ export default {
     };
     
     this.getMostSimilarShapes = function(comparisonresults, criterion) {
-      
       let r = {};
       
       for (let shape in comparisonresults) {
@@ -433,33 +432,28 @@ export default {
             }
           }
         }
-      }
-      
-      console.log(r)
-      
-      /*
-      let result = {};
-      
-      for (let k in comparisonresults) {
-        result[k] = [];
-        let closest;
         
-        for (let i=0; i<comparisonresults[k].length; i++) {
-          let c = comparisonresults[k][i][criterion];
+        let indv = [];
+        
+        for (let i=0; i<r[shape].length; i++) {
+          let ii = 0;
           
-          if (closest > c || closest === undefined) {
-            closest = c;
-            result[k][comparisonresults[k][i].id.ans] = { [criterion]:c };
+          while (ii < r[shape][i].length) {
+            let id =  r[shape][i][ii].id.ans;
             
-            for (let j in comparisonresults[k][i]) {
-              result[k][comparisonresults[k][i].id.ans][j] =
-                comparisonresults[k][i][j];
+            if (indv[id] === undefined ||
+                r[shape][i][ii][criterion] < indv[id][criterion]) {
+              indv[id] = r[shape][i][ii];
             }
+            
+            ii ++;
           }
         }
+        
+        r[shape] = indv;
       }
-      */
-      return result;
+      
+      return r;
     };
     
     // marker functions
