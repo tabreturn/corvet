@@ -13,7 +13,8 @@ export default {
       deltae: 10,         // color difference in fills & stokes
       strokeopacity: 0.2, // stroke opacity ranges between 0 and 1
       strokewidth: 5,     // % of difference in width
-      corner: 2           // disregard corners under this value (degrees)
+      corner: 2,          // disregard corners under this value (degrees)
+      rectdetect: 5       // the degrees any path/poly to rect corner can be out
     };
     
     // extract shapes and attributes
@@ -70,7 +71,7 @@ export default {
       this.rects = [];
     };
     
-    this.getShapes = function(svgselector, svgshapes) {
+    this.getShapes = function(svgselector) {
       let sel = svgselector;
       let shapes = new this.SvgShapes();
       
@@ -116,10 +117,33 @@ export default {
       );
       
       shapes.polygons = this.pathsToPolygons(shapes.paths, shapes.polygons);
+      
+      for (let i=0; i<shapes.polygons.length; i++) {
+        this.checkIfPolygonIsRect(shapes.polygons[i]);
+      }
+      
       shapes.polygons = shapes.polygons.concat(shapes.polylines);
       this.relativeToAbsolute(shapes.polygons);
       
       return shapes;
+    };
+    
+    this.checkIfPolygonIsRect = function(polygon) {
+      let corners = this.findCorners(
+                      polygon.points,
+                      this.tolerance.corner
+                    ).length/2;
+      
+      if (corners === 4) {
+        let pp = this.pointsToArray(polygon.points);
+        let pcs = []
+        
+        let pcs[0] = this.findAngle(pp[0], pp[1], pp[2], pp[3]);
+        let pcs[1] = this.findAngle(pp[2], pp[3], pp[4], pp[5]);
+        let pcs[2] = this.findAngle(pp[4], pp[5], pp[6], pp[7]);
+        let pcs[3] = this.findAngle(pp[6], pp[7], pp[0], pp[1]);
+console.log(pcs);
+      }
     };
     
     this.dToPoints = function(d) {
