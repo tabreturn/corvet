@@ -8,15 +8,6 @@ export default {
   
   Libcorvet: function(answer, submission) {
     
-    this.SvgShapes = function() {
-      this.circles = [];
-      this.ellipses = [];
-      this.paths = [];
-      this.polygons = [];
-      this.polylines = [];
-      this.rects = [];
-    };
-    
     this.tolerance = {
       points: 5,          // total % of difference between polygon points
       deltae: 10,         // color difference in fills & stokes
@@ -70,54 +61,65 @@ export default {
       return shapesarray;
     };
     
+    this.SvgShapes = function() {
+      this.circles = [];
+      this.ellipses = [];
+      this.paths = [];
+      this.polygons = [];
+      this.polylines = [];
+      this.rects = [];
+    };
+    
     this.getShapes = function(svgselector, svgshapes) {
       let sel = svgselector;
-      let sha = svgshapes;
+      let shapes = new this.SvgShapes();
       
       this.setShapeAttributes(
         sel,
         this.countShapes(sel, 'circle'),
-        'circle', sha.circles
+        'circle', shapes.circles
       );
-      sha.circles = this.relativeToAbsolute(sha.circles);
+      shapes.circles = this.relativeToAbsolute(shapes.circles);
       
       this.setShapeAttributes(
         sel,
         this.countShapes(sel, 'ellipse'),
-        'ellipse', sha.ellipses
+        'ellipse', shapes.ellipses
       );
-      sha.ellipses = this.relativeToAbsolute(sha.ellipses);
+      shapes.ellipses = this.relativeToAbsolute(shapes.ellipses);
       
       this.setShapeAttributes(
         sel,
         this.countShapes(sel, 'rect'),
         'rect',
-        sha.rects
+        shapes.rects
       );
-      sha.rects = this.relativeToAbsolute(sha.rects);
+      shapes.rects = this.relativeToAbsolute(shapes.rects);
       
       // path/polygon/polyline all as polygons:
       this.setShapeAttributes(
         sel, this.countShapes(sel, 'path'),
         'path',
-        sha.paths
+        shapes.paths
       );
       this.setShapeAttributes(
         sel,
         this.countShapes(sel, 'polygon'),
         'polygon',
-        sha.polygons
+        shapes.polygons
       );
       this.setShapeAttributes(
         sel,
         this.countShapes(sel, 'polyline'),
         'polyline',
-        sha.polylines
+        shapes.polylines
       );
       
-      sha.polygons = this.pathsToPolygons(sha.paths, sha.polygons);
-      sha.polygons = sha.polygons.concat(sha.polylines);
-      this.relativeToAbsolute(sha.polygons);
+      shapes.polygons = this.pathsToPolygons(shapes.paths, shapes.polygons);
+      shapes.polygons = shapes.polygons.concat(shapes.polylines);
+      this.relativeToAbsolute(shapes.polygons);
+      
+      return shapes;
     };
     
     this.dToPoints = function(d) {
@@ -519,11 +521,8 @@ export default {
     };
     
     this.gatherSubmissionAnswer = function() {
-      let subshapes = new this.SvgShapes();
-      let ansshapes = new this.SvgShapes();
-      
-      this.getShapes(submission, subshapes);
-      this.getShapes(answer, ansshapes);
+      let subshapes = this.getShapes(submission);
+      let ansshapes = this.getShapes(answer);
       
       return this.compareAllShapes(ansshapes, subshapes);
     };
