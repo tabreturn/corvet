@@ -152,6 +152,39 @@ export default {
       }
     };
     
+    this.pointsToArray = function(points) {
+      let p = points.replace(/,/g , " ");
+      p = p.split(" ");
+      p = p.map(parseFloat);
+      
+      return p;
+    };
+    
+    this.getPointsShapeCentre = function(points) {
+      points = this.pointsToArray(points);
+      
+      let xmin, xmax, ymin, ymax;
+      
+      for (let i=0; i<points.length; i+=2) {
+        
+        if (points[i]<xmin || xmin===undefined) {
+          xmin = points[i];
+        }
+        if (points[i]>xmax || xmax===undefined) {
+          xmax = points[i];
+        }
+        if (points[i-1]<ymin || ymin===undefined) {
+          ymin = points[i-1];
+        }
+        if (points[i-1]>ymax || ymax===undefined) {
+          ymax = points[i-1];
+        }
+      }
+      
+      let midpoints = { x: xmin+xmax/2, y: ymin+ymax/2 };
+      return midpoints;
+    };
+    
     this.getShapeAttributes = function(shape, type) {
       let attr = {};
       attr.type = type;
@@ -172,12 +205,15 @@ export default {
           break;
         case 'path':
           attr.d            = shape.getAttribute('d');
+          let dToP          = this.dToPoints(attr.d);
+          attr.x            = this.getPointsShapeCentre(dToP).x;
+          attr.y            = this.getPointsShapeCentre(dToP).y;
           break;
         case 'polygon':
-          attr.points       = shape.getAttribute('points').trim();
-          break;
         case 'polyline':
           attr.points       = shape.getAttribute('points').trim();
+          attr.x            = this.getPointsShapeCentre(attr.points).x;
+          attr.y            = this.getPointsShapeCentre(attr.points).y;
           break;
         case 'rect':
           attr.width        = shape.getAttribute('width');
@@ -276,10 +312,7 @@ export default {
     };
     
     this.findCorners = function(points, tolerance) {
-      points = points.replace(/,/g , " ");
-      points = points.split(" ");
-      points = points.map(parseFloat);
-      
+      points = this.pointsToArray(points);
       let corners = [];
       
       let lastangle = this.findAngle(
