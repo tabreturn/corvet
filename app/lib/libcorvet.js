@@ -413,14 +413,11 @@ export default {
     };
     
     this.getMostSimilarShapes = function(comparisonresults, criterion) {
-console.log(comparisonresults);
+      
       let r = {};
       
       for (let shape in comparisonresults) {
         r[shape] = [];
-      }
-      
-      for (let shape in comparisonresults) {
         let ansid = 0;
         
         for (let i=0; i<comparisonresults[shape].length; i++) {
@@ -429,18 +426,15 @@ console.log(comparisonresults);
             r[shape].push([]);
             ansid ++;
           }
-        }
-      }
-      /*
-      for (let i=0; i<comparisonresults.circles.length; i++) {
-        
-        for (let ii=0; ii<comparisonresults.circles.length; ii++) {
-          if (comparisonresults.circles[i].id.ans === ii) {
-            r.circles[ii].push(comparisonresults.circles[i]);
+          
+          for (let ii=0; ii<comparisonresults[shape].length; ii++) {
+            if (comparisonresults[shape][i].id.ans === ii) {
+              r[shape][ii].push(comparisonresults[shape][i]);
+            }
           }
         }
-        
-      }*/
+      }
+      
       console.log(r)
       
       /*
