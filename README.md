@@ -16,12 +16,12 @@ Todo
 * ~~Setup theme~~
 * Assess SVG:
   * ~~Count shapes~~
-  * Check fills
-  * Check strokes
-  * Triangle detection
+  * ~~Check fills~~
+  * ~~Check strokes~~
+  * ~~Triangle detection~~
   * Quadrilateral detection
-  * Circle detection
-  * Polygon detection
+  * ~~Circle detection~~
+  * ~~Polygon detection~~
 * Marking system
   * Score system
   * ~~Resubmit feature~~
