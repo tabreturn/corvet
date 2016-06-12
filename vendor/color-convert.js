@@ -24,12 +24,10 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-var colorcovert;
-window.colorcovert = colorcovert;
-
-/* MIT license */
-(function() {
-
+var colorcovert = function() {
+  
+  /* MIT license */
+  
   // FORMER CONVERSIONS.JS CODE:
   
   var conversions = {
@@ -1005,6 +1003,4 @@ window.colorcovert = colorcovert;
      }
   });
   
-  colorconvert = convert;
-  
-})();
+};

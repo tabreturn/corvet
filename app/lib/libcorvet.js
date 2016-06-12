@@ -413,6 +413,37 @@ export default {
     };
     
     this.getMostSimilarShapes = function(comparisonresults, criterion) {
+console.log(comparisonresults);
+      let r = {};
+      
+      for (let shape in comparisonresults) {
+        r[shape] = [];
+      }
+      
+      for (let shape in comparisonresults) {
+        let ansid = 0;
+        
+        for (let i=0; i<comparisonresults[shape].length; i++) {
+          
+          if (comparisonresults[shape][i].id.ans >= ansid) {
+            r[shape].push([]);
+            ansid ++;
+          }
+        }
+      }
+      /*
+      for (let i=0; i<comparisonresults.circles.length; i++) {
+        
+        for (let ii=0; ii<comparisonresults.circles.length; ii++) {
+          if (comparisonresults.circles[i].id.ans === ii) {
+            r.circles[ii].push(comparisonresults.circles[i]);
+          }
+        }
+        
+      }*/
+      console.log(r)
+      
+      /*
       let result = {};
       
       for (let k in comparisonresults) {
@@ -433,7 +464,7 @@ export default {
           }
         }
       }
-      
+      */
       return result;
     };
     
@@ -466,23 +497,6 @@ export default {
       return this.getMostSimilarShapes(candidates, 'position');
     };
     
-    this.calculateResult = function() {
-      
-      let calculated ={
-        
-      };
-      /*
-      this.tolerances = {
-        points: 5,
-        deltae: 10,
-        strokeopacity: 0.2,
-        strokewidth: 5
-      };
-      */
-      let r = this.gatherSubmissionAnswer();
-      return r;
-    };
-    
     this.gatherSubmissionAnswer = function() {
       let subshapes = new this.SvgShapes();
       let ansshapes = new this.SvgShapes();
@@ -493,5 +507,24 @@ export default {
       return this.compareAllShapes(ansshapes, subshapes);
     };
     
+    this.calculateResult = function() {
+      let r = this.gatherSubmissionAnswer();
+      
+      let calculated = {
+        
+      };
+      /*
+      this.tolerances = {
+        points: 5,
+        deltae: 10,
+        strokeopacity: 0.2,
+        strokewidth: 5
+      };
+      */
+console.log(r);
+      return r;
+    };
+    
   }
+  
 };

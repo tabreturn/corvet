@@ -65,8 +65,7 @@ export default Ember.Controller.extend({
       Ember.$('html, body').animate({ scrollTop: Ember.$(document).height() }, 500);
       
       let assess = new Libcorvet.Libcorvet('#answer1', submission);
-console.log(assess.calculateResult());
-//      this.set('taskscore', assess.calculateResult());
+      this.set('taskscore', assess.calculateResult());
     },
     
     resetTask() {
