@@ -14,7 +14,7 @@ export default {
       strokeopacity: 0.2, // stroke opacity ranges between 0 and 1
       strokewidth: 5,     // % of difference in width
       corner: 2,          // disregard corners under this value (degrees)
-      rectdetect: 5       // the degrees any path/poly to rect corner can be out
+      rectdetect: 2.5     // the degrees any path/poly-to-rect corner can be out
     };
     
     // extract shapes and attributes
@@ -97,6 +97,7 @@ export default {
       );
       shapes.rects = this.relativeToAbsolute(shapes.rects);
       
+      
       // path/polygon/polyline all as polygons:
       this.setShapeAttributes(
         sel, this.countShapes(sel, 'path'),
@@ -115,15 +116,13 @@ export default {
         'polyline',
         shapes.polylines
       );
-      
       shapes.polygons = this.pathsToPolygons(shapes.paths, shapes.polygons);
-      
-      for (let i=0; i<shapes.polygons.length; i++) {
-        this.checkIfPolygonIsRect(shapes.polygons[i]);
-      }
-      
       shapes.polygons = shapes.polygons.concat(shapes.polylines);
       this.relativeToAbsolute(shapes.polygons);
+      
+for (let i=0; i<shapes.polygons.length; i++) {
+  this.checkIfPolygonIsRect(shapes.polygons[i]);
+}
       
       return shapes;
     };
@@ -134,15 +133,38 @@ export default {
                       this.tolerance.corner
                     ).length/2;
       
+      let rt = [
+        0   - this.tolerance.rectdetect/2,
+        0   + this.tolerance.rectdetect/2,
+        90  - this.tolerance.rectdetect/2,
+        90  + this.tolerance.rectdetect/2,
+        180 - this.tolerance.rectdetect/2,
+        180 + this.tolerance.rectdetect/2
+      ];
+      
       if (corners === 4) {
         let pp = this.pointsToArray(polygon.points);
-        let pcs = []
+        let pc = [];
+        pc[0] = this.findAngle(pp[0], pp[1], pp[2], pp[3]);
+        pc[1] = this.findAngle(pp[2], pp[3], pp[4], pp[5]);
+        pc[2] = this.findAngle(pp[4], pp[5], pp[6], pp[7]);
+        pc[3] = this.findAngle(pp[6], pp[7], pp[0], pp[1]);
         
-        let pcs[0] = this.findAngle(pp[0], pp[1], pp[2], pp[3]);
-        let pcs[1] = this.findAngle(pp[2], pp[3], pp[4], pp[5]);
-        let pcs[2] = this.findAngle(pp[4], pp[5], pp[6], pp[7]);
-        let pcs[3] = this.findAngle(pp[6], pp[7], pp[0], pp[1]);
-console.log(pcs);
+        let isrect = true;
+        
+        for (let i=0; i<pc.length; i++) {
+          let c = Math.abs(pc[i]);
+          
+          if (!(
+              c >= rt[0] && c <= rt[1] ||
+              c >= rt[2] && c <= rt[3] ||
+              c >= rt[4] && c <= rt[5]
+             )) {
+            isrect = false;
+          }
+        }
+        
+        return isrect;
       }
     };
     
@@ -546,8 +568,9 @@ console.log(pcs);
     
     this.gatherSubmissionAnswer = function() {
       let subshapes = this.getShapes(submission);
+console.log('submission', subshapes);
       let ansshapes = this.getShapes(answer);
-      
+console.log('answer    ', ansshapes);
       return this.compareAllShapes(ansshapes, subshapes);
     };
     
@@ -565,7 +588,7 @@ console.log(pcs);
         strokewidth: 5
       };
       */
-console.log(r);
+console.log('result    ', r);
       return r;
     };
     
