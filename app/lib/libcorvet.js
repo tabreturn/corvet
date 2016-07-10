@@ -120,9 +120,12 @@ export default {
       shapes.polygons = shapes.polygons.concat(shapes.polylines);
       this.relativeToAbsolute(shapes.polygons);
       
-for (let i=0; i<shapes.polygons.length; i++) {
-  this.checkIfPolygonIsRect(shapes.polygons[i]);
-}
+      for (let i=0; i<shapes.polygons.length; i++) {
+        if (this.checkIfPolygonIsRect(shapes.polygons[i])) {
+          shapes.rects.push(this.polygonToRect(shapes.polygons[i]));
+          shapes.polygons.splice(i, 1);
+        }
+      }
       
       return shapes;
     };
@@ -186,6 +189,34 @@ for (let i=0; i<shapes.polygons.length; i++) {
       }
       
       return polypaths;
+    };
+    
+    this.polygonToRect = function(polygon) {
+      let p;
+      p = polygon.points.replace(/\ /g, ',');
+      p = p.split(",");
+      let xmin = p[0],
+          xmax = p[0],
+          ymin = p[1],
+          ymax = p[1];
+      
+      for (let i=0; i<p.length; i+=2) {
+        xmin = p[i]<xmin ? p[i]:xmin;
+        xmax = p[i]>xmax ? p[i]:xmax;
+        ymin = p[i+1]<ymin ? p[i+1]:ymin;
+        ymax = p[i+1]>ymax ? p[i+1]:ymax;
+      }
+      
+      let newrect = polygon;
+      newrect.type   = 'rect';
+      newrect.width  = Math.abs(xmax-xmin);
+      newrect.height = Math.abs(ymax-ymin);
+      newrect.x      = xmin;
+      newrect.y      = ymin;
+      newrect.area   = newrect.width * newrect.height;
+      delete newrect.points;
+      
+      return newrect;
     };
     
     this.getTransform = function(shape) {
