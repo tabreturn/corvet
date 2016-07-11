@@ -517,7 +517,7 @@ export default {
         rx               : this.compareProportional(shape1.rx, shape2.rx),
         ry               : this.compareProportional(shape1.rx, shape2.rx),
         
-        //polygons (and paths)
+        // polygons (and paths)
         points           : this.comparePolygon(shape1.points, shape2.points)
       };
       
@@ -599,14 +599,73 @@ export default {
     
     this.gatherSubmissionAnswer = function() {
       let subshapes = this.getShapes(submission);
-console.log('submission', subshapes);
       let ansshapes = this.getShapes(answer);
-console.log('answer    ', ansshapes);
       return this.compareAllShapes(ansshapes, subshapes);
     };
     
     this.calculateResult = function() {
       let r = this.gatherSubmissionAnswer();
+      
+      for (let k in r) {
+        
+        for (let i=0; i<r[k].length; i++) {
+          
+          for (let attr in r[k][i]) {
+            let a = r[k][i][attr];
+            
+            if (a) {
+
+//////////////////////////// WHY DOES RECT HAVE RX/RY //////////////////////////
+
+switch (attr) {
+  case 'area':
+    console.log('area', a);
+    break;
+  case 'fill':
+    console.log('fill', a);
+    break;
+  case 'fillopacity':
+    console.log('fillopacity', a);
+    break;
+  case 'points':
+    console.log('points', a);
+    break;
+  case 'position':
+    console.log('points', a);
+    break;
+  case 'rx':
+    console.log('rx', a);
+    break;
+  case 'ry':
+    console.log('ry', a);
+    break;
+  case 'stroke':
+    console.log('stroke', a);
+    break;
+  case 'strokedasharray':
+    console.log('strokedasharray', a);
+    break;
+  case 'strokelinecap':
+    console.log('strokelinecap', a);
+    break;
+  case 'strokelinejoin':
+    console.log('strokelinejoin', a);
+    break;
+  case 'strokemiterlimit':
+    console.log('strokemiterlimit', a);
+    break;
+  case 'strokeopacity':
+    console.log('strokeopacity', a);
+    break;
+  case 'strokewidth':
+    console.log('strokewidth', a);
+    break;
+}
+              
+            }
+          }
+        }
+      }
       
       let calculated = {
         
