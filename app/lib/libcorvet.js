@@ -339,14 +339,25 @@ export default {
     };
     
     this.compareDistance = function(ax, ay, bx, by) {
+      if (ax===undefined || ay===undefined ||
+          bx===undefined || by===undefined) {
+        return undefined;
+      }
       return Math.sqrt((ax-bx)*(ax-bx) + (ay-by)*(ay-by));
     };
     
     this.compareNumber = function(i1, i2) {
+      if (i1===undefined || i2===undefined) {
+        return undefined;
+      }
       return Math.abs(i1 - i2);
     };
     
     this.compareProportional = function(i1, i2) {
+      if (i1===undefined || i2===undefined) {
+        return undefined;
+      }
+      
       i1 = Math.abs(i1);
       i2 = Math.abs(i2);
       
@@ -378,6 +389,10 @@ export default {
     // comparison functions
     
     this.compareColor = function(color1, color2) {
+      if (color1===undefined || color2===undefined) {
+        return undefined;
+      }
+      
       color1 = this.rgbToArray(color1);
       color2 = this.rgbToArray(color2);
       
@@ -610,58 +625,56 @@ export default {
         
         for (let i=0; i<r[k].length; i++) {
           
+console.log('\n', 'type:', k, '\n---');
+          
           for (let attr in r[k][i]) {
             let a = r[k][i][attr];
             
             if (a) {
-
-//////////////////////////// WHY DOES RECT HAVE RX/RY //////////////////////////
-
-switch (attr) {
-  case 'area':
-    console.log('area', a);
-    break;
-  case 'fill':
-    console.log('fill', a);
-    break;
-  case 'fillopacity':
-    console.log('fillopacity', a);
-    break;
-  case 'points':
-    console.log('points', a);
-    break;
-  case 'position':
-    console.log('points', a);
-    break;
-  case 'rx':
-    console.log('rx', a);
-    break;
-  case 'ry':
-    console.log('ry', a);
-    break;
-  case 'stroke':
-    console.log('stroke', a);
-    break;
-  case 'strokedasharray':
-    console.log('strokedasharray', a);
-    break;
-  case 'strokelinecap':
-    console.log('strokelinecap', a);
-    break;
-  case 'strokelinejoin':
-    console.log('strokelinejoin', a);
-    break;
-  case 'strokemiterlimit':
-    console.log('strokemiterlimit', a);
-    break;
-  case 'strokeopacity':
-    console.log('strokeopacity', a);
-    break;
-  case 'strokewidth':
-    console.log('strokewidth', a);
-    break;
-}
-              
+              switch (attr) {
+                case 'area':
+                  console.log('area', a);
+                  break;
+                case 'fill':
+                  console.log('fill', a);
+                  break;
+                case 'fillopacity':
+                  console.log('fillopacity', a);
+                  break;
+                case 'points':
+                  console.log('points', a);
+                  break;
+                case 'position':
+                  console.log('points', a);
+                  break;
+                case 'rx':
+                  console.log('rx', a);
+                  break;
+                case 'ry':
+                  console.log('ry', a);
+                  break;
+                case 'stroke':
+                  console.log('stroke', a);
+                  break;
+                case 'strokedasharray':
+                  console.log('strokedasharray', a);
+                  break;
+                case 'strokelinecap':
+                  console.log('strokelinecap', a);
+                  break;
+                case 'strokelinejoin':
+                  console.log('strokelinejoin', a);
+                  break;
+                case 'strokemiterlimit':
+                  console.log('strokemiterlimit', a);
+                  break;
+                case 'strokeopacity':
+                  console.log('strokeopacity', a);
+                  break;
+                case 'strokewidth':
+                  console.log('strokewidth', a);
+                  break;
+              }
             }
           }
         }
