@@ -9,12 +9,20 @@ export default {
   Libcorvet: function(answer, submission) {
     
     this.tolerance = {
-      points: 5,          // total % of difference between polygon points
-      deltae: 10,         // color difference in fills & stokes
-      strokeopacity: 0.2, // stroke opacity ranges between 0 and 1
-      strokewidth: 5,     // % of difference in width
-      corner: 2,          // disregard corners under this value (degrees)
-      rectdetect: 2.5     // the degrees any path/poly-to-rect corner can be out
+      corner:           2,   // disregard corners under this value (degrees)
+      deltae:           10,  // color difference in fills & stokes
+      rectdetect:       2.5, // the degrees any path/poly-to-rect corner can be out
+      points:           5,   // total % of difference between polygon points
+      position:         10,  // shapes distanace apart
+      
+      // for the following: 0 is an exact match; 1 is way off
+      area:             0.2, 
+      fillopacity:      0.2,
+      rx:               0.2,
+      ry:               0.2,
+      strokemiterlimit: 0.2,
+      strokeopacity:    0.2,
+      strokewidth:      0.2
     };
     
     // extract shapes and attributes
@@ -620,6 +628,7 @@ export default {
     
     this.calculateResult = function() {
       let r = this.gatherSubmissionAnswer();
+      let score = 0;
       
       for (let k in r) {
         
@@ -629,6 +638,10 @@ console.log('\n', 'type:', k, '\n---');
           
           for (let attr in r[k][i]) {
             let a = r[k][i][attr];
+            
+            if (attr==='position') {
+              console.log('position', a);
+            }
             
             if (a) {
               switch (attr) {
@@ -642,9 +655,6 @@ console.log('\n', 'type:', k, '\n---');
                   console.log('fillopacity', a);
                   break;
                 case 'points':
-                  console.log('points', a);
-                  break;
-                case 'position':
                   console.log('points', a);
                   break;
                 case 'rx':
