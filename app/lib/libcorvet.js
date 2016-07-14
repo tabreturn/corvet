@@ -105,7 +105,6 @@ export default {
       );
       shapes.rects = this.relativeToAbsolute(shapes.rects);
       
-      
       // path/polygon/polyline all as polygons:
       this.setShapeAttributes(
         sel, this.countShapes(sel, 'path'),
@@ -127,6 +126,8 @@ export default {
       shapes.polygons = this.pathsToPolygons(shapes.paths, shapes.polygons);
       shapes.polygons = shapes.polygons.concat(shapes.polylines);
       this.relativeToAbsolute(shapes.polygons);
+      delete shapes.paths;
+      delete shapes.polylines;
       
       for (let i=0; i<shapes.polygons.length; i++) {
         if (this.checkIfPolygonIsRect(shapes.polygons[i])) {
