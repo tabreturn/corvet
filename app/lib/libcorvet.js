@@ -630,59 +630,64 @@ export default {
       let r = this.gatherSubmissionAnswer();
       let score = 0;
       
+      function scoreWithinTolerance(value, correct, tolerance, mark) {
+        if (value > correct-tolerance && value < correct+tolerance) {
+          score += mark;
+        }
+      }
+      
       for (let k in r) {
         
         for (let i=0; i<r[k].length; i++) {
-          
-console.log('\n', 'type:', k, '\n---');
           
           for (let attr in r[k][i]) {
             let a = r[k][i][attr];
             
             if (attr==='position') {
-              console.log('position', a);
+              scoreWithinTolerance(a, 0, this.tolerance.position, 1);
             }
-            
+///////////////////////////////// REMOVE NON-POLYGON POLY'S ////////////////////
+///////////////////////////////// ONLY MARK STROKE DASH ARRAY IF IN RESULT ////////////////////
             if (a) {
               switch (attr) {
                 case 'area':
-                  console.log('area', a);
+                  scoreWithinTolerance(a, 1, this.tolerance.area, 1);
                   break;
                 case 'fill':
-                  console.log('fill', a);
+                  scoreWithinTolerance(a, 0, this.tolerance.deltae, 1);
                   break;
                 case 'fillopacity':
-                  console.log('fillopacity', a);
+                  scoreWithinTolerance(a, 1, this.tolerance.fillopacity, 1);
                   break;
                 case 'points':
-                  console.log('points', a);
+                  scoreWithinTolerance(a, 0, this.tolerance.area, 1);
                   break;
                 case 'rx':
-                  console.log('rx', a);
+                  scoreWithinTolerance(a, 1, this.tolerance.rx, 1);
                   break;
                 case 'ry':
-                  console.log('ry', a);
+                  scoreWithinTolerance(a, 1, this.tolerance.ry, 1);
                   break;
                 case 'stroke':
-                  console.log('stroke', a);
+                  scoreWithinTolerance(a, 0, this.tolerance.deltae, 1);
                   break;
                 case 'strokedasharray':
-                  console.log('strokedasharray', a);
+                  score = a ? score+1 : null;
                   break;
                 case 'strokelinecap':
-                  console.log('strokelinecap', a);
+                  score = a ? score+1 : null;
                   break;
                 case 'strokelinejoin':
-                  console.log('strokelinejoin', a);
+                  score = a ? score+1 : null;
                   break;
                 case 'strokemiterlimit':
-                  console.log('strokemiterlimit', a);
+                  scoreWithinTolerance(a, 1, this.tolerance.strokemiterlimit, 1);
                   break;
                 case 'strokeopacity':
-                  console.log('strokeopacity', a);
+                  scoreWithinTolerance(a, 1, this.tolerance.strokeopacity, 1);
                   break;
                 case 'strokewidth':
-                  console.log('strokewidth', a);
+                  scoreWithinTolerance(a, 1, this.tolerance.strokewidth, 1);
                   break;
               }
             }
@@ -690,18 +695,8 @@ console.log('\n', 'type:', k, '\n---');
         }
       }
       
-      let calculated = {
-        
-      };
-      /*
-      this.tolerances = {
-        points: 5,
-        deltae: 10,
-        strokeopacity: 0.2,
-        strokewidth: 5
-      };
-      */
-console.log('result    ', r);
+console.log('comparison:', r);
+console.log('score:', score);
       return r;
     };
     
