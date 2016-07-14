@@ -328,6 +328,14 @@ export default {
     
     // comparison helper functions
     
+    this.isInt = function(n) {
+      return Number(n)===n && n%1===0;
+    };
+    
+    this.isFloat = function(n) {
+        return Number(n)===n && n%1!==0;
+    };
+    
     this.rgbToArray = function(rgb) {
       let pattern = /rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
       rgb = pattern.exec(rgb);
@@ -514,36 +522,36 @@ export default {
     
     this.compareShape = function(shape1, shape2) {
       let comparisons = {
-        
         // common
-        position         : this.compareDistance(
-                             shape1.x, shape1.y, shape2.x, shape2.y),
-        area             : this.compareProportional(
-                             shape1.area, shape2.area),
-        fill             : this.compareColor(
-                             shape1.fill, shape2.fill),
-        fillopacity      : this.compareNumber(
-                             shape1.fillopacity, shape2.fillopacity),
-        stroke           : this.compareColor(
-                             shape1.stroke, shape2.stroke),
-        strokeopacity    : this.compareNumber(
-                             shape1.strokeopacity, shape2.strokeopacity),
-        strokewidth      : this.compareProportional(
-                             shape1.strokewidth, shape2.strokewidth),
-        strokemiterlimit : this.compareProportional(
-                             shape1.strokemiterlimit, shape2.strokemiterlimit),
-        
-        strokelinecap    : shape1.strokelinecap === shape2.strokelinecap,
-        strokelinejoin   : shape1.strokelinejoin === shape2.strokelinejoin,
-        strokedasharray  : shape1.strokedasharray === shape2.strokedasharray,
-        
+        position    : this.compareDistance(shape1.x,shape1.y, shape2.x,shape2.y),
+        area        : this.compareProportional(shape1.area, shape2.area),
+        fill        : this.compareColor(shape1.fill, shape2.fill),
+        fillopacity : this.compareNumber(shape1.fillopacity, shape2.fillopacity),
+        stroke      : this.compareColor(shape1.stroke, shape2.stroke),
         // ellipses
-        rx               : this.compareProportional(shape1.rx, shape2.rx),
-        ry               : this.compareProportional(shape1.rx, shape2.rx),
-        
+        rx          : this.compareProportional(shape1.rx, shape2.rx),
+        ry          : this.compareProportional(shape1.rx, shape2.rx),
         // polygons (and paths)
-        points           : this.comparePolygon(shape1.points, shape2.points)
+        points      : this.comparePolygon(shape1.points, shape2.points)
       };
+      
+      if (this.isFloat(comparisons.stroke) || this.isInt(comparisons.stroke)) {
+        comparisons.strokeopacity     = this.compareNumber(
+                                          shape1.strokeopacity,
+                                          shape2.strokeopacity);
+        comparisons.strokewidth       = this.compareProportional(
+                                          shape1.strokewidth,
+                                          shape2.strokewidth);
+        comparisons.strokemiterlimit  = this.compareProportional(
+                                          shape1.strokemiterlimit,
+                                          shape2.strokemiterlimit);
+        comparisons.strokelinecap     = (
+          shape1.strokelinecap === shape2.strokelinecap);
+        comparisons.strokelinejoin    = (
+          shape1.strokelinejoin === shape2.strokelinejoin);
+        comparisons.strokedasharray   = (
+          shape1.strokedasharray === shape2.strokedasharray);
+      }
       
       return comparisons;
     };
@@ -647,8 +655,7 @@ export default {
             if (attr==='position') {
               scoreWithinTolerance(a, 0, this.tolerance.position, 1);
             }
-///////////////////////////////// REMOVE NON-POLYGON POLY'S ////////////////////
-///////////////////////////////// ONLY MARK STROKE DASH ARRAY IF IN RESULT ////////////////////
+            
             if (a) {
               switch (attr) {
                 case 'area':
