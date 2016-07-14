@@ -638,10 +638,19 @@ export default {
     this.calculateResult = function() {
       let r = this.gatherSubmissionAnswer();
       let score = 0;
+      let scoresheet = 'scoresheet:\n';
       
       function scoreWithinTolerance(value, correct, tolerance, mark) {
         if (value > correct-tolerance && value < correct+tolerance) {
           score += mark;
+          scoresheet += `${mark}\n`;
+        }
+      }
+      
+      function scoreTrueFalse(value, correct, mark) {
+        if (value===correct) {
+          score += mark;
+          scoresheet += `${mark}\n`;
         }
       }
       
@@ -649,14 +658,19 @@ export default {
         
         for (let i=0; i<r[k].length; i++) {
           
+          scoresheet += `---\nshape: ${k}[${i}]\n`;
+          
           for (let attr in r[k][i]) {
             let a = r[k][i][attr];
             
             if (attr==='position') {
+              scoresheet += `${attr}: `;
               scoreWithinTolerance(a, 0, this.tolerance.position, 1);
             }
             
-            if (a) {
+            if (a && attr!=='id' && attr!=='position') {
+              scoresheet += `${attr}: `;
+              
               switch (attr) {
                 case 'area':
                   scoreWithinTolerance(a, 1, this.tolerance.area, 1);
@@ -680,13 +694,13 @@ export default {
                   scoreWithinTolerance(a, 0, this.tolerance.deltae, 1);
                   break;
                 case 'strokedasharray':
-                  score = a ? score+1 : null;
+                  scoreTrueFalse(a, true, 1);
                   break;
                 case 'strokelinecap':
-                  score = a ? score+1 : null;
+                  scoreTrueFalse(a, true, 1);
                   break;
                 case 'strokelinejoin':
-                  score = a ? score+1 : null;
+                  scoreTrueFalse(a, true, 1);
                   break;
                 case 'strokemiterlimit':
                   scoreWithinTolerance(a, 1, this.tolerance.strokemiterlimit, 1);
@@ -703,9 +717,10 @@ export default {
         }
       }
       
-console.log('comparison:', r);
-console.log('score:', score);
-      return r;
+      console.log(scoresheet);
+      console.log('comparison data:', r);
+      console.log('total score:', score);
+      return score;
     };
     
   }
