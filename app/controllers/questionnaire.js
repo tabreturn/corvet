@@ -21,7 +21,9 @@ export default Ember.Controller.extend({
       Ember.$.post( '/api/survey', result)
         .done(function(data) {
           console.log(data);
+          this.transitionToRoute('complete');
         }
+        .bind(this)
       );
     }
     
