@@ -14,16 +14,16 @@ Todo
 * ~~Upload SVG~~
 * ~~Display SVG~~
 * ~~Setup theme~~
-* Assess SVG:
+* ~~Assess SVG:~~
   * ~~Count shapes~~
   * ~~Check fills~~
   * ~~Check strokes~~
   * ~~Triangle detection~~
-  * Quadrilateral detection
+  * ~~Rectangle detection~~
   * ~~Circle detection~~
   * ~~Polygon detection~~
-* Marking system
-  * Score system
+* ~~Marking system~~
+  * ~~Score system~~
   * ~~Resubmit feature~~
 * ~~Backend submission~~
   * ~~HTTP API~~
@@ -31,5 +31,5 @@ Todo
 * Nice-to-haves
   * Design/interface enhancements
     * Spinners
-    * Media queries
-  * Require/AMD lib?
+    * ~~Media queries~~
+  * ~~Require/AMD lib?~~
