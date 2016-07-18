@@ -1,7 +1,8 @@
 /**
  * SVG auto-marker library
  * @constructor
- * @param {string} svg - SVG element to be assessed
+ * @param {string} svg - SVG markup to be compared to (answer)
+ * @param {string} svg - SVG markup to be compared (submission)
  */
 
 export default {
