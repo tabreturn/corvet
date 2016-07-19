@@ -659,7 +659,8 @@ export default {
         
         for (let i=0; i<r[k].length; i++) {
           
-          scoresheet += `---\nshape: ${k}[${i}]\n`;
+          scoresheet += `---\nshape (${k}[${i}]): 1\n`;
+          score += 1;
           
           for (let attr in r[k][i]) {
             let a = r[k][i][attr];
@@ -669,7 +670,7 @@ export default {
               scoreWithinTolerance(a, 0, this.tolerance.position, 1);
             }
             
-            if (a && attr!=='id' && attr!=='position') {
+            if ((a || a===0) && attr!=='id' && attr!=='position') {
               scoresheet += `${attr}: `;
               
               switch (attr) {
@@ -680,7 +681,7 @@ export default {
                   scoreWithinTolerance(a, 0, this.tolerance.deltae, 1);
                   break;
                 case 'fillopacity':
-                  scoreWithinTolerance(a, 1, this.tolerance.fillopacity, 1);
+                  scoreWithinTolerance(a, 0, this.tolerance.fillopacity, 1);
                   break;
                 case 'points':
                   scoreWithinTolerance(a, 0, this.tolerance.area, 1);
@@ -707,7 +708,9 @@ export default {
                   scoreWithinTolerance(a, 1, this.tolerance.strokemiterlimit, 1);
                   break;
                 case 'strokeopacity':
-                  scoreWithinTolerance(a, 1, this.tolerance.strokeopacity, 1);
+console.log('a',a);
+console.log('this.tolerance.strokeopacity',this.tolerance.strokeopacity);
+                  scoreWithinTolerance(a, 0, this.tolerance.strokeopacity, 1);
                   break;
                 case 'strokewidth':
                   scoreWithinTolerance(a, 1, this.tolerance.strokewidth, 1);
