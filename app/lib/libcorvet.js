@@ -641,17 +641,20 @@ export default {
       let score = 0;
       let scoresheet = 'scoresheet:\n';
       
-      function scoreWithinTolerance(value, correct, tolerance, mark) {
+      function scoreAdd(attr, mark) {
+        score += mark;
+        scoresheet += `${attr}: ${mark}\n`;
+      }
+      
+      function scoreWithinTolerance(attr, value, correct, tolerance, mark) {
         if (value > correct-tolerance && value < correct+tolerance) {
-          score += mark;
-          scoresheet += `${mark}\n`;
+          scoreAdd(attr, mark);
         }
       }
       
       function scoreTrueFalse(value, correct, mark) {
         if (value===correct) {
-          score += mark;
-          scoresheet += `${mark}\n`;
+          scoreAdd(attr, mark);
         }
       }
       
@@ -666,54 +669,47 @@ export default {
             let a = r[k][i][attr];
             
             if (attr==='position') {
-              scoresheet += `${attr}: `;
-              scoreWithinTolerance(a, 0, this.tolerance.position, 1);
+              scoreWithinTolerance(attr, a, 0, this.tolerance.position, 1);
             }
             
             if ((a || a===0) && attr!=='id' && attr!=='position') {
-              scoresheet += `${attr}: `;
               
               switch (attr) {
                 case 'area':
-                  scoreWithinTolerance(a, 1, this.tolerance.area, 1);
+                  scoreWithinTolerance(attr, a, 1, this.tolerance.area, 1);
                   break;
                 case 'fill':
-                  scoreWithinTolerance(a, 0, this.tolerance.deltae, 1);
+                  scoreWithinTolerance(attr, a, 0, this.tolerance.deltae, 1);
                   break;
                 case 'fillopacity':
-                  scoreWithinTolerance(a, 0, this.tolerance.fillopacity, 1);
+                  scoreWithinTolerance(attr, a, 0, this.tolerance.fillopacity, 1);
                   break;
                 case 'points':
-                  scoreWithinTolerance(a, 0, this.tolerance.area, 1);
+                  scoreWithinTolerance(attr, a, 0, this.tolerance.area, 1);
                   break;
                 case 'rx':
-                  scoreWithinTolerance(a, 1, this.tolerance.rx, 1);
+                  scoreWithinTolerance(attr, a, 1, this.tolerance.rx, 1);
                   break;
                 case 'ry':
-                  scoreWithinTolerance(a, 1, this.tolerance.ry, 1);
+                  scoreWithinTolerance(attr, a, 1, this.tolerance.ry, 1);
                   break;
                 case 'stroke':
-                  scoreWithinTolerance(a, 0, this.tolerance.deltae, 1);
+                  scoreWithinTolerance(attr, a, 0, this.tolerance.deltae, 1);
                   break;
                 case 'strokedasharray':
-                  scoreTrueFalse(a, true, 1);
+                  scoreTrueFalse(attr, a, true, 1);
                   break;
                 case 'strokelinecap':
-                  scoreTrueFalse(a, true, 1);
+                  scoreTrueFalse(attr, a, true, 1);
                   break;
                 case 'strokelinejoin':
-                  scoreTrueFalse(a, true, 1);
-                  break;
-                case 'strokemiterlimit':
-                  scoreWithinTolerance(a, 1, this.tolerance.strokemiterlimit, 1);
+                  scoreTrueFalse(attr, a, true, 1);
                   break;
                 case 'strokeopacity':
-console.log('a',a);
-console.log('this.tolerance.strokeopacity',this.tolerance.strokeopacity);
-                  scoreWithinTolerance(a, 0, this.tolerance.strokeopacity, 1);
+                  scoreWithinTolerance(attr, a, 0, this.tolerance.strokeopacity, 1);
                   break;
                 case 'strokewidth':
-                  scoreWithinTolerance(a, 1, this.tolerance.strokewidth, 1);
+                  scoreWithinTolerance(attr, a, 1, this.tolerance.strokewidth, 1);
                   break;
               }
             }
