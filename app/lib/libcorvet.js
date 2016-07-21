@@ -652,7 +652,7 @@ export default {
         }
       }
       
-      function scoreTrueFalse(value, correct, mark) {
+      function scoreTrueFalse(attr, value, correct, mark) {
         if (value===correct) {
           scoreAdd(attr, mark);
         }
