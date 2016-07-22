@@ -687,12 +687,6 @@ export default {
                 case 'points':
                   scoreWithinTolerance(attr, a, 0, this.tolerance.area, 1);
                   break;
-                case 'rx':
-                  scoreWithinTolerance(attr, a, 1, this.tolerance.rx, 1);
-                  break;
-                case 'ry':
-                  scoreWithinTolerance(attr, a, 1, this.tolerance.ry, 1);
-                  break;
                 case 'stroke':
                   scoreWithinTolerance(attr, a, 0, this.tolerance.deltae, 1);
                   break;
