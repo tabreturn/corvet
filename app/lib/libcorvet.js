@@ -11,19 +11,20 @@ export default {
     
     this.tolerance = {
       corner:           2,   // disregard corners under this value (degrees)
-      deltae:           10,  // color difference in fills & stokes
-      rectdetect:       2.5, // the degrees any path/poly-to-rect corner can be out
       points:           5,   // total % of difference between polygon points
       position:         10,  // shapes distanace apart
+      deltae:           10,  // color difference in fills & stokes
+      rectdetect:       2.5, // the degrees any path/poly-to-rect corner can be out
       
       // for the following: 0 is an exact match; 1 is way off
       area:             0.2, 
       fillopacity:      0.2,
-      rx:               0.2,
-      ry:               0.2,
+      fontsize:         0.2,
       strokemiterlimit: 0.2,
       strokeopacity:    0.2,
-      strokewidth:      0.2
+      strokewidth:      0.2,
+      rx:               0.2,
+      ry:               0.2
     };
     
     // extract shapes and attributes
@@ -78,6 +79,7 @@ export default {
       this.polygons = [];
       this.polylines = [];
       this.rects = [];
+      this.texts = [];
     };
     
     this.getShapes = function(svgselector) {
@@ -105,6 +107,14 @@ export default {
         shapes.rects
       );
       shapes.rects = this.relativeToAbsolute(shapes.rects);
+      
+      this.setShapeAttributes(
+        sel,
+        this.countShapes(sel, 'text'),
+        'text',
+        shapes.texts
+      );
+      shapes.texts = this.relativeToAbsolute(shapes.texts);
       
       // path/polygon/polyline all as polygons:
       this.setShapeAttributes(
@@ -310,6 +320,12 @@ export default {
           attr.x            = shape.getAttribute('x');
           attr.y            = shape.getAttribute('y');
           attr.area         = attr.width * attr.height;
+          break;
+        case 'text':
+          attr.x            = shape.getAttribute('x');
+          attr.y            = shape.getAttribute('y');
+          attr.fontfamily   = getComputedStyle(shape, null).fontFamily;
+          attr.fontsize     = parseFloat(getComputedStyle(shape, null).fontSize);
           break;
       }
       attr.fill             = getComputedStyle(shape, null).fill;
@@ -533,7 +549,8 @@ export default {
         rx          : this.compareProportional(shape1.rx, shape2.rx),
         ry          : this.compareProportional(shape1.rx, shape2.rx),
         // polygons (and paths)
-        points      : this.comparePolygon(shape1.points, shape2.points)
+        points      : this.comparePolygon(shape1.points, shape2.points),
+        fontsize    : this.compareProportional(shape1.fontsize, shape2.fontsize),
       };
       
       if (this.isFloat(comparisons.stroke) || this.isInt(comparisons.stroke)) {
@@ -685,6 +702,9 @@ export default {
                   if (r[k][i].fill !== undefined) {
                     scoreWithinTolerance(attr, a, 0, this.tolerance.fillopacity, 1);
                   }
+                  break;
+                case 'fontsize':
+                  scoreWithinTolerance(attr, a, 1, this.tolerance.fontsize, 1);
                   break;
                 case 'points':
                   scoreWithinTolerance(attr, a, 0, this.tolerance.area, 1);
