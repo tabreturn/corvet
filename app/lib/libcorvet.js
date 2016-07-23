@@ -682,7 +682,9 @@ export default {
                   scoreWithinTolerance(attr, a, 0, this.tolerance.deltae, 1);
                   break;
                 case 'fillopacity':
-                  scoreWithinTolerance(attr, a, 0, this.tolerance.fillopacity, 1);
+                  if (r[k][i].fill !== undefined) {
+                    scoreWithinTolerance(attr, a, 0, this.tolerance.fillopacity, 1);
+                  }
                   break;
                 case 'points':
                   scoreWithinTolerance(attr, a, 0, this.tolerance.area, 1);
