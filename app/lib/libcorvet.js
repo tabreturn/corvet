@@ -75,6 +75,7 @@ export default {
     this.SvgShapes = function() {
       this.circles = [];
       this.ellipses = [];
+      this.lines = [];
       this.paths = [];
       this.polygons = [];
       this.polylines = [];
@@ -118,6 +119,11 @@ export default {
       
       // path/polygon/polyline all as polygons:
       this.setShapeAttributes(
+        sel, this.countShapes(sel, 'line'),
+        'line',
+        shapes.lines
+      );
+      this.setShapeAttributes(
         sel, this.countShapes(sel, 'path'),
         'path',
         shapes.paths
@@ -134,9 +140,11 @@ export default {
         'polyline',
         shapes.polylines
       );
+      shapes.lines = this.linesToPolygons(shapes.lines, shapes.polygons);
       shapes.polygons = this.pathsToPolygons(shapes.paths, shapes.polygons);
       shapes.polygons = shapes.polygons.concat(shapes.polylines);
       this.relativeToAbsolute(shapes.polygons);
+      delete shapes.lines;
       delete shapes.paths;
       delete shapes.polylines;
       
@@ -197,6 +205,21 @@ export default {
           points = points.trim();
           return points;
       }
+    };
+    
+    this.linesToPolygons = function(lines, polygons) {
+      let polylines = polygons;
+      
+      for (let i=0; i<lines.length; i++) {
+        lines[i].points =
+          `${lines[i].x1},${lines[i].y1} ${lines[i].x2},${lines[i].x2}`;
+        delete lines[i].x1;
+        delete lines[i].y1;
+        delete lines[i].x2;
+        delete lines[i].y2;
+        polylines.push(lines[i]);
+      }
+      return polylines;
     };
     
     this.pathsToPolygons = function(paths, polygons) {
@@ -301,6 +324,12 @@ export default {
           attr.rx           = shape.getAttribute('rx');
           attr.ry           = shape.getAttribute('ry');
           attr.area         = attr.rx*attr.ry * Math.PI;
+          break;
+        case 'line':
+          attr.x1           = shape.getAttribute('x1');
+          attr.x2           = shape.getAttribute('x2');
+          attr.y1           = shape.getAttribute('y1');
+          attr.y2           = shape.getAttribute('y2');
           break;
         case 'path':
           attr.d            = shape.getAttribute('d');
