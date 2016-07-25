@@ -163,15 +163,6 @@ export default {
                       this.tolerance.corner
                     ).length/2;
       
-      let rt = [
-        0   - this.tolerance.rectdetect/2,
-        0   + this.tolerance.rectdetect/2,
-        90  - this.tolerance.rectdetect/2,
-        90  + this.tolerance.rectdetect/2,
-        180 - this.tolerance.rectdetect/2,
-        180 + this.tolerance.rectdetect/2
-      ];
-      
       if (corners === 4 || corners === 5) {
         let pp = this.pointsToArray(polygon.points);
         let pc = [];
