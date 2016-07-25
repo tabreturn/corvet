@@ -143,7 +143,6 @@ export default {
       shapes.lines = this.linesToPolygons(shapes.lines, shapes.polygons);
       shapes.polygons = this.pathsToPolygons(shapes.paths, shapes.polygons);
       shapes.polygons = shapes.polygons.concat(shapes.polylines);
-      this.relativeToAbsolute(shapes.polygons);
       delete shapes.lines;
       delete shapes.paths;
       delete shapes.polylines;
@@ -154,7 +153,7 @@ export default {
           shapes.polygons.splice(i, 1);
         }
       }
-      
+      this.relativeToAbsolute(shapes.polygons);
       return shapes;
     };
     
@@ -173,7 +172,7 @@ export default {
         180 + this.tolerance.rectdetect/2
       ];
       
-      if (corners === 4) {
+      if (corners === 4 || corners === 5) {
         let pp = this.pointsToArray(polygon.points);
         let pc = [];
         pc[0] = this.findAngle(pp[0], pp[1], pp[2], pp[3]);
@@ -181,18 +180,17 @@ export default {
         pc[2] = this.findAngle(pp[4], pp[5], pp[6], pp[7]);
         pc[3] = this.findAngle(pp[6], pp[7], pp[0], pp[1]);
         
-        let isrect = true;
+        let isrect = false;
+        let anglesum = 0;
         
         for (let i=0; i<pc.length; i++) {
           let c = Math.abs(pc[i]);
-          
-          if (!(
-              c >= rt[0] && c <= rt[1] ||
-              c >= rt[2] && c <= rt[3] ||
-              c >= rt[4] && c <= rt[5]
-             )) {
-            isrect = false;
-          }
+          anglesum += c;
+        }
+        
+        if (anglesum/2 >= 180-this.tolerance.rectdetect &&
+            anglesum/2 <= 180+this.tolerance.rectdetect) {
+            isrect = true;
         }
         
         return isrect;
