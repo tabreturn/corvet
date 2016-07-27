@@ -158,34 +158,37 @@ export default {
     };
     
     this.checkIfPolygonIsRect = function(polygon) {
-      let corners = this.findCorners(
-                      polygon.points,
-                      this.tolerance.corner
-                    ).length/2;
+      let pp = this.pointsToArray(polygon.points);
+      let pc = [];
+      pc[0] = this.findAngle(pp[0], pp[1], pp[2], pp[3]);
+      pc[1] = this.findAngle(pp[2], pp[3], pp[4], pp[5]);
+      pc[2] = this.findAngle(pp[4], pp[5], pp[6], pp[7]);
+      pc[3] = this.findAngle(pp[6], pp[7], pp[0], pp[1]);
       
-      if (corners === 4 || corners === 5) {
-        let pp = this.pointsToArray(polygon.points);
-        let pc = [];
-        pc[0] = this.findAngle(pp[0], pp[1], pp[2], pp[3]);
-        pc[1] = this.findAngle(pp[2], pp[3], pp[4], pp[5]);
-        pc[2] = this.findAngle(pp[4], pp[5], pp[6], pp[7]);
-        pc[3] = this.findAngle(pp[6], pp[7], pp[0], pp[1]);
+      let isrect = true;
+      
+      let rt = [
+        0   - this.tolerance.rectdetect/2,
+        0   + this.tolerance.rectdetect/2,
+        90  - this.tolerance.rectdetect/2,
+        90  + this.tolerance.rectdetect/2,
+        180 - this.tolerance.rectdetect/2,
+        180 + this.tolerance.rectdetect/2
+      ];
+      
+      for (let i=0; i<pc.length; i++) {
+        let c = Math.abs(pc[i]);
         
-        let isrect = false;
-        let anglesum = 0;
-        
-        for (let i=0; i<pc.length; i++) {
-          let c = Math.abs(pc[i]);
-          anglesum += c;
+        if (!(
+            c >= rt[0] && c <= rt[1] ||
+            c >= rt[2] && c <= rt[3] ||
+            c >= rt[4] && c <= rt[5]
+           )) {
+          isrect = false;
         }
-        
-        if (anglesum/2 >= 180-this.tolerance.rectdetect &&
-            anglesum/2 <= 180+this.tolerance.rectdetect) {
-            isrect = true;
-        }
-        
-        return isrect;
       }
+      
+      return isrect;
     };
     
     this.dToPoints = function(d) {
