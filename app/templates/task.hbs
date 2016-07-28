@@ -9,8 +9,28 @@
 <ol class="list-group" id="steps">
   
   <li class="list-group-item">
-    <a {{action 'activateNextStep' on='mouseDown'}} download="Task_{{taskactive}}.png" href="{{tasksrc}}" title="Task {{taskactive}}">Download</a>
-    and recreate the above image.
+    Download
+    <a {{action 'activateNextStep' on='mouseDown'}}
+       download="assets/images/tests/ai/{{tasksrc}}.ai"
+       href="assets/images/tests/ai/{{tasksrc}}.ai"
+       title="{{tasksrc}}.ai">
+      Illustrator
+    </a>
+    |
+    <a {{action 'activateNextStep' on='mouseDown'}}
+       download="assets/images/tests/cdr/{{tasksrc}}.cdr"
+       href="assets/images/tests/cdr/{{tasksrc}}.cdr"
+       title="{{tasksrc}}.cdr">
+      CorelDRAW
+    </a>
+    |
+    <a {{action 'activateNextStep' on='mouseDown'}}
+       download="assets/images/tests/ink/{{tasksrc}}.svg"
+       href="assets/images/tests/ink/{{tasksrc}}.svg"
+       title="{{tasksrc}}.svg">
+      Inkscape
+    </a>
+    template and recreate the above image.
   </li>
   
   <li class="list-group-item disabled">
