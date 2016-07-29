@@ -19,7 +19,7 @@ export default {
       // for the following: 0 is an exact match; 1 is way off
       area:             0.2, 
       fillopacity:      0.2,
-      fontsize:         0.3,
+      fontsize:         0.2,
       strokemiterlimit: 0.2,
       strokeopacity:    0.2,
       strokewidth:      0.2,
@@ -725,7 +725,7 @@ export default {
                   }
                   break;
                 case 'fontsize':
-                  scoreWithinTolerance(attr, a, 0, this.tolerance.fontsize, 1);
+                  scoreWithinTolerance(attr, a, 1, this.tolerance.fontsize, 1);
                   break;
                 case 'points':
                   scoreWithinTolerance(attr, a, 0, this.tolerance.points, 1);
