@@ -44,7 +44,7 @@ export default {
     
     this.relativeToAbsolute = function(shapesarray) {
       for (let i=0; i<shapesarray.length; i++) {
-        if (shapesarray[i].x) {
+        if (shapesarray[i].x || shapesarray[i].y) {
           shapesarray[i].x =
             parseFloat(shapesarray[i].x) + parseFloat(shapesarray[i].transform.x);
           shapesarray[i].y =
@@ -164,7 +164,7 @@ export default {
         }
       }
       
-      this.relativeToAbsolute(shapes.polygons);
+      shapes.polygons = this.relativeToAbsolute(shapes.polygons);
       return shapes;
     };
     
@@ -349,6 +349,8 @@ export default {
       }
       
       let midpoints = { x: xmin+xmax/2, y: ymin+ymax/2 };
+console.log(p.toString());
+console.log(midpoints);
       return midpoints;
     };
     
@@ -612,6 +614,8 @@ export default {
     };
     
     this.compareShape = function(shape1, shape2) {
+console.log(shape1.x,shape1.y);
+console.log(shape2.x,shape2.y);
       let comparisons = {
         // common
         position    : this.compareDistance(shape1.x,shape1.y, shape2.x,shape2.y),
