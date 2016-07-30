@@ -156,8 +156,10 @@ export default {
         }
       }
       
-      for (let i=polygondelete.length; i>=0; i--) {
-        shapes.polygons.splice(polygondelete[i], 1);
+      if (polygondelete.length >= 1) {
+        for (let i=polygondelete.length; i>=0; i--) {
+          shapes.polygons.splice(polygondelete[i], 1);
+        }
       }
       
       this.relativeToAbsolute(shapes.polygons);
