@@ -598,7 +598,7 @@ export default {
         comparisons.strokelinejoin    = (
           shape1.strokelinejoin === shape2.strokelinejoin);
         comparisons.strokedasharray   = (
-          shape1.strokedasharray === shape2.strokedasharray);
+          Boolean(shape1.strokedasharray) && Boolean(shape2.strokedasharray));
       }
       
       return comparisons;
