@@ -165,6 +165,13 @@ export default {
       }
       
       shapes.polygons = this.relativeToAbsolute(shapes.polygons);
+      
+      for (let i=0; i<shapes.polygons.length; i++) {
+        let polygon = shapes.polygons[i];
+        polygon.x = this.getPointsShapeCentre(polygon.points).x;
+        polygon.y = this.getPointsShapeCentre(polygon.points).y;
+      }
+      
       return shapes;
     };
     
@@ -349,8 +356,6 @@ export default {
       }
       
       let midpoints = { x: xmin+xmax/2, y: ymin+ymax/2 };
-console.log(p.toString());
-console.log(midpoints);
       return midpoints;
     };
     
@@ -380,15 +385,10 @@ console.log(midpoints);
           break;
         case 'path':
           attr.d            = shape.getAttribute('d');
-          let dToP          = this.dToPoints(attr.d);
-          attr.x            = this.getPointsShapeCentre(dToP).x;
-          attr.y            = this.getPointsShapeCentre(dToP).y;
           break;
         case 'polygon':
         case 'polyline':
           attr.points       = shape.getAttribute('points').trim();
-          attr.x            = this.getPointsShapeCentre(attr.points).x;
-          attr.y            = this.getPointsShapeCentre(attr.points).y;
           break;
         case 'rect':
           attr.width        = shape.getAttribute('width');
@@ -614,8 +614,6 @@ console.log(midpoints);
     };
     
     this.compareShape = function(shape1, shape2) {
-console.log(shape1.x,shape1.y);
-console.log(shape2.x,shape2.y);
       let comparisons = {
         // common
         position    : this.compareDistance(shape1.x,shape1.y, shape2.x,shape2.y),
