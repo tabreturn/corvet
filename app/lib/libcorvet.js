@@ -57,6 +57,7 @@ export default {
           
           for (let j=0; j<points.length; j++) {
             let xy = points[j].split(',');
+            
             p += (parseFloat(xy[0]) + parseFloat(shapesarray[i].transform.x));
             p += ',';
             p += (parseFloat(xy[1]) + parseFloat(shapesarray[i].transform.y));
@@ -65,6 +66,7 @@ export default {
               p += ' ';
             }
           }
+          
           shapesarray[i].points = p;
         }
       }
@@ -201,11 +203,55 @@ export default {
     };
     
     this.dToPoints = function(d) {
+      let points = [];
+      
       if (d) {
-          let points = d.replace(/[a-zA-Z]/g, '');
-          points = points.trim();
-          return points;
+        let com = d.split(/(?=[mMlLzZ])/);
+        
+        for (let i=0; i<com.length; i++) {
+          switch (com[i].charAt(0)) {
+            case 'm':
+              let cm = com[i].substring(1);
+              cm = cm.trim();
+              cm = cm.split(' ');
+              
+              for (let j=0; j<cm.length; j++) {
+                if (!points.length) {
+                  points.push(parseInt(cm[j].split(',')[0]) + 0);
+                  points.push(parseInt(cm[j].split(',')[1]) + 0);
+                }
+                else {
+                  let pl = points.length;
+                  points.push(parseInt(cm[j].split(',')[0]) + points[pl-2]);
+                  points.push(parseInt(cm[j].split(',')[1]) + points[pl-1]);
+                }
+              }
+              
+              break;
+            
+            case 'L':
+              let cL = com[i].substring(1);
+              cL = cL.trim();
+              cL = cL.split(' ');
+              
+              for (let j=0; j<cL.length; j++) {
+                points.push(parseInt(cL[j].split(',')[0]));
+                points.push(parseInt(cL[j].split(',')[1]));
+              }
+              
+              break;
+          }
+        }
       }
+      
+      let p = '';
+      
+      for (let i=0; i<points.length; i+=2) {
+        p += points[i] + ',';
+        p += points[i+1] + ' ';
+      }
+      
+      return p.slice(0, -1);
     };
     
     this.linesToPolygons = function(lines, polygons) {
