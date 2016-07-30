@@ -147,12 +147,19 @@ export default {
       delete shapes.paths;
       delete shapes.polylines;
       
+      let polygondelete = [];
+      
       for (let i=0; i<shapes.polygons.length; i++) {
         if (this.checkIfPolygonIsRect(shapes.polygons[i])) {
           shapes.rects.push(this.polygonToRect(shapes.polygons[i]));
-          shapes.polygons.splice(i, 1);
+          polygondelete.push(i);
         }
       }
+      
+      for (let i=polygondelete.length; i>0; i--) {
+        shapes.polygons.splice(polygondelete[i], 1);
+      }
+      
       this.relativeToAbsolute(shapes.polygons);
       return shapes;
     };
