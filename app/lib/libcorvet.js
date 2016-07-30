@@ -675,7 +675,13 @@ export default {
       return this.getMostSimilarShapes(candidates, 'position');
     };
     
+    this.removeProblemShapes = function() {
+      var clippath = document.querySelector('defs clipPath');
+      clippath.parentNode.removeChild(clippath);
+    };
+    
     this.gatherSubmissionAnswer = function() {
+      this.removeProblemShapes();
       let subshapes = this.getShapes(submission);
       let ansshapes = this.getShapes(answer);
       return this.compareAllShapes(ansshapes, subshapes);
