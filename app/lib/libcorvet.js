@@ -330,23 +330,21 @@ export default {
     };
     
     this.getPointsShapeCentre = function(points) {
-      points = this.pointsToArray(points);
-      
+      let p = this.pointsToArray(points);
       let xmin, xmax, ymin, ymax;
       
-      for (let i=0; i<points.length; i+=2) {
-        
-        if (points[i]<xmin || xmin===undefined) {
-          xmin = points[i];
+      for (let i=0; i<=p.length; i+=2) {
+        if (p[i]<xmin || xmin===undefined) {
+          xmin = p[i];
         }
-        if (points[i]>xmax || xmax===undefined) {
-          xmax = points[i];
+        if (p[i]>xmax || xmax===undefined) {
+          xmax = p[i];
         }
-        if (points[i-1]<ymin || ymin===undefined) {
-          ymin = points[i-1];
+        if (p[i-1]<ymin || ymin===undefined) {
+          ymin = p[i-1];
         }
-        if (points[i-1]>ymax || ymax===undefined) {
-          ymax = points[i-1];
+        if (p[i-1]>ymax || ymax===undefined) {
+          ymax = p[i-1];
         }
       }
       
