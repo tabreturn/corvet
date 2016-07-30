@@ -156,7 +156,7 @@ export default {
         }
       }
       
-      for (let i=polygondelete.length; i>0; i--) {
+      for (let i=polygondelete.length; i>=0; i--) {
         shapes.polygons.splice(polygondelete[i], 1);
       }
       
