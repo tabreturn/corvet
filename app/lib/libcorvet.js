@@ -676,8 +676,12 @@ export default {
     };
     
     this.removeProblemShapes = function() {
-      var clippath = document.querySelector('defs clipPath');
-      clippath.parentNode.removeChild(clippath);
+      try {
+        var clippath = document.querySelector('defs clipPath');
+        clippath.parentNode.removeChild(clippath);
+      } catch(e) {
+        console.log('* no problem elements removed');
+      }
     };
     
     this.gatherSubmissionAnswer = function() {
