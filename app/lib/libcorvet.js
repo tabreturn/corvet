@@ -17,7 +17,7 @@ export default {
       rectdetect:       2.5, // the degrees any path/poly-to-rect corner can be out
       
       // for the following: 0 is an exact match; 1 is way off
-      area:             0.2, 
+      area:             0.3, 
       fillopacity:      0.2,
       fontsize:         0.2,
       strokemiterlimit: 0.2,
