@@ -12,7 +12,7 @@ export default {
     this.tolerance = {
       corner:           2,   // disregard corners under this value (degrees)
       points:           5,   // total % of difference between polygon points
-      position:         10,  // shapes distanace apart
+      position:         10,  // shapes distance apart
       deltae:           10,  // color difference in fills & stokes
       rectdetect:       2.5, // the degrees any path/poly-to-rect corner can be out
       
