@@ -14,7 +14,7 @@ export default {
       points:           5,   // total % of difference between polygon points
       position:         10,  // shapes distance apart
       deltae:           10,  // color difference in fills & stokes
-      rectdetect:       2.5, // the degrees any path/poly-to-rect corner can be out
+      rectdetect:       2.5, // the degrees any path/poly-to-rect corner can be out by
       
       // for the following: 0 is an exact match; 1 is way off
       area:             0.3, 
