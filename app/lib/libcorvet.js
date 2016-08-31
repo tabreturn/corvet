@@ -819,9 +819,8 @@ export default {
         }
       }
       
-      console.log(scoresheet);
+      alert(scoresheet + '---\n' + 'total score: ' + score);
       console.log('comparison data:', r);
-      console.log('total score:', score);
       return score;
     };
     

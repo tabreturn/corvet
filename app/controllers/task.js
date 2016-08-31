@@ -77,25 +77,16 @@ export default Ember.Controller.extend({
     },
     
     postResult() {
-      let user = sessionStorage.getItem('firstname') + ' ' + sessionStorage.getItem('surname');
+      document.querySelector('#submission').innerHTML = '';
+      Ember.$('html, body').animate({ scrollTop: 0 }, 500);
+      task ++;
       
-      Ember.$.post( '/api/results', { user:user, task:task, score:this.taskscore, svg:this.uploadedsvg })
-        .done(function(data) {
-          document.querySelector('#submission').innerHTML = '';
-          Ember.$('html, body').animate({ scrollTop: 0 }, 500);
-          console.log(data.substring(0, 99));
-          task ++;
-          
-          if (task > this.tests.length) {
-            this.transitionToRoute('questionnaire');
-          }
-          else {
-            this.send('resetTask');
-          }
-          
-        }
-        .bind(this)
-      );
+      if (task > this.tests.length) {
+        this.transitionToRoute('questionnaire');
+      }
+      else {
+        this.send('resetTask');
+      }
     }
   }
   
