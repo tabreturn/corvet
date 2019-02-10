@@ -1,4 +1,4 @@
-# Corvet
+# webscript-corvet
 
 An automatic marker for vector graphics drawing tasks.
 
