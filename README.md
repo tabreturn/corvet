@@ -1,6 +1,6 @@
 # Corvet
 
-Automatic marker for vector graphics drawing tasks
+*Automatic marker for vector graphics drawing tasks*
 
 Basically -- you get a graphic, redraw it in Illustrator/Inkscape, and the web-app tells you how well you did it.
 
